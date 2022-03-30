@@ -3,7 +3,7 @@ import { GameList } from "../modules/game-list";
 
 export const Core = () => {
   return (
-    <div>
+    <div >
       <p>Core</p>
       <GameList />
     </div>
