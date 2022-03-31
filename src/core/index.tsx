@@ -1,5 +1,5 @@
-import * as React from "react";
-import { GameList } from "../modules/game-list";
+import * as React from 'react';
+import { GameList } from '../modules/game-list';
 
 export const Core = () => {
   return (

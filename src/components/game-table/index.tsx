@@ -1,20 +1,20 @@
-import * as React from "react";
-import { GameCard } from "../game-card";
+import * as React from 'react';
+import { GameCard } from '../game-card';
 
 // @TODO Delete this object, after adding normal blockchaine
 const games: any = [
   {
-    title: "Fortnite",
-    img: "",
+    title: 'Fortnite',
+    img: ''
   },
   {
-    title: "GTA V",
-    img: "",
+    title: 'GTA V',
+    img: ''
   },
   {
-    title: "Game a",
-    img: "",
-  },
+    title: 'Game a',
+    img: ''
+  }
 ];
 
 interface tempObject {
@@ -29,7 +29,9 @@ export const GameTable: React.FC<IProps> = () => {
     <div className='flex flex-wrap justify-center max-h-[70vh] max-w-[80vw] overflow-auto gap-9'>
       {games &&
         games.map((item: tempObject) => {
-          return <GameCard title={item.title} img={item.img} />;
+          return (
+            <GameCard key={item.title} title={item.title} img={item.img} />
+          );
         })}
     </div>
   );

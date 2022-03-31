@@ -1,15 +1,15 @@
 module.exports = {
-  content: ["./src/**/**/*.{ts,tsx}"],
+  content: ['./src/**/**/*.{ts,tsx}'],
   theme: {
     extend: {
       fontFamily: {
-        roboto: ["Roboto"],
+        roboto: ['Roboto']
       },
       colors: {
-        "custom-gray": "#c4c4c4",
-        "custom-pink": "#6200EE",
-      },
-    },
+        'custom-gray': '#c4c4c4',
+        'custom-pink': '#6200EE'
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 };
