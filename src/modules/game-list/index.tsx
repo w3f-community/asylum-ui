@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { GameTable } from '../../components/game-table';
-import { Hr } from '../../components/hr';
+import * as React from 'react'
+import { GameTable } from '../../components/game-table'
+import { Hr } from '../../components/hr'
 
 export const GameList = () => {
   return (
@@ -9,5 +9,5 @@ export const GameList = () => {
       <Hr />
       <GameTable />
     </div>
-  );
-};
+  )
+}

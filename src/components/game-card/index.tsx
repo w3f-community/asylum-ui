@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { BorderButton } from '../buttons/border-button';
+import * as React from 'react'
+import { BorderButton } from '../buttons/border-button'
 
 interface IProps {
   title: string;
@@ -13,5 +13,5 @@ export const GameCard: React.FC<IProps> = ({ title, img }) => {
       <div className='empty-img w-64 h-64'></div>
       <BorderButton text={'SELECT'} onClick={() => console.log(title)} />
     </div>
-  );
-};
+  )
+}

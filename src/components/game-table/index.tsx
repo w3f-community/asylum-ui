@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { GameCard } from '../game-card';
+import * as React from 'react'
+import { GameCard } from '../game-card'
 
 // @TODO Delete this object, after adding normal blockchaine
 const games: any = [
@@ -15,7 +15,7 @@ const games: any = [
     title: 'Game a',
     img: ''
   }
-];
+]
 
 interface tempObject {
   title: string;
@@ -31,8 +31,8 @@ export const GameTable: React.FC<IProps> = () => {
         games.map((item: tempObject) => {
           return (
             <GameCard key={item.title} title={item.title} img={item.img} />
-          );
+          )
         })}
     </div>
-  );
-};
+  )
+}

@@ -20,8 +20,18 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "quotes": ["warn", "single"],
-        "semi": ["error", "always"],
-        "indent": ["error", 2]
+        "quotes": [
+            "warn",
+            "single"
+        ],
+        "semi": [
+            "warn",
+            "never"
+        ],
+        "no-use-before-define": "off",
+        "indent": [
+            "error",
+            2
+        ]
     }
 }

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 
 interface IProps {
   text: string;
@@ -13,5 +13,5 @@ export const BorderButton: React.FC<IProps> = ({ text, onClick }) => {
     >
       {text}
     </button>
-  );
-};
+  )
+}
