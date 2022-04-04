@@ -6,6 +6,7 @@ module.exports = {
         roboto: ['Roboto']
       },
       colors: {
+        'asylum-gray-1': '#303030',
         'custom-gray': '#c4c4c4',
         'custom-pink': '#6200EE'
       }

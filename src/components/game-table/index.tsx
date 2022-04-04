@@ -26,7 +26,7 @@ interface IProps {}
 
 export const GameTable: React.FC<IProps> = () => {
   return (
-    <div className='flex flex-wrap justify-center max-h-[70vh] max-w-[80vw] overflow-auto gap-9'>
+    <div className='no-scrollbar flex flex-wrap justify-center pt-[35px] max-h-[70vh] max-w-[80vw] overflow-auto gap-9'>
       {games &&
         games.map((item: tempObject) => {
           return (

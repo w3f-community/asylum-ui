@@ -3,7 +3,7 @@ import { GameList } from '../modules/game-list'
 
 export const Core = () => {
   return (
-    <div className='h-screen flex justify-center items-center bg-gradient-to-b from-custom-gray via-white to-white'>
+    <div className='h-screen flex justify-center items-center bg-asylum-gray-1'>
       <GameList />
     </div>
   )
