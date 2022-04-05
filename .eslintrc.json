@@ -20,6 +20,10 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "jsx-quotes": [
+            "error",
+            "prefer-double"
+        ],
         "quotes": [
             "warn",
             "single"
