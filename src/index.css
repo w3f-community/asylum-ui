@@ -2,39 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600&display=swap');
 
 @layer components {
+  @import './styles/styles.css';
+
   .text-ubuntu {
     font-family: 'Ubuntu', sans-serif;
   }
+
   .text-oxanium {
     font-family: 'Oxanium', cursive;
   }
+
+  .text-description-header {
+    font-family: 'Oxanium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #131313;
+    padding-bottom: 14px;
+  }
+
+  .text-description {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: #303030;
+  }
+
   .text-header-of-page {
     letter-spacing: -0.4px;
+    font-size: 28px;
     line-height: 48px;
     font-weight: 500;
     font-style: normal;
+    align-self: flex-start;
   }
+
+  .article-header {
+    font-family: 'Oxanium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+
+    color: #131313;
+  }
+
   .empty-img {
     background-image: url("../public/empty-img.jpg");
+    border-radius: 15px;
+    background-position: center;
     background-size: cover;
   }
+
   .game-card {
     display: flex;
     flex-direction: column;
     background: white;
-    /* margin-top: 16px 18px ; */
+    cursor: pointer;
     padding: 22px 14px;
     border-radius: 15px;
   }
-  .hr-bg-gradient{
-    background: rgb(48,48,48);
-    background: linear-gradient(90deg, rgba(48,48,48,1) 0%, rgba(255,255,255,1) 20%, rgba(250,250,250,1) 80%, rgba(48,48,48,1) 100%);
+
+  .hr-bg-gradient {
+    background: rgb(48, 48, 48);
+    background: linear-gradient(90deg, rgba(48, 48, 48, 1) 0%, rgba(255, 255, 255, 1) 20%, rgba(250, 250, 250, 1) 80%, rgba(48, 48, 48, 1) 100%);
   }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
     scrollbar-width: none;

@@ -1,0 +1,14 @@
+.bg-page {
+    background-color: #303030;
+}
+
+.page-width {
+    width: 80vw;
+}
+
+.page-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+}

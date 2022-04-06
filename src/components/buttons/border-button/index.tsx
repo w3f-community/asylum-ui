@@ -6,12 +6,12 @@ interface IProps {
 }
 
 export const BorderButton: React.FC<IProps> = ({ text, onClick }) => {
-  return (
-    <button
-      className="border-blacl/[.12] p-1.5 m-1.5 text-ubuntu text-sm text-custom-pink"
-      onClick={onClick}
-    >
-      {text}
-    </button>
-  )
+   return (
+      <button
+         className="border-black/[.12] p-1.5 m-1.5 text-ubuntu text-sm text-custom-pink"
+         onClick={onClick}
+      >
+         {text}
+      </button>
+   )
 }
