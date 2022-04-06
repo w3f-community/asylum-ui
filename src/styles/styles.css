@@ -1,9 +1,11 @@
 .page-bg {
     background-color: #303030;
 }
+
 .page-width {
     width: 80vw;
 }
+
 .page-flex {
     display: flex;
     justify-content: center;

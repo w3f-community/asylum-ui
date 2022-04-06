@@ -1,5 +1,9 @@
 import * as React from 'react'
+import { Carousel } from 'react-responsive-carousel'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Hr } from '../../components/hr'
+import imgPathFirst from './empty-1.png'
+import imgPathSecond from './empty-2.jpg'
 
 export const GameOverview: React.FC = () => {
    return (
@@ -17,7 +21,21 @@ export const GameOverview: React.FC = () => {
                   <p
                      className="text-description-header"
                   >Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  <div className="empty-img w-full h-[240px]"></div>
+                  {/* <div className="empty-img w-full h-[240px]"></div> */}
+                  <Carousel
+                     className="demo-carousel rounded-[15px] overflow-hidden"
+                     showIndicators={false}
+                     showArrows={true}
+                     showThumbs={true}
+                     showStatus={false}
+                  >
+                     {/* @ts-ignore */}
+                     <img src={imgPathFirst} alt="Your games" />
+                     <img src={imgPathFirst} alt="Your games" />
+                     <img src={imgPathFirst} alt="Your games" />
+                     <img src={imgPathSecond} alt="Your games" />
+                     <img src={imgPathFirst} alt="Your games" />
+                  </Carousel>
                </div>
                <div className="basis-5/12 p-2">
                   <p className="text-description-header">Description</p>
