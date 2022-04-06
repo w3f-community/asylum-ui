@@ -37,6 +37,19 @@
             "error",
             2
         ],
+        "react/jsx-max-props-per-line": [
+            1,
+            {
+                "maximum": 80,
+                "when": "always"
+            }
+        ],
+        "max-len": [
+            "warn",
+            {
+                "code": 80
+            }
+        ],
         "no-unused-vars": "warn"
     }
 }

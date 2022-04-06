@@ -4,11 +4,15 @@ import * as React from 'react'
 interface IProps {
   title: string;
   img: string;
+  id: string;
+  onclick: (id: string) => void
 }
 
-export const GameCard: React.FC<IProps> = ({ title, img }) => {
+export const GameCard: React.FC<IProps> = ({ title, img, onclick, id }) => {
   return (
-    <div className="game-card">
+    <div className="game-card"
+      onClick={() => onclick(id)}
+    >
       <p className="text-ubuntu text-center">{title}</p>
       <div className="empty-img w-64 h-64"></div>
       {/* <BorderButton text={'SELECT'} onClick={() => console.log(title)} /> */}
