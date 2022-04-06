@@ -6,8 +6,8 @@ export const App = () => {
    return (
       // eslint-disable-next-line max-len
       <div className="min-h-screen flex justify-center items-center bg-asylum-gray-1 py-28">
-         {/* <GameList/> */}
-         <GameOverview />
+         <GameList/>
+         {/* <GameOverview /> */}
       </div>
    )
 }

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Hr } from '../../components/hr'
-import { GameDescription } from '../../modules/game-description'
+import { GameDescription } from './game-description'
 
 export const GameOverview: React.FC = () => {
    return (
