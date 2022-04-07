@@ -84,4 +84,14 @@
     display: none;
     scrollbar-width: none;
   }
+
+  .gradient-asylum-active {
+    background-image: linear-gradient(79.63deg, #B62BD9 -21.85%, #50BFFF 122.14%);
+  }
+}
+
+@layer utilities{
+  .gradient-hover-effect {
+    @apply overflow-hidden z-0 relative before:gradient-asylum-active before:-z-10 before:top-0 before:bottom-0 before:left-0 before:right-0 before:absolute before:opacity-0 before:hover:opacity-100 before:transition-all
+  }
 }

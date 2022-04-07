@@ -1,13 +1,16 @@
 import * as React from 'react'
 import { GameOverview } from './pages/game-overview'
 import { GameList } from './pages/game-selection'
+import { SidebarLayout } from './layout/sidebar-layout'
+import { Route, Routes } from 'react-router-dom'
 
 export const App = () => {
    return (
-      // eslint-disable-next-line max-len
-      <div className="min-h-screen flex justify-center items-center bg-asylum-gray-1 py-28">
-         {/* <GameList/> */}
-         <GameOverview />
-      </div>
+      <SidebarLayout>
+         <Routes>
+            <Route path="/" element={<GameList/>} />
+            <Route path="overview" element={<GameOverview />} />
+         </Routes>
+      </SidebarLayout>
    )
 }

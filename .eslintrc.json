@@ -53,6 +53,7 @@
             "code": 100
          }
       ],
-      "no-unused-vars": "warn"
+      "no-unused-vars": "warn",
+      "comma-dangle": ["error", "only-multiline"]
    }
 }
