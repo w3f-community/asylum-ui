@@ -7,7 +7,7 @@ module.exports = {
          },
          colors: {
             'asylum-gray-1': '#303030',
-            'custom-gray': '#c4c4c4',
+            'asylum-gray-2': '#131313',
             'custom-pink': '#6200EE'
          }
       }

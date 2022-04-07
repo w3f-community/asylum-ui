@@ -13,7 +13,7 @@ export const GameCard: React.FC<IProps> = ({ title, img, onclick, id }) => {
       <div className="game-card"
          onClick={() => onclick(id)}
       >
-         <p className="text-ubuntu text-center">{title}</p>
+         <p className="font-ubuntu text-center">{title}</p>
          <div className="empty-img w-64 h-64"></div>
          {/* <BorderButton text={'SELECT'} onClick={() => console.log(title)} /> */}
       </div>

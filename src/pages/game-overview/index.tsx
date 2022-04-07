@@ -1,13 +1,15 @@
 import * as React from 'react'
 import { Hr } from '../../components/hr'
+import { Text3xl } from '../../components/text/text-3xl'
 import { GameDescription } from './game-description'
 
-export const GameOverview: React.FC = () => {
+interface IProps {
+}
+
+export const GameOverview: React.FC<IProps> = () => {
    return (
       <div className="bg-page page-width page-flex">
-         <p className="text-header-of-page text-white text-oxanium ">
-            Game overview
-         </p>
+         <Text3xl>Game overview</Text3xl>
          <Hr />
          <GameDescription />
       </div >
