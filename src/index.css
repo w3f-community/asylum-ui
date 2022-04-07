@@ -2,62 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './styles/styles.css';
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600&display=swap');
 
-@layer components {
-  @import './styles/styles.css';
-
-  .text-ubuntu {
+@layer utilities {
+  .font-ubuntu {
     font-family: 'Ubuntu', sans-serif;
   }
 
-  .text-oxanium {
+  .font-oxanium {
     font-family: 'Oxanium', cursive;
   }
+}
 
-  .text-description-header {
-    font-family: 'Oxanium';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.15px;
-    color: #131313;
-    padding-bottom: 14px;
-  }
-
-  .text-description {
-    font-family: 'Ubuntu';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.25px;
-    color: #303030;
-  }
-
-  .text-header-of-page {
-    letter-spacing: -0.4px;
-    font-size: 28px;
-    line-height: 48px;
-    font-weight: 500;
-    font-style: normal;
-    align-self: flex-start;
-  }
-
-  .article-header {
-    font-family: 'Oxanium';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 24px;
-    letter-spacing: 0.15px;
-
-    color: #131313;
-  }
+@layer components {
 
   .empty-img {
     background-image: url("../public/empty-img.jpg");

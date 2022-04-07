@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { GameTable } from '../../components/game-table'
 import { Hr } from '../../components/hr'
+import { Text3xl } from '../../components/text/text-3xl'
 
 export const GameList = () => {
    return (
       <div className="container mx-auto">
-         <p className="text-oxanium text-center text-white text-header-of-page">Select a game</p>
+         <Text3xl>Select a game</Text3xl>
          <Hr />
          <GameTable />
       </div>

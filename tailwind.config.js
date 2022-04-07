@@ -12,7 +12,7 @@ module.exports = {
             'asylum-purple': '#B62BD9',
             'asylum-blue': '#50BFFF',
             'asylum-gray-1': '#303030',
-            'custom-gray': '#c4c4c4',
+            'asylum-gray-2': '#131313',
             'custom-pink': '#6200EE',
             gray: {
                800: '#131313',
