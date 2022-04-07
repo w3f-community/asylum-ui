@@ -1,38 +1,26 @@
 import * as React from 'react'
 import { GameCard } from '../game-card'
+import { GameObject } from '../../types'
 
-// @TODO Delete this object, after adding normal blockchaine
-const games: any = [
-  {
-    title: 'Fortnite',
-    img: ''
-  },
-  {
-    title: 'GTA V',
-    img: ''
-  },
-  {
-    title: 'Game a',
-    img: ''
-  }
-]
-
-interface tempObject {
-  title: string;
-  img: string;
+interface IProps {
+   games: GameObject[]
 }
 
-interface IProps {}
-
-export const GameTable: React.FC<IProps> = () => {
-  return (
-    <div className="no-scrollbar flex flex-wrap justify-center pt-[35px] max-h-[70vh] max-w-[80vw] overflow-auto gap-9">
-      {games &&
-        games.map((item: tempObject) => {
-          return (
-            <GameCard key={item.title} title={item.title} img={item.img} />
-          )
-        })}
-    </div>
-  )
+export const GameTable: React.FC<IProps> = ({ games }) => {
+   return (
+      <div className="no-scrollbar flex flex-wrap justify-center overflow-auto gap-9">
+         {games &&
+            games.map((item: GameObject) => {
+               return (
+                  <GameCard
+                     key={item.title}
+                     id={item.id}
+                     onclick={console.log}
+                     title={item.title}
+                     img={item.img}
+                  />
+               )
+            })}
+      </div>
+   )
 }

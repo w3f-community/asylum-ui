@@ -1,42 +1,59 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "plugin:react/recommended",
-        "standard"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
-    "rules": {
-        "jsx-quotes": [
-            "error",
-            "prefer-double"
-        ],
-        "quotes": [
-            "warn",
-            "single"
-        ],
-        "semi": [
-            "warn",
-            "never"
-        ],
-        "no-use-before-define": "off",
-        "indent": [
-            "error",
-            2
-        ],
-        "no-unused-vars": "warn"
-    }
+   "env": {
+      "browser": true,
+      "es2021": true
+   },
+   "extends": [
+      "plugin:react/recommended",
+      "standard"
+   ],
+   "parser": "@typescript-eslint/parser",
+   "parserOptions": {
+      "ecmaFeatures": {
+         "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+   },
+   "plugins": [
+      "react",
+      "@typescript-eslint"
+   ],
+   "rules": {
+      "jsx-quotes": [
+         "error",
+         "prefer-double"
+      ],
+      "quotes": [
+         "warn",
+         "single"
+      ],
+      "semi": [
+         "warn",
+         "never"
+      ],
+      "no-use-before-define": "off",
+      "indent": [
+         "error",
+         3
+      ],
+      "react/jsx-max-props-per-line": [
+         1,
+         {
+            "maximum": 80,
+            "when": "always"
+         }
+      ],
+      "no-trailing-spaces": [
+         "warn"
+      ],
+      "max-len": [
+         "warn",
+         {
+            "code": 100
+         }
+      ],
+      "no-unused-vars": "warn",
+      "comma-dangle": ["error", "only-multiline"]
+   }
 }

@@ -1,13 +1,17 @@
 import * as React from 'react'
 import { GameTable } from '../../components/game-table'
 import { Hr } from '../../components/hr'
+import { HeadingXl } from '../../components/text/heading-xl'
+import { games } from '../../context/mocks'
 
 export const GameList = () => {
-  return (
-    <div className="px-[60px] py-[27px] rounded-[10px]">
-      <p className="text-oxanium text-center text-white text-header-of-page">Select a game</p>
-      <Hr />
-      <GameTable />
-    </div>
-  )
+   return (
+      <div className="container mx-auto">
+         <HeadingXl>Select a game</HeadingXl>
+         <Hr />
+         <div className="py-6">
+            <GameTable games={games} />
+         </div>
+      </div>
+   )
 }

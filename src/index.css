@@ -2,41 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600&display=swap');
 
-@layer components {
-  .text-ubuntu {
-    font-family: 'Ubuntu', sans-serif;
-  }
-  .text-oxanium {
-    font-family: 'Oxanium', cursive;
-  }
-  .text-header-of-page {
-    letter-spacing: -0.4px;
-    line-height: 48px;
-    font-weight: 500;
-    font-style: normal;
-  }
-  .empty-img {
-    background-image: url("../public/empty-img.jpg");
-    background-size: cover;
-  }
-  .game-card {
-    display: flex;
-    flex-direction: column;
-    background: white;
-    /* margin-top: 16px 18px ; */
-    padding: 22px 14px;
-    border-radius: 15px;
-  }
-  .hr-bg-gradient{
-    background: rgb(48,48,48);
-    background: linear-gradient(90deg, rgba(48,48,48,1) 0%, rgba(255,255,255,1) 20%, rgba(250,250,250,1) 80%, rgba(48,48,48,1) 100%);
-  }
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-    scrollbar-width: none;
-  }
+@layer base {
+   html {
+      @apply text-gray-700;
+   }
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   h6 {
+      @apply text-gray-800;
+      @apply font-secondary;
+   }
+}
+
+@layer utilities {
+   .no-scrollbar::-webkit-scrollbar {
+      display: none;
+      scrollbar-width: none;
+   }
+
+   .gradient-hover-effect {
+      @apply overflow-hidden z-0 relative before:bg-gradient-active before:-z-10 before:top-0 before:bottom-0 before:left-0 before:right-0 before:absolute before:opacity-0 before:hover:opacity-100 before:transition-all;
+   }
 }
