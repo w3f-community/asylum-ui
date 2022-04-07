@@ -11,6 +11,7 @@ export const Button: React.FC<IProps> = ({ variant = 'light', size = 'md', child
       className={classNames('rounded-xl text-white px-8 py-1 gradient-hover-effect', {
          'bg-gray-800': variant === 'dark',
          'bg-white': variant === 'light',
+         'text-base': size === 'sm',
       })}
    >
       {children}

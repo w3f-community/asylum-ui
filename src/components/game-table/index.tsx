@@ -1,14 +1,16 @@
 import * as React from 'react'
 import { GameCard } from '../game-card'
-import { tempObject, games } from './mock'
+import { GameObject } from '../../types'
 
-interface IProps {}
+interface IProps {
+   games: GameObject[]
+}
 
-export const GameTable: React.FC<IProps> = () => {
+export const GameTable: React.FC<IProps> = ({ games }) => {
    return (
-      <div className="no-scrollbar flex flex-wrap justify-center pt-[35px] max-h-[70vh] max-w-[80vw] overflow-auto gap-9">
+      <div className="no-scrollbar flex flex-wrap justify-center overflow-auto gap-9">
          {games &&
-            games.map((item: tempObject) => {
+            games.map((item: GameObject) => {
                return (
                   <GameCard
                      key={item.title}
