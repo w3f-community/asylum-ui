@@ -11,9 +11,6 @@ export const GameDescription = () => {
    return (
       <div className="bg-white rounded-2xl p-9 w-full">
          <Text2xl>Complete game name  A</Text2xl>
-         {/* <p className="article-header">
-            Complete game name  A
-         </p> */}
          <div className="flex mt-6 gap-9">
             <div className="basis-7/12 p-2">
                <TextBase >
