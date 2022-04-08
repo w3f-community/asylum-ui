@@ -4,7 +4,7 @@ import { IComponentProps } from 'types'
 import classNames from 'classnames'
 
 interface IProps extends IComponentProps {
-   children: React.ReactText
+   children: React.ReactNode
 }
 
 export const Paragraph: React.FC<IProps> = ({ className, children }) => {

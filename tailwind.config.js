@@ -29,6 +29,10 @@ module.exports = {
             secondary: ['Oxanium', 'cursive'],
          },
          colors: {
+            asylum: {
+               blue: '#50BFFF',
+               pink: '#B62BD9',
+            },
             gray: {
                700: '#303030',
                800: '#131313',

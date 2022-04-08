@@ -10,7 +10,7 @@ export const Hr: React.FC<IProps> = ({ active = false, className }) => {
    return (
       <hr
          className={classNames(
-            'border-0 bg-gradient-hr my-4 h-px w-full',
+            'border-0 bg-gradient-hr my-4 h-0.5 w-full',
             {
                'bg-gradient-hr-active': active,
             },
