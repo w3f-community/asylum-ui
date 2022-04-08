@@ -3,9 +3,9 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
 import imgPathFirst from './empty-1.png'
 import imgPathSecond from './empty-2.jpg'
-import { HeadingLg } from '../../../components/text/heading-lg'
-import { Heading } from '../../../components/text/heading'
-import { Paragraph } from '../../../components/text/paragraph'
+import { HeadingLg } from 'components/text/heading-lg'
+import { Heading } from 'components/text/heading'
+import { Paragraph } from 'components/text/paragraph'
 
 export const GameDescription = () => {
    return (
@@ -31,13 +31,13 @@ export const GameDescription = () => {
             </div>
             <div className="basis-5/12 p-2">
                <Heading>Description</Heading>
-               <Paragraph>
+               <Paragraph className="mb-2">
                   {/* eslint-disable-next-line max-len */}
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fermentum tellus
                   libero, vitae tristique lacus rutrum et. Duis fermentum, tortor mollis maximus
                   porttitor, leo elit semper nibh, vitae tincidunt justo magna vitae metus.
-                  <br />
-                  <br />
+               </Paragraph>
+               <Paragraph>
                   {/* eslint-disable-next-line max-len */}
                   Nulla quis dignissim dolor. Sed scelerisque sapien purus, id eleifend neque
                   sodales et. Cras faucibus vehicula purus in volutpat. Duis posuere eros ac rhoncus

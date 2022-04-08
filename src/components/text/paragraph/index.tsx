@@ -1,9 +1,12 @@
 import * as React from 'react'
 
-interface IProps {
-   children: React.ReactNode
+import { IComponentProps } from 'types'
+import classNames from 'classnames'
+
+interface IProps extends IComponentProps {
+   children: React.ReactText
 }
 
-export const Paragraph: React.FC<IProps> = ({ children }) => {
-   return <p className="font-normal text-base self-start">{children}</p>
+export const Paragraph: React.FC<IProps> = ({ className, children }) => {
+   return <p className={classNames(['font-normal text-base self-start', className])}>{children}</p>
 }

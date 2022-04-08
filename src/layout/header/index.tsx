@@ -1,8 +1,11 @@
 import * as React from 'react'
-import { Hr } from '../../components/hr'
-import { Button } from '../../components/button'
+import { Hr } from 'components/hr'
+import { Button } from 'components/button'
+import { Modal } from 'components/modal'
 
-interface IProps {}
+import { IComponentProps } from 'types'
+
+interface IProps extends IComponentProps {}
 
 export const Header: React.FC<IProps> = () => (
    <header>
@@ -16,5 +19,8 @@ export const Header: React.FC<IProps> = () => (
             <Hr />
          </div>
       </div>
+      <Modal open={false} title="Connect Wallet">
+         Modal
+      </Modal>
    </header>
 )
