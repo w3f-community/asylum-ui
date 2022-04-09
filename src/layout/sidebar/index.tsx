@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 
-interface IProps {
-}
+import { IComponentProps } from 'types'
+
+interface IProps extends IComponentProps {}
 
 export const Sidebar: React.FC<IProps> = () => (
    <aside className="basis-72 shrink-0 h-screen sticky top-0 bg-white text-center">

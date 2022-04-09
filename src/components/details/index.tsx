@@ -10,7 +10,7 @@ interface IProps { }
 export const Details: React.FC<IProps> = () => {
    return (
       <Card>
-         <HeadingXl color="black">
+         <HeadingXl>
             Details
          </HeadingXl>
          <div className="flex flex-row justify-between">

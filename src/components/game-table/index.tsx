@@ -1,14 +1,20 @@
 import * as React from 'react'
 import { GameCard } from '../game-card'
-import { GameObject } from '../../types'
+import { GameObject, IComponentProps } from 'types'
+import classNames from 'classnames'
 
-interface IProps {
+interface IProps extends IComponentProps {
    games: GameObject[]
 }
 
-export const GameTable: React.FC<IProps> = ({ games }) => {
+export const GameTable: React.FC<IProps> = ({ games, className }) => {
    return (
-      <div className="no-scrollbar flex flex-wrap justify-center overflow-auto gap-9">
+      <div
+         className={classNames([
+            'no-scrollbar flex flex-wrap justify-center overflow-auto gap-9',
+            className,
+         ])}
+      >
          {games &&
             games.map((item: GameObject) => {
                return (

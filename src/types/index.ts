@@ -3,3 +3,7 @@ export interface GameObject {
    img: string
    id: string
 }
+
+export interface IComponentProps {
+   className?: string
+}

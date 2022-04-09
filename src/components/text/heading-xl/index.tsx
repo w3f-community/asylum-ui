@@ -1,14 +1,11 @@
-import classNames from 'classnames'
 import * as React from 'react'
+import classNames from 'classnames'
+import { IComponentProps } from 'types'
 
-interface IProps {
-   children: React.ReactNode
-   color?: 'while' | 'black'
+interface IProps extends IComponentProps {
+   children: React.ReactText
 }
 
-export const HeadingXl: React.FC<IProps> = ({ children = 'No text', color = 'black' }) => {
-   return <h1 className={classNames('font-medium text-2xl self-start', {
-      'text-white': color === 'while',
-      'text-black': color === 'black',
-   })}>{children}</h1>
+export const HeadingXl: React.FC<IProps> = ({ className, children }) => {
+   return <h1 className={classNames(['font-medium text-2xl self-start', className])}>{children}</h1>
 }
