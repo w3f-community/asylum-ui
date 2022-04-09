@@ -8,7 +8,7 @@ export const App = () => {
    return (
       <SidebarLayout>
          <Routes>
-            <Route path="/" element={<GameList/>} />
+            <Route path="/" element={<GameList />} />
             <Route path="overview" element={<GameOverview />} />
          </Routes>
       </SidebarLayout>

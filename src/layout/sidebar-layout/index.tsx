@@ -1,8 +1,9 @@
 import { Sidebar } from '../sidebar'
 import { Header } from '../header'
 import * as React from 'react'
+import { IComponentProps } from 'types'
 
-interface IProps {}
+interface IProps extends IComponentProps {}
 
 export const SidebarLayout: React.FC<IProps> = ({ children }) => (
    <div className="flex">

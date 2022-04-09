@@ -15,9 +15,13 @@ module.exports = {
       },
       extend: {
          backgroundImage: {
+            'gradient-overlay':
+               'linear-gradient(211.48deg, rgba(80, 191, 255, 0.25) 8.26%, rgba(204, 0, 255, 0.25) 96.1%)',
             'gradient-hr':
                'linear-gradient(90deg, rgba(48, 48, 48, 1) 0%, rgba(255, 255, 255, 1) 20%, rgba(250, 250, 250, 1) 80%, rgba(48, 48, 48, 1) 100%)',
             'gradient-active': 'linear-gradient(79.63deg, #b62bd9 -21.85%, #50bfff 122.14%)',
+            'gradient-hr-active':
+               'linear-gradient(270.01deg, rgba(80, 191, 255, 0) 0.01%, #50BFFF 33.19%, #B62BD9 71.18%, rgba(182, 43, 217, 0) 102.75%)',
             empty: 'url("/public/empty-img.jpg")',
          },
          fontFamily: {
@@ -25,6 +29,10 @@ module.exports = {
             secondary: ['Oxanium', 'cursive'],
          },
          colors: {
+            asylum: {
+               blue: '#50BFFF',
+               pink: '#B62BD9',
+            },
             gray: {
                700: '#303030',
                800: '#131313',
