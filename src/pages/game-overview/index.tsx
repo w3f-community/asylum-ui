@@ -1,9 +1,10 @@
 import * as React from 'react'
+import { Details } from '../../components/details'
 import { Hr } from '../../components/hr'
 import { HeadingXl } from '../../components/text/heading-xl'
 import { GameDescription } from './game-description'
 
-interface IProps {}
+interface IProps { }
 
 export const GameOverview: React.FC<IProps> = () => {
    return (
@@ -13,7 +14,7 @@ export const GameOverview: React.FC<IProps> = () => {
             <Hr />
             <div className="flex flex-col gap-8 py-6">
                <GameDescription />
-               <GameDescription />
+               <Details />
             </div>
          </div>
       </div>
