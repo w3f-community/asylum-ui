@@ -7,21 +7,33 @@ interface IProps extends IComponentProps {
    title: string
    img: string
    id: string
-   onclick: (id: string) => void
+   active?: boolean
+   onClick: (id: string) => void
 }
 
-export const GameCard: React.FC<IProps> = ({ title, img, onclick, id, className }) => {
+export const GameCard: React.FC<IProps> = ({
+   active = false,
+   title,
+   img,
+   onClick,
+   id,
+   className,
+}) => {
    return (
       <div
          className={classNames([
-            'flex flex-col bg-white cursor-pointer py-6 px-3.5 rounded-2xl',
+            'flex flex-col bg-white cursor-pointer py-6 px-3.5 rounded-2xl transition-all duration-400',
+            { 'gradient-active-effect': active, 'gradient-hover-effect': !active },
             className,
          ])}
-         onClick={() => onclick(id)}
+         onClick={() => onClick(id)}
       >
          {/* // Todo refactor this text to textComponent */}
-         <p className="text-center">{title}</p>
-         <img className="w-64 h-64" src={img} alt={title} />
+         <p className="text-center mb-4">{title}</p>
+         <div
+            style={{ backgroundImage: img ? `url('${img}')` : '' }}
+            className="w-64 h-64 rounded-2xl bg-cover bg-center"
+         />
       </div>
    )
 }

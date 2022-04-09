@@ -14,7 +14,6 @@ export const GameOverview: React.FC<IProps> = () => {
             <Hr />
             <div className="flex flex-col gap-8 py-6">
                <GameDescription />
-               <GameDescription />
             </div>
          </div>
       </div>

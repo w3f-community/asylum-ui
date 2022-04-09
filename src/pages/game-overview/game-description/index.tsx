@@ -13,7 +13,9 @@ export const GameDescription = () => {
          <HeadingLg>Complete game name A</HeadingLg>
          <div className="flex mt-6 gap-9">
             <div className="basis-7/12 p-2">
-               <Heading>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Heading>
+               <Heading className="mb-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+               </Heading>
                <Carousel
                   className="demo-carousel rounded-2xl overflow-hidden"
                   showIndicators={false}
@@ -30,7 +32,7 @@ export const GameDescription = () => {
                </Carousel>
             </div>
             <div className="basis-5/12 p-2">
-               <Heading>Description</Heading>
+               <Heading className="mb-4">Description</Heading>
                <Paragraph className="mb-2">
                   {/* eslint-disable-next-line max-len */}
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fermentum tellus

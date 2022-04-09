@@ -7,5 +7,5 @@ interface IProps extends IComponentProps {
 }
 
 export const HeadingLg: React.FC<IProps> = ({ className, children }) => {
-   return <h2 className={classNames(['font-medium text-xl self-start', className])}>{children}</h2>
+   return <h2 className={classNames(['font-normal text-xl', className])}>{children}</h2>
 }
