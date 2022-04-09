@@ -4,8 +4,9 @@ import { Hr } from '../../components/hr'
 import { HeadingXl } from '../../components/text/heading-xl'
 import { GameDescription } from './game-description'
 import { IComponentProps } from 'types'
+import { Rewies } from 'components/rewies'
 
-interface IProps extends IComponentProps {}
+interface IProps extends IComponentProps { }
 
 export const GameOverview: React.FC<IProps> = () => {
    return (
@@ -16,6 +17,11 @@ export const GameOverview: React.FC<IProps> = () => {
             <div className="flex flex-col gap-8 py-6">
                <GameDescription />
                <Details />
+               <br />
+               <br />
+               <HeadingXl className="text-white">Rewies</HeadingXl>
+               <Rewies />
+               <Rewies />
             </div>
          </div>
       </div>
