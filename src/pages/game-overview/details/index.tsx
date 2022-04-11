@@ -10,7 +10,7 @@ interface IProps { }
 export const Details: React.FC<IProps> = () => {
    return (
       <Card>
-         <HeadingXl className="font-normal">
+         <HeadingXl className="mb-5">
             Details
          </HeadingXl>
          <div className="flex flex-row justify-between">
@@ -27,7 +27,7 @@ export const Details: React.FC<IProps> = () => {
                <Paragraph>2085</Paragraph>
             </div>
             {/* <button>Show All templates</button> */}
-            <Button variant="dark">Show All templates</Button>
+            <Button className="bg-gray-700" >Show All templates</Button>
 
          </div>
       </Card>
