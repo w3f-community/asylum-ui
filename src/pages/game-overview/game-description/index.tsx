@@ -38,9 +38,8 @@ export const GameDescription = () => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fermentum tellus
                   libero, vitae tristique lacus rutrum et. Duis fermentum, tortor mollis maximus
                   porttitor, leo elit semper nibh, vitae tincidunt justo magna vitae metus.
-               </Paragraph>
-               <br />
-               <Paragraph>
+                  <br />
+                  <br />
                   {/* eslint-disable-next-line max-len */}
                   Nulla quis dignissim dolor. Sed scelerisque sapien purus, id eleifend neque
                   sodales et. Cras faucibus vehicula purus in volutpat. Duis posuere eros ac rhoncus

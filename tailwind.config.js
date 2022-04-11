@@ -7,11 +7,11 @@ module.exports = {
    },
    theme: {
       fontSize: {
-         sm: ['0.75rem', '1.125rem'],
-         base: ['0.875rem', '1.25rem'],
-         lg: ['1rem', '1.5rem'],
-         xl: ['1.5rem', '1.5rem'],
-         '2xl': ['1.75rem', '3rem'],
+         sm: ['0.75rem', '1.125rem'], // 12px
+         base: ['0.875rem', '1.25rem'], // 14px
+         lg: ['1rem', '1.5rem'], // 16px
+         xl: ['1.5rem', '1.5rem'], // 24px
+         '2xl': ['1.75rem', '3rem'], // 28px
       },
       extend: {
          backgroundImage: {
@@ -28,17 +28,6 @@ module.exports = {
          fontFamily: {
             sans: ['ubuntu', ...defaultTheme.fontFamily.sans],
             secondary: ['Oxanium', 'cursive'],
-         },
-         flexBasis: {
-            '1/10': '10%',
-            '2/10': '20%',
-            '3/10': '30%',
-            '4/10': '40%',
-            '5/10': '50%',
-            '6/10': '60%',
-            '7/10': '70%',
-            '8/10': '80%',
-            '9/10': '90%',
          },
          colors: {
             asylum: {

@@ -1,11 +1,13 @@
 import * as React from 'react'
-import { FillStar, HalfStar, EmptyStar } from './svg'
+import { ReactComponent as FillStar } from 'assets/svg/fill-star.svg'
+import { ReactComponent as HalfStar } from 'assets/svg/half-star.svg'
+import { ReactComponent as EmptyStar } from 'assets/svg/empty-star.svg'
 
 interface IProps {
    rating: number
 }
 
-export const RatingStar: React.FC<IProps> = ({ rating = 3 }) => {
+export const RatingStarsComponent: React.FC<IProps> = ({ rating = 0 }) => {
    const starFilter = (): React.ReactNode => {
       const starArray: React.ReactNode[] = []
       for (let i = 0; i < 5; i++) {
