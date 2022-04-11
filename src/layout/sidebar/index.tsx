@@ -17,7 +17,7 @@ export const Sidebar: React.FC<IProps> = observer(() => {
    const location = useLocation()
 
    return (
-      <aside className="basis-72 shrink-0 h-screen sticky top-0 bg-white">
+      <aside className="hidden basis-52 md:block lg:basis-72 shrink-0 h-screen sticky top-0 bg-white">
          <div className="flex flex-col items-center py-8 px-2 text-center gap-10">
             <Avatar size="lg" empty={!store.account} imgSrc={store.selectedGame?.img} />
             <div className="flex flex-col items-center text-center">
