@@ -22,7 +22,8 @@ module.exports = {
             'gradient-active': 'linear-gradient(79.63deg, #b62bd9 -21.85%, #50bfff 122.14%)',
             'gradient-hr-active':
                'linear-gradient(270.01deg, rgba(80, 191, 255, 0) 0.01%, #50BFFF 33.19%, #B62BD9 71.18%, rgba(182, 43, 217, 0) 102.75%)',
-            empty: 'url("/public/empty-img.jpg")',
+            empty: 'url("/public/empty-img.png")',
+            'empty-second': 'url("/public/empty.png")',
          },
          fontFamily: {
             sans: ['ubuntu', ...defaultTheme.fontFamily.sans],
