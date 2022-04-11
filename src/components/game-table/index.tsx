@@ -2,16 +2,22 @@ import * as React from 'react'
 import { GameCard } from '../game-card'
 import { GameObject, IComponentProps } from 'types'
 import classNames from 'classnames'
+import { observer } from 'mobx-react-lite'
+import { useStore } from 'store'
 
 interface IProps extends IComponentProps {
    games: GameObject[]
 }
 
-export const GameTable: React.FC<IProps> = ({ games, className }) => {
+export const GameTable: React.FC<IProps> = observer(({ games, className }) => {
+   const store = useStore()
+   const handleSelectGame = (game: GameObject) => {
+      store.setSelectedGame(game)
+   }
    return (
       <div
          className={classNames([
-            'no-scrollbar flex flex-wrap justify-center overflow-auto gap-9',
+            'no-scrollbar flex flex-wrap justify-start overflow-auto gap-9',
             className,
          ])}
       >
@@ -19,9 +25,13 @@ export const GameTable: React.FC<IProps> = ({ games, className }) => {
             games.map((item: GameObject) => {
                return (
                   <GameCard
+                     className={classNames({
+                        grayscale: store.selectedGame && item.id !== store.selectedGame?.id,
+                     })}
+                     active={item.id === store.selectedGame?.id}
                      key={item.title}
                      id={item.id}
-                     onclick={console.log}
+                     onClick={() => handleSelectGame(item)}
                      title={item.title}
                      img={item.img}
                   />
@@ -29,4 +39,4 @@ export const GameTable: React.FC<IProps> = ({ games, className }) => {
             })}
       </div>
    )
-}
+})
