@@ -8,5 +8,5 @@ interface IProps extends IComponentProps {
 }
 
 export const Paragraph: React.FC<IProps> = ({ className, children }) => {
-   return <p className={classNames(['font-normal text-base self-start', className])}>{children}</p>
+   return <p className={classNames(['font-normal text-base', className])}>{children}</p>
 }

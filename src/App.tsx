@@ -10,6 +10,8 @@ export const App = () => {
          <Routes>
             <Route path="/" element={<GameList />} />
             <Route path="overview" element={<GameOverview />} />
+            <Route path="templates" element={<div className="text-white">templates</div>} />
+            <Route path="items" element={<div className="text-white">Items</div>} />
          </Routes>
       </SidebarLayout>
    )
