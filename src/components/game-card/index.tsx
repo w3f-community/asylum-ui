@@ -32,7 +32,7 @@ export const GameCard: React.FC<IProps> = ({
          <p className="text-center py-2">{title}</p>
          <div
             style={{ backgroundImage: img ? `url('${img}')` : '' }}
-            className="w-full pb-[100%] bg-cover bg-center"
+            className="w-full aspect-square bg-cover bg-center"
          />
       </div>
    )

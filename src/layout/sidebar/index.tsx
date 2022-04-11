@@ -49,7 +49,7 @@ export const Sidebar: React.FC<IProps> = observer(() => {
                   className="w-full"
                   onClick={() => navigate('/overview')}
                   active={location.pathname === '/overview'}
-                  disabled={!store.selectedGame}
+                  disabled={!store.selectedGame || !store.account}
                >
                   game overview
                </Button>
@@ -59,7 +59,7 @@ export const Sidebar: React.FC<IProps> = observer(() => {
                   className="w-full"
                   onClick={() => navigate('/templates')}
                   active={location.pathname === '/templates'}
-                  disabled={!store.account}
+                  disabled={!store.selectedGame || !store.account}
                >
                   templates
                </Button>
@@ -69,7 +69,7 @@ export const Sidebar: React.FC<IProps> = observer(() => {
                   className="w-full"
                   onClick={() => navigate('/items')}
                   active={location.pathname === '/items'}
-                  disabled={!store.account}
+                  disabled={!store.selectedGame || !store.account}
                >
                   items
                </Button>
