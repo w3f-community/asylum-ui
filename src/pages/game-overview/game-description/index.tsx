@@ -6,10 +6,11 @@ import imgPathSecond from './empty-2.jpg'
 import { HeadingLg } from 'components/text/heading-lg'
 import { Heading } from 'components/text/heading'
 import { Paragraph } from 'components/text/paragraph'
+import { Card } from 'components/card'
 
 export const GameDescription = () => {
    return (
-      <div className="bg-white rounded-2xl p-9 w-full">
+      <Card>
          <HeadingLg>Complete game name A</HeadingLg>
          <div className="flex mt-6 gap-9">
             <div className="basis-7/12 p-2">
@@ -50,6 +51,6 @@ export const GameDescription = () => {
                </Paragraph>
             </div>
          </div>
-      </div>
+      </Card>
    )
 }
