@@ -17,7 +17,7 @@ export const Sidebar: React.FC<IProps> = observer(() => {
    const location = useLocation()
 
    return (
-      <aside className="basis-72 shrink-0 h-screen sticky top-0 bg-white">
+      <aside className="hidden basis-52 md:block lg:basis-72 shrink-0 h-screen sticky top-0 bg-white">
          <div className="flex flex-col items-center py-8 px-2 text-center gap-10">
             <Avatar size="lg" empty={!store.account} imgSrc={store.selectedGame?.img} />
             <div className="flex flex-col items-center text-center">
@@ -49,7 +49,7 @@ export const Sidebar: React.FC<IProps> = observer(() => {
                   className="w-full"
                   onClick={() => navigate('/overview')}
                   active={location.pathname === '/overview'}
-                  disabled={!store.selectedGame}
+                  disabled={!store.selectedGame || !store.account}
                >
                   game overview
                </Button>
@@ -59,7 +59,7 @@ export const Sidebar: React.FC<IProps> = observer(() => {
                   className="w-full"
                   onClick={() => navigate('/templates')}
                   active={location.pathname === '/templates'}
-                  disabled={!store.account}
+                  disabled={!store.selectedGame || !store.account}
                >
                   templates
                </Button>
@@ -69,7 +69,7 @@ export const Sidebar: React.FC<IProps> = observer(() => {
                   className="w-full"
                   onClick={() => navigate('/items')}
                   active={location.pathname === '/items'}
-                  disabled={!store.account}
+                  disabled={!store.selectedGame || !store.account}
                >
                   items
                </Button>

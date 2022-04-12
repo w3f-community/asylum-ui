@@ -17,7 +17,7 @@ export const GameTable: React.FC<IProps> = observer(({ games, className }) => {
    return (
       <div
          className={classNames([
-            'no-scrollbar flex flex-wrap justify-start overflow-auto gap-9',
+            'no-scrollbar overflow-auto grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-9',
             className,
          ])}
       >

@@ -1,0 +1,19 @@
+.carousel .slider-wrapper {
+   @apply rounded-2xl overflow-hidden;
+}
+
+.carousel .thumbs .thumb {
+   @apply opacity-75 transition-all hover:opacity-100 last:mr-0;
+   border: none !important;
+}
+
+.carousel .thumbs {
+   @apply text-center;
+}
+.carousel .thumbs .thumb img {
+   @apply rounded-md;
+}
+
+.carousel .thumb.selected {
+   @apply opacity-100;
+}
