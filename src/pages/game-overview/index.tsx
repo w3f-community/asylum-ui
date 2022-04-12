@@ -4,22 +4,21 @@ import { Hr } from 'components/hr'
 import { HeadingXl } from 'components/text/heading-xl'
 import { GameDescription } from './game-description'
 import { IComponentProps } from 'types'
-import { Rewies } from 'components/rewies'
+import { Reviews } from 'pages/game-overview/reviews'
+import { reviews } from 'context/mocks'
 
-interface IProps extends IComponentProps { }
+interface IProps extends IComponentProps {}
 
 export const GameOverview: React.FC<IProps> = () => {
    return (
       <div className="container mx-auto">
-         <div className="min-h-screen flex flex-col justify-center items-center">
-            <HeadingXl className="text-white">Game overview</HeadingXl>
-            <Hr />
-            <div className="flex flex-col gap-8 py-6">
-               <GameDescription />
-               <Details />
-               <HeadingXl className="text-white mt-16">Rewies</HeadingXl>
-               <Rewies />
-               <Rewies />
+         <HeadingXl className="text-white self-start">Game overview</HeadingXl>
+         <Hr />
+         <div className="flex flex-col gap-9 py-6">
+            <GameDescription />
+            <Details />
+            <div className="flex flex-col">
+               <Reviews reviews={reviews} />
             </div>
          </div>
       </div>

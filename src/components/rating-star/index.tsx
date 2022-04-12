@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { ReactComponent as FillStar } from 'assets/svg/fill-star.svg'
-import { ReactComponent as HalfStar } from 'assets/svg/half-star.svg'
-import { ReactComponent as EmptyStar } from 'assets/svg/empty-star.svg'
+import { ReactComponent as FillStarIcon } from 'assets/svg/fill-star.svg'
+import { ReactComponent as HalfStarIcon } from 'assets/svg/half-star.svg'
+import { ReactComponent as EmptyStarIcon } from 'assets/svg/empty-star.svg'
 
 interface IProps {
    rating: number
@@ -12,19 +12,15 @@ export const RatingStarsComponent: React.FC<IProps> = ({ rating = 0 }) => {
       const starArray: React.ReactNode[] = []
       for (let i = 0; i < 5; i++) {
          if (rating <= i) {
-            starArray.push(<EmptyStar key={i} />)
+            starArray.push(<EmptyStarIcon key={i} />)
          } else if (rating > i && rating < i + 1) {
-            starArray.push(<HalfStar key={i} />)
+            starArray.push(<HalfStarIcon key={i} />)
          } else {
-            starArray.push(<FillStar key={i} />)
+            starArray.push(<FillStarIcon key={i} />)
          }
       }
       return starArray
    }
 
-   return (
-      <div className="flex gap-3">
-         {starFilter()}
-      </div>
-   )
+   return <div className="flex gap-3">{starFilter()}</div>
 }
