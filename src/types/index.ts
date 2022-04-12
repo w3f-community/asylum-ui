@@ -8,3 +8,11 @@ export interface GameObject {
 export interface IComponentProps {
    className?: string
 }
+
+export interface Review {
+   id: string
+   name?: string
+   text?: string
+   date?: string
+   rating: number
+}
