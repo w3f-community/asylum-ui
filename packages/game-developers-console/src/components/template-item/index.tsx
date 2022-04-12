@@ -1,4 +1,3 @@
-import { Avatar } from 'components/avatar'
 import { Button } from 'components/button'
 import { HeadingLg } from 'components/text/heading-lg'
 import { Paragraph } from 'components/text/paragraph'
