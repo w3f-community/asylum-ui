@@ -25,7 +25,7 @@ export const games: GameObject[] = [
    },
    {
       title: 'Minecraft',
-      img: 'https://upload.wikimedia.org/wikipedia/pt/9/9c/Minecraft_capa.png',
+      img: 'https://play-lh.googleusercontent.com/yAtZnNL-9Eb5VYSsCaOC7KAsOVIJcY8mpKa0MoF-0HCL6b0OrFcBizURHywpuip-D6Y=w412-h220-rw',
       description: '3D sandbox game',
       id: '4',
    },
