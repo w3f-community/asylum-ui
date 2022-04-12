@@ -25,8 +25,8 @@ export const TemplateItem: React.FC<IProps> = ({ title, img, id }) => {
          {/* eslint-disable-next-line max-len */}
          <div className="py-3.5">
             {img.length > 1
-               ? <img className="aspect-square" src={img} alt={title} />
-               : <img className="aspect-square" src={emptyImage} alt="Your games" />
+               ? <img className="rounded-2xl aspect-square object-cover" src={img} alt={title} />
+               : <img className="rounded-2xl aspect-square object-cover" src={emptyImage} alt="Your games" />
             }
          </div>
          <Paragraph className="indent-2 text-gray-500 mb-4">
@@ -34,7 +34,7 @@ export const TemplateItem: React.FC<IProps> = ({ title, img, id }) => {
          </Paragraph>
          <div className="flex flex-row justify-between items-center">
             <Paragraph className="text-gray-800">0xFR56.....F71D</Paragraph>
-            <Button className="bg-gray-700 text-white" onClick={console.log}>mint item</Button>
+            <Button variant="dark" onClick={console.log}>mint item</Button>
          </div>
       </div>
    )
