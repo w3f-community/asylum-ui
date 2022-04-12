@@ -53,4 +53,10 @@ export const games: GameObject[] = [
       description: 'First-person life simulation',
       id: '8',
    },
+   {
+      title: 'Empty',
+      img: '',
+      description: 'Empty img for tet',
+      id: '9',
+   },
 ]
