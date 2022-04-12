@@ -15,11 +15,8 @@ interface IProps {
 export const TemplateItem: React.FC<IProps> = ({ title, img, id }) => {
    return (
       <div className="bg-white p-5 rounded-2xl gradient-hover-effect">
-         <div className="flex items-center">
-            <Avatar empty={false} />
-            <div className="mx-4">
-               <HeadingLg>{title}</HeadingLg>
-            </div>
+         <div className="">
+            <HeadingLg>{title}</HeadingLg>
          </div>
          {/* eslint-disable-next-line max-len */}
          <div className="py-3.5 aspect-square">
@@ -28,7 +25,7 @@ export const TemplateItem: React.FC<IProps> = ({ title, img, id }) => {
                : <img className="rounded-2xl aspect-square object-cover" src={emptyImage} alt="Your games" />
             }
          </div>
-         <Paragraph className="indent-2 text-gray-500 mb-4">
+         <Paragraph className="indent-2 text-gray-700 mb-4">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
          </Paragraph>
          <div className="flex flex-row justify-between items-center">
