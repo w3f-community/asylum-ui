@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { Details } from '../../components/details'
-import { Hr } from '../../components/hr'
-import { HeadingXl } from '../../components/text/heading-xl'
+import { Details } from './details'
+import { Hr } from 'components/hr'
+import { HeadingXl } from 'components/text/heading-xl'
 import { GameDescription } from './game-description'
 import { IComponentProps } from 'types'
 import { Rewies } from 'components/rewies'
@@ -17,9 +17,7 @@ export const GameOverview: React.FC<IProps> = () => {
             <div className="flex flex-col gap-8 py-6">
                <GameDescription />
                <Details />
-               <br />
-               <br />
-               <HeadingXl className="text-white">Rewies</HeadingXl>
+               <HeadingXl className="text-white mt-16">Rewies</HeadingXl>
                <Rewies />
                <Rewies />
             </div>

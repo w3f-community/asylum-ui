@@ -1,16 +1,16 @@
 import * as React from 'react'
-import { Button } from '../button'
-import { Card } from '../card'
-import { Heading } from '../text/heading'
-import { HeadingXl } from '../text/heading-xl'
-import { Paragraph } from '../text/paragraph'
+import { Button } from 'components/button'
+import { Card } from 'components/card'
+import { Heading } from 'components/text/heading'
+import { HeadingXl } from 'components/text/heading-xl'
+import { Paragraph } from 'components/text/paragraph'
 
 interface IProps { }
 
 export const Details: React.FC<IProps> = () => {
    return (
       <Card>
-         <HeadingXl>
+         <HeadingXl className="mb-5">
             Details
          </HeadingXl>
          <div className="flex flex-row justify-between">
@@ -27,7 +27,7 @@ export const Details: React.FC<IProps> = () => {
                <Paragraph>2085</Paragraph>
             </div>
             {/* <button>Show All templates</button> */}
-            <Button variant="dark">Show All templates</Button>
+            <Button className="bg-gray-700" >Show All templates</Button>
 
          </div>
       </Card>
