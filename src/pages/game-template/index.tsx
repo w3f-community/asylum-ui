@@ -18,7 +18,8 @@ export const GameTemplate: React.FC<IProps> = () => {
          <SearchInput onChange={console.log} />
          <br />
          <br />
-         <div className="flex flex-row flex-wrap justify-start gap-14">
+         {/* <div className="flex flex-row flex-wrap justify-start gap-14"> */}
+         <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-9">
             {games && games.map((item: GameObject) => {
                return (<TemplateItem key={item.id} {...item} />)
             })}
