@@ -52,8 +52,7 @@
    }
 
    .search-in-background {
-      background-image: url('assets/img/search.png');
-      background-repeat: no-repeat;
+      @apply bg-search bg-no-repeat;
       background-position: 98% 50%;
    }
 

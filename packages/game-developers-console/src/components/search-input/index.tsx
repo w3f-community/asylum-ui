@@ -40,17 +40,19 @@ export const SearchInput: React.FC<IProps> = ({ onChange, value = '', variants =
       <div className="bg-black flex flex-col items-start rounded-2xl">
          <input
             // eslint-disable-next-line max-len
-            className="bg-white rounded-2xl w-full pl-7 pr-12 py-5 outline-none search-in-background"
+            className="bg-white text-base font-light rounded-2xl w-full pl-7 pr-12 py-5 outline-none search-in-background"
             type="text"
             placeholder="Search by template id, name or owner"
             value={inputValue}
             onChange={(e) => handleChange(e)}
          />
-         {inputValue.length > 2 && variants.length > 0 && (
-            variants.map((variant: string) => {
-               return (<Variant key={variant} onClick={handleClick} text={variant} />)
-            })
-         )}
+         <div className="w-full rounded-b-2xl overflow-hidden">
+            {inputValue.length > 2 && variants.length > 0 && (
+               variants.map((variant: string) => {
+                  return (<Variant key={variant} onClick={handleClick} text={variant} />)
+               })
+            )}
+         </div>
       </div>
    )
 }

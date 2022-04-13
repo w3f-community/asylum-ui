@@ -1,8 +1,90 @@
-import { GameObject, Review } from 'types'
+import { GameObject, ITemplates, Review } from 'types'
 
-// const url: string =
-//    // eslint-disable-next-line max-len
-//    'https://s3-alpha-sig.figma.com/img/bc25/cbef/2a97bc60cb72c773087d59768843d04d?Expires=1650240000&Signature=NgrrwPjn0Gv6NlYBFEVoZ3D4NX2h-x52AXSOzKg1jCP6hz9C1QJTvqUJ~eaOqgbLgGDk89lbpJv42te9mjQ7d4WuHhlof4RjMihpqJSP8HS5ScznSkcWQJfMA3ZxW7yykFiujAJ4w5B1fpyIwdd6AwqnlNjbteH1gf~FIoj5yKKqCYUmCfrqIwrv59cT2OsLdNtc2Xz9XBkqiUasx5EUznqXD8cclK9qyxNp8ITVo~1qi2acjq6Q3C6kI~9JnJ5EEIiQtac3d5GOIYlHpVHFuG-JnaexshIKEDO6FGBwnHl7kfjQzZ2e08iTKj2qxV99pLY2wjduVXSKW12CA8dhdA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'
+export const templates: ITemplates[] = [
+   {
+      title: 'Loli tyan',
+      id: 0,
+      img: 'https://www.seekpng.com/png/full/971-9716606_-animetyan-kawaii-loli-dragon.png',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   },
+   {
+      title: 'Neko tyan',
+      id: 1,
+      img: 'https://www.kindpng.com/picc/m/167-1676709_neko-anime-tyan-cartoon-hd-png-download.png',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   },
+   {
+      title: 'Fire sword',
+      id: 2,
+      img: 'https://i.pinimg.com/originals/3a/83/bf/3a83bf5f768ef01338ba534ae4a1447b.png',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   },
+   {
+      title: 'Art',
+      id: 3,
+      img: 'https://images.bonanzastatic.com/afu/images/8609/06ac/a817_6967498067/__57.jpg',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   },
+   {
+      title: 'Art',
+      id: 4,
+      img: 'https://i.pinimg.com/originals/c7/58/0b/c7580b07a3387ba40f1533f2cd23fc9b.jpg',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   },
+   {
+      title: 'Naruto Box',
+      id: 5,
+      img: 'https://m.media-amazon.com/images/I/71rrRbs20RL._AC_UL320_.jpg',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   },
+   {
+      title: 'Paper',
+      id: 6,
+      img: 'https://cdn.shopify.com/s/files/1/0367/9101/products/cosplay-props-demon-slayer-kimetsu-no-yaiba-tanjiro-hanafuda-earrings-28776635793487_large.jpg?v=1634383089',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   },
+   {
+      title: 'Shapes',
+      id: 7,
+      img: 'https://animecollective.com/wp-content/uploads/2020/12/best-places-to-buy-anime-statues-from.jpg',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   },
+   {
+      title: 'Dota 3',
+      id: 8,
+      img: 'https://cdn.vox-cdn.com/thumbor/7pam8M9JfbGWAYouPND0d2vCZtY=/0x0:660x360/1200x0/filters:focal(0x0:660x360):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/6645195/dota-2-logo.0.jpg',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   },
+   {
+      title: 'squid',
+      id: 9,
+      img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-oO6HqUb9aR0__2ytilqaf_3wKLp1cA-dZA&usqp=CAU',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   }, {
+      title: 'Monkey',
+      id: 10,
+      img: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/golden-gaming-logo-esports-design-template-afc25edd053b480c109341785f2ace1e_screen.jpg?ts=1603864072',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   },
+   {
+      title: 'Icon',
+      id: 11,
+      img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_Q-BLCLE5MfGE3fph4zSHq-RJyJLGfZsOBA&usqp=CAU',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   },
+   {
+      title: 'Panda',
+      id: 12,
+      img: 'https://storage.googleapis.com/pod_public/1300/83659.jpg',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   },
+   {
+      title: 'Empty',
+      id: 13,
+      img: '',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+   }
+]
 
 export const games: GameObject[] = [
    {

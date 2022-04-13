@@ -5,6 +5,15 @@ export interface GameObject {
    description: string
 }
 
+export interface ITemplates {
+   title: string
+   img: string
+   id: number
+   description: string
+   onActionClick?: (id: number) => void
+   actionText?: string
+}
+
 export interface IComponentProps {
    className?: string
 }
