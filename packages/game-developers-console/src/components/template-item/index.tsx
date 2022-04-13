@@ -3,13 +3,15 @@ import { HeadingLg } from 'components/text/heading-lg'
 import { Paragraph } from 'components/text/paragraph'
 import * as React from 'react'
 import { ITemplates } from 'types'
+import { ReactComponent as EditIcon } from 'assets/svg/edit.svg'
 import emptyImage from 'assets/img/empty-img.jpg'
 
-export const TemplateItem: React.FC<ITemplates> = ({ title, img, id, description, onActionClick = console.log, actionText = 'mint item' }) => {
+export const TemplateItem: React.FC<ITemplates> = ({ title, img, id, description, onEditClick = console.log, onActionClick = console.log, actionText = 'mint item' }) => {
    return (
       <div className="bg-white p-5 rounded-2xl gradient-hover-effect cursor-pointer">
 
          <HeadingLg>{title}</HeadingLg>
+         <EditIcon onClick={() => onEditClick(id)} className="cursor-pointer absolute top-4 right-5" />
          <div className="py-3.5 aspect-square overflow-hidden">
             <img className="h-full w-full rounded-2xl aspect-square object-cover" src={img || emptyImage} alt="Your games" />
          </div>
