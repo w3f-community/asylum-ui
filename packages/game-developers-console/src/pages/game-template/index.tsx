@@ -6,16 +6,19 @@ import * as React from 'react'
 import { games } from 'context/mocks'
 import { GameObject } from 'types'
 import { filterItems } from 'services/filter-items'
+import { getVariants } from 'services/get-variants'
 
 interface IProps { }
 
 export const GameTemplate: React.FC<IProps> = () => {
    const [search, setSearch] = React.useState<string>('')
    const [gamesList, setGamesList] = React.useState(games)
+   const [variants, setVariants] = React.useState<string[]>([])
 
    const handleSearch = (value: string) => setSearch(value)
 
-   React.useEffect(() => { setGamesList(filterItems(search, games)) }, [search])
+   React.useLayoutEffect(() => setVariants(getVariants(gamesList)), [gamesList])
+   React.useLayoutEffect(() => setGamesList(filterItems(search, games)), [search])
 
    return (
       <div>
@@ -23,7 +26,7 @@ export const GameTemplate: React.FC<IProps> = () => {
          <Hr />
          <br />
          <br />
-         <SearchInput onChange={handleSearch} />
+         <SearchInput variants={variants} onChange={handleSearch} />
          <br />
          <br />
          {/* <div className="flex flex-row flex-wrap justify-start gap-14"> */}

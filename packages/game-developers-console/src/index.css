@@ -13,6 +13,7 @@
    html {
       @apply text-gray-700;
    }
+
    h1,
    h2,
    h3,
@@ -48,6 +49,12 @@
    .no-scrollbar::-webkit-scrollbar {
       display: none;
       scrollbar-width: none;
+   }
+
+   .search-in-background {
+      background-image: url('assets/img/search.png');
+      background-repeat: no-repeat;
+      background-position: 98% 50%;
    }
 
    .gradient-active-effect {
