@@ -5,11 +5,11 @@ import { Heading } from 'components/text/heading'
 import { Paragraph } from 'components/text/paragraph'
 import { HeadingLg } from 'components/text/heading-lg'
 
-interface IProps {}
+interface IProps { }
 
 export const Details: React.FC<IProps> = () => {
    return (
-      <Card>
+      <Card className="mb-16">
          <HeadingLg className="mb-5">Details</HeadingLg>
          <div className="flex flex-row justify-between">
             <div className="grow">

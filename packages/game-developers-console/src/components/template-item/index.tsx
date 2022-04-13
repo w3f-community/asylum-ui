@@ -3,15 +3,14 @@ import { HeadingLg } from 'components/text/heading-lg'
 import { Paragraph } from 'components/text/paragraph'
 import * as React from 'react'
 import { ITemplates } from 'types'
-import emptyImage from '../../assets/img/empty-img.jpg'
+import emptyImage from 'assets/img/empty-img.jpg'
 
 export const TemplateItem: React.FC<ITemplates> = ({ title, img, id, description, onActionClick = console.log, actionText = 'mint item' }) => {
    return (
       <div className="bg-white p-5 rounded-2xl gradient-hover-effect cursor-pointer">
-         <div className="">
-            <HeadingLg>{title}</HeadingLg>
-         </div>
-         <div className="py-3.5 aspect-square">
+
+         <HeadingLg>{title}</HeadingLg>
+         <div className="py-3.5 aspect-square overflow-hidden">
             <img className="h-full w-full rounded-2xl aspect-square object-cover" src={img || emptyImage} alt="Your games" />
          </div>
          <Paragraph className="indent-2 text-gray-700 mb-4">

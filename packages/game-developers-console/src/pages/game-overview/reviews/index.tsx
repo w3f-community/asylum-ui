@@ -11,7 +11,7 @@ export const Reviews: React.FC<IProps> = ({ reviews, className }) => {
    return (
       <>
          <HeadingXl className="text-white mb-5">Reviews</HeadingXl>
-         <div className="flex flex-col gap-9">
+         <div className="flex flex-col">
             {reviews.map((review) => (
                <ReviewCard key={review.id} review={review} />
             ))}

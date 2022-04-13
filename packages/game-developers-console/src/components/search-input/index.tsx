@@ -16,10 +16,10 @@ const Variant: React.FC<IVariant> = ({ text, onClick }) => {
    return (
       <div
          onClick={() => onClick(text)}
-         className="w-full"
+         className="w-full cursor-pointer"
       >
          <Heading
-            className="w-full text-white font-sans px-7 py-3.5 cursor-pointer gradient-hover-effect"
+            className="w-full text-white font-sans px-7 py-3.5 gradient-hover-effect"
          >{text}</Heading>
       </div>
    )
@@ -39,12 +39,11 @@ export const SearchInput: React.FC<IProps> = ({ onChange, value = '', variants =
    return (
       <div className="bg-black flex flex-col items-start rounded-2xl">
          <input
-            // eslint-disable-next-line max-len
             className="bg-white text-base font-light rounded-2xl w-full pl-7 pr-12 py-5 outline-none search-in-background"
             type="text"
             placeholder="Search by template id, name or owner"
             value={inputValue}
-            onChange={(e) => handleChange(e)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
          />
          <div className="w-full rounded-b-2xl overflow-hidden">
             {inputValue.length > 2 && variants.length > 0 && (

@@ -11,7 +11,7 @@ interface IReviewProps {
 
 export const ReviewCard: React.FC<IReviewProps> = ({ review }) => {
    return (
-      <Card>
+      <Card className="mb-9">
          <div className="flex flex-col justify-between gap-5">
             <div className="flex flex-row justify-between">
                <div className="flex items-center">
