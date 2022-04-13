@@ -9,13 +9,19 @@ interface IProps {
 
 interface IVariant {
    text: string
+   onClick: (variant: string) => void
 }
 
-const Variant: React.FC<IVariant> = ({ text }) => {
+const Variant: React.FC<IVariant> = ({ text, onClick }) => {
    return (
-      <Heading
-         className="w-full text-white font-sans px-7 py-3.5 cursor-pointer gradient-hover-effect"
-      >{text}</Heading>
+      <div
+         onClick={() => onClick(text)}
+         className="w-full"
+      >
+         <Heading
+            className="w-full text-white font-sans px-7 py-3.5 cursor-pointer gradient-hover-effect"
+         >{text}</Heading>
+      </div>
    )
 }
 
@@ -27,6 +33,8 @@ export const SearchInput: React.FC<IProps> = ({ onChange, value = '', variants =
       setInputValue(filteredValue)
       onChange(filteredValue)
    }
+
+   const handleClick = (variant: string) => setInputValue(variant)
 
    return (
       <div className="bg-black flex flex-col items-start rounded-2xl">
@@ -40,7 +48,7 @@ export const SearchInput: React.FC<IProps> = ({ onChange, value = '', variants =
          />
          {inputValue.length > 2 && variants.length > 0 && (
             variants.map((variant: string) => {
-               return (<Variant key={variant} text={variant} />)
+               return (<Variant key={variant} onClick={handleClick} text={variant} />)
             })
          )}
       </div>

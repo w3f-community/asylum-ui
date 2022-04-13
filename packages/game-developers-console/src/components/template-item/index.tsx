@@ -13,7 +13,7 @@ interface IProps {
 
 export const TemplateItem: React.FC<IProps> = ({ title, img, id }) => {
    return (
-      <div className="bg-white p-5 rounded-2xl gradient-hover-effect">
+      <div className="bg-white p-5 rounded-2xl gradient-hover-effect cursor-pointer">
          <div className="">
             <HeadingLg>{title}</HeadingLg>
          </div>
