@@ -10,7 +10,7 @@ export interface ITemplates {
    img: string
    id: number
    description: string
-   onEditClick?: (id: number) => void
+   onClick?: (id: number) => void
    onActionClick?: (id: number) => void
    actionText?: string
 }
