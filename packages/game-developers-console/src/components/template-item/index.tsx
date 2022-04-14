@@ -3,15 +3,15 @@ import { HeadingLg } from 'components/text/heading-lg'
 import { Paragraph } from 'components/text/paragraph'
 import * as React from 'react'
 import { ITemplates } from 'types'
-import { ReactComponent as EditIcon } from 'assets/svg/edit.svg'
 import emptyImage from 'assets/img/empty-img.jpg'
 
-export const TemplateItem: React.FC<ITemplates> = ({ title, img, id, description, onEditClick = console.log, onActionClick = console.log, actionText = 'mint item' }) => {
+export const TemplateItem: React.FC<ITemplates> = ({ title, img, id, description, onClick = console.log, onActionClick = console.log, actionText = 'mint item' }) => {
    return (
-      <div className="bg-white p-5 rounded-2xl gradient-hover-effect cursor-pointer">
-
+      <div
+         className="bg-white p-5 rounded-2xl gradient-hover-effect cursor-pointer"
+         onClick={() => onClick(id)}
+      >
          <HeadingLg>{title}</HeadingLg>
-         <EditIcon onClick={() => onEditClick(id)} className="cursor-pointer absolute top-4 right-5" />
          <div className="py-3.5 aspect-square overflow-hidden">
             <img className="h-full w-full rounded-2xl aspect-square object-cover" src={img || emptyImage} alt="Your games" />
          </div>
@@ -20,7 +20,13 @@ export const TemplateItem: React.FC<ITemplates> = ({ title, img, id, description
          </Paragraph>
          <div className="flex flex-row justify-between items-center">
             <Paragraph className="text-gray-800">0xFR56.....F71D</Paragraph>
-            <Button variant="dark" onClick={() => onActionClick(id)}>{actionText}</Button>
+            <Button
+               variant="dark"
+               onClick={(e) => {
+                  e.stopPropagation()
+                  onActionClick(id)
+               }}
+            >{actionText}</Button>
          </div>
       </div>
    )
