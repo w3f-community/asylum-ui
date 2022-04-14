@@ -1,4 +1,4 @@
-import { GameObject, ITemplates, Review } from 'types'
+import { GameObject, IInterpretation, ITemplates, Review } from 'types'
 
 export const templates: ITemplates[] = [
    {
@@ -154,4 +154,32 @@ export const reviews: Review[] = [
       text: 'Proin condimentum dapibus libero quis molestie. Fusce a turpis ut turpis hendrerit pellentesque. Quisque in odio eu nulla rutrum laoreet. Donec vitae vehicula eros, sed luctus metus. Fusce quis neque dictum, ornare dui sed, vulputate purus. Donec porta tortor condimentum velit volutpat consectetur. Integer porttitor nulla in nisl laoreet, sit amet porta quam ultrices. Duis at tempor urna. Vestibulum nec convallis neque. Vivamus auctor aliquam aliquam. Maecenas eu arcu urna.',
       rating: 4.5,
    },
+]
+
+export const interpretations: IInterpretation[] = [
+   {
+      type: '2d sprite',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      name: 'Sword 1',
+      properties: ''
+   },
+   {
+      type: '2d sprite',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      name: 'Sword 1',
+      properties: ''
+   },
+   {
+      type: '2d sprite',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      name: 'Sword 1',
+      properties: ''
+   },
+   {
+      type: '2d sprite',
+      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      name: 'Sword 1',
+      properties: ''
+   },
+   
 ]

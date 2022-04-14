@@ -26,3 +26,10 @@ export interface Review {
    date?: string
    rating: number
 }
+
+export interface IInterpretation {
+   type: '2d sprite' | '3d sprite'
+   name: string
+   properties: string
+   description: string
+}
