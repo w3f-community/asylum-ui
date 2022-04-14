@@ -44,7 +44,7 @@ export const GameTemplates: React.FC<IProps> = ({ templates }) => {
                   <SearchInput value="" variants={variants} onChange={handleSearch} />
                   <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-9">
                      {templatesList.map((item: ITemplates) => {
-                        return (<TemplateItem onEditClick={handleSelectItem} key={item.id} {...item} />)
+                        return (<TemplateItem onClick={handleSelectItem} key={item.id} {...item} />)
                      })}
                   </div>
                </div>
