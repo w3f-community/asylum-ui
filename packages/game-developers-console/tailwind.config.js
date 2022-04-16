@@ -30,6 +30,9 @@ module.exports = {
             sans: ['ubuntu', ...defaultTheme.fontFamily.sans],
             secondary: ['Oxanium', 'cursive'],
          },
+         minWidth: {
+            20: '11rem',
+         },
          colors: {
             asylum: {
                blue: '#50BFFF',

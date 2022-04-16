@@ -30,6 +30,8 @@ export interface Review {
 export interface IInterpretation {
    type: '2d sprite' | '3d sprite'
    name: string
-   properties: string
+   properties: {
+      [name: string]: string
+   }
    description: string
 }

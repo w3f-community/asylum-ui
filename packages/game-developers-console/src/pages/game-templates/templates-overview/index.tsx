@@ -8,6 +8,9 @@ import { Paragraph } from 'components/text/paragraph'
 import { HeadingXl } from 'components/text/heading-xl'
 import { SearchInput } from 'components/search-input'
 import { interpretations } from 'context/mocks'
+import { Button } from 'components/button'
+import { ReactComponent as EditIcon } from 'assets/svg/edit.svg'
+import { ReactComponent as TrashIcon } from 'assets/svg/trash.svg'
 
 interface IProps extends ITemplates { }
 
@@ -89,13 +92,25 @@ export const TemplatesOverview: React.FC<IProps> = ({ title, img, description, i
                   className="mb-14"
                   key={index}
                >
-                  <div className="flex gap-8">
-                     <div>
-                        <img src={img} alt="your interpretation" width={170} height={170} />
+                  <div className="relative left-full h-0 cursor-pointer" onClick={() => console.log('edit id : ', index)}>
+                     <EditIcon />
+                  </div>
+                  <div className="relative left-[93%] top-[-1px] h-0 cursor-pointer" onClick={() => console.log('trash id : ', index)}>
+                     <TrashIcon />
+                  </div>
+                  <div className="flex flex-row gap-8">
+                     <div className="flex flex-col gap-5 w-44 min-w-20" >
+                        <img className="aspect-square object-cover" src={img} alt="your interpretation" />
+                        <Button variant="dark" className="w-full">SOURCE</Button>
                      </div>
-                     <div className="flex flex-col gap-4">
+                     <div className="flex flex-col gap-4 h-60 overflow-auto no-scrollbar">
                         <Heading>Description :</Heading>
                         <Paragraph >{interpretation.description}</Paragraph>
+                        <Heading>Properties :</Heading>
+                        {Object.entries(interpretation.properties).map((item, index) => {
+                           return (<Paragraph key={index}>{item[0]}: {item[1]}</Paragraph>)
+                        })}
+                        {/* <Paragraph >{interpretation.properties}</Paragraph> */}
                      </div>
                   </div>
                </Card>

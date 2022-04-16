@@ -161,25 +161,42 @@ export const interpretations: IInterpretation[] = [
       type: '2d sprite',
       description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
       name: 'Sword 1',
-      properties: ''
+      properties: {
+         name: 'heroes-3-inventory-view',
+         format: '.png',
+         'custom-something': 'some',
+         game: 'Minecraft'
+      }
    },
    {
       type: '2d sprite',
       description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
       name: 'Sword 1',
-      properties: ''
+      properties: {
+         name: 'heroes-3-inventory-view',
+         format: '.png',
+         'custom-something': 'some'
+      }
    },
    {
       type: '2d sprite',
       description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
       name: 'Sword 1',
-      properties: ''
+      properties: {
+         name: 'heroes-3-inventory-view',
+         format: '.png',
+         'custom-something': 'some'
+      }
    },
    {
       type: '2d sprite',
       description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
       name: 'Sword 1',
-      properties: ''
+      properties: {
+         name: 'heroes-3-inventory-view',
+         format: '.png',
+         'custom-something': 'some'
+      }
    },
-   
+
 ]
