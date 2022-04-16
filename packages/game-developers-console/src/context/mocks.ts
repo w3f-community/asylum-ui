@@ -161,6 +161,7 @@ export const interpretations: IInterpretation[] = [
       type: '2d sprite',
       description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
       name: 'Sword 1',
+      img: 'https://cdn.pixabay.com/photo/2014/04/16/15/50/minecraft-325652__340.jpg',
       properties: {
          name: 'heroes-3-inventory-view',
          format: '.png',
@@ -172,6 +173,7 @@ export const interpretations: IInterpretation[] = [
       type: '2d sprite',
       description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
       name: 'Sword 1',
+      img: 'https://cdn.pixabay.com/photo/2014/04/16/15/50/minecraft-325652__340.jpg',
       properties: {
          name: 'heroes-3-inventory-view',
          format: '.png',
@@ -182,6 +184,7 @@ export const interpretations: IInterpretation[] = [
       type: '2d sprite',
       description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
       name: 'Sword 1',
+      img: 'https://cdn.pixabay.com/photo/2014/04/16/15/50/minecraft-325652__340.jpg',
       properties: {
          name: 'heroes-3-inventory-view',
          format: '.png',
@@ -192,6 +195,7 @@ export const interpretations: IInterpretation[] = [
       type: '2d sprite',
       description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
       name: 'Sword 1',
+      img: 'https://cdn.pixabay.com/photo/2014/04/16/15/50/minecraft-325652__340.jpg',
       properties: {
          name: 'heroes-3-inventory-view',
          format: '.png',

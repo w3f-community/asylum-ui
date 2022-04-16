@@ -28,10 +28,16 @@ export interface Review {
 }
 
 export interface IInterpretation {
+   [x: string]: string
    type: '2d sprite' | '3d sprite'
    name: string
+   img: string
    properties: {
-      [name: string]: string
+      [key: string]: string
+      // name?: string
+      // format?: string
+      // 'custom-something'?: string
+      // game?: string
    }
    description: string
 }
