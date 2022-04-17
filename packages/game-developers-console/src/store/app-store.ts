@@ -24,4 +24,5 @@ class AppStore {
    }
 }
 
+export type IAppStore = typeof AppStore.prototype
 export default new AppStore()

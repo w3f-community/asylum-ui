@@ -6,12 +6,12 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "3.13.1"
+    "lerna": "3.13.1",
+    "rimraf": "^3.0.2"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap --hoist",
-    "start": "lerna run start --stream",
-    "tsc": "lerna run tsc --stream",
-    "watch": "lerna run watch --stream"
+    "clean": "yarn workspaces run clean",
+    "build": "yarn --cwd ./packages/connection-library build",
+    "start": "yarn build && yarn --cwd ./packages/game-developers-console start"
   }
 }
