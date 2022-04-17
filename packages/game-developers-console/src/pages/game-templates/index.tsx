@@ -1,38 +1,54 @@
-import { TemplateItem } from 'components/template-item'
+import { map } from 'lodash'
+import { ListCardItem } from 'components/list-card-item'
 import { Hr } from 'components/hr'
-import { SearchInput } from 'components/search-input'
+import { SearchAutocomplete } from 'components/search-autocomplete'
 import { HeadingXl } from 'components/text/heading-xl'
 import * as React from 'react'
-import { ITemplates } from 'types'
-import { debounce, map } from 'lodash'
+import { ITemplate } from 'types'
+import { MOCK_ADDRESS, templates } from 'context/mocks'
+import { Paragraph } from 'components/text/paragraph'
 
-const filterItems = (inputValue: string, items: ITemplates[]): ITemplates[] => items.filter(item => {
-   return item.title.toLowerCase().includes(inputValue.toLowerCase())
-})
+interface IProps {}
 
-interface IProps {
-   templates: ITemplates[]
-}
+export const GameTemplates: React.FC<IProps> = () => {
+   const [query, setQuery] = React.useState('')
+   const [templateList, setTemplateList] = React.useState<ITemplate[]>(templates)
 
-export const GameTemplates: React.FC<IProps> = ({ templates }) => {
-   const [query, setQuery] = React.useState<string>('')
-   const [templatesList, setTemplatesList] = React.useState<ITemplates[]>(templates)
-   const [variants, setVariants] = React.useState<string[]>([])
+   const filterTemplates = (inputValue: string, items: ITemplate[]): ITemplate[] =>
+      items.filter((item) => {
+         return item.title.toLowerCase().includes(inputValue.toLowerCase())
+      })
 
-   const handleSearch = debounce((value: string) => setQuery(value), 200)
-
-   React.useLayoutEffect(() => setTemplatesList(filterItems(query, templates)), [query])
-   React.useLayoutEffect(() => setVariants(map(templatesList, 'title')), [templatesList])
+   const handleSearch = (query: string) => {
+      setTemplateList(filterTemplates(query, templates))
+      setQuery(query)
+   }
 
    return (
-      <div>
-         <HeadingXl className="text-white" >Templates</HeadingXl>
-         <Hr className="mb-14" />
-         <SearchInput value="" variants={variants} onChange={handleSearch} />
-         <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-9">
-            {templatesList.map((item: ITemplates) => {
-               return (<TemplateItem key={item.id} {...item} />)
-            })}
+      <div className="container mx-auto">
+         <HeadingXl className="text-white">Templates</HeadingXl>
+         <Hr />
+         <div className="py-6">
+            <SearchAutocomplete
+               className="mb-10"
+               variants={map(templates, 'title')}
+               onSelect={handleSearch}
+            />
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-9 w-full">
+               {templateList.map((item: ITemplate) => (
+                  <ListCardItem
+                     key={item.id}
+                     {...item}
+                     actionText="mint item"
+                     address={MOCK_ADDRESS}
+                  />
+               ))}
+            </div>
+            {templateList.length === 0 && (
+               <Paragraph className="text-white">
+                  Your search - <strong>{query}</strong> - did not match any Templates.
+               </Paragraph>
+            )}
          </div>
       </div>
    )

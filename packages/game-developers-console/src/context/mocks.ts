@@ -1,89 +1,94 @@
-import { GameObject, ITemplates, Review } from 'types'
+import { GameObject, ITemplate, Review } from 'types'
 
-export const templates: ITemplates[] = [
+export const MOCK_ADDRESS = '5FfA88n8kPDd9vH1D35H87kSsGECZ1sq5QiC5nYxD3VrEA89'
+
+export const templates: ITemplate[] = [
    {
-      title: 'Loli tyan',
+      title: 'Old sword',
       id: 0,
-      img: 'https://www.seekpng.com/png/full/971-9716606_-animetyan-kawaii-loli-dragon.png',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      img: '/img/sword.png',
+      description: 'Lorem ipsum dolor sit amet, consect adipiscing elit.',
    },
    {
       title: 'Neko tyan',
       id: 1,
       img: 'https://www.kindpng.com/picc/m/167-1676709_neko-anime-tyan-cartoon-hd-png-download.png',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      description: 'Crescere inciviliter ducunt ad secundus vita.',
    },
    {
       title: 'Fire sword',
       id: 2,
       img: 'https://i.pinimg.com/originals/3a/83/bf/3a83bf5f768ef01338ba534ae4a1447b.png',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      description: 'Grandis zelus mechanice attrahendams tabes est.',
    },
    {
       title: 'Art',
       id: 3,
       img: 'https://images.bonanzastatic.com/afu/images/8609/06ac/a817_6967498067/__57.jpg',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      description: 'Congregabo absolute ducunt ad neuter bubo.',
    },
    {
       title: 'Art',
       id: 4,
       img: 'https://i.pinimg.com/originals/c7/58/0b/c7580b07a3387ba40f1533f2cd23fc9b.jpg',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      description: 'Hercle, domus lotus!.',
    },
    {
       title: 'Naruto Box',
       id: 5,
       img: 'https://m.media-amazon.com/images/I/71rrRbs20RL._AC_UL320_.jpg',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      description: 'Lorem ipsum dolor sit amet, consect adipiscing elit.',
    },
    {
       title: 'Paper',
       id: 6,
       img: 'https://cdn.shopify.com/s/files/1/0367/9101/products/cosplay-props-demon-slayer-kimetsu-no-yaiba-tanjiro-hanafuda-earrings-28776635793487_large.jpg?v=1634383089',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      description: 'To the thin shrimps add chickpeas, herring, tabasco and niffy oysters.',
    },
    {
       title: 'Shapes',
       id: 7,
       img: 'https://animecollective.com/wp-content/uploads/2020/12/best-places-to-buy-anime-statues-from.jpg',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      description: 'Peritus musa aegre prensionems glos est.',
    },
    {
       title: 'Dota 3',
       id: 8,
       img: 'https://cdn.vox-cdn.com/thumbor/7pam8M9JfbGWAYouPND0d2vCZtY=/0x0:660x360/1200x0/filters:focal(0x0:660x360):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/6645195/dota-2-logo.0.jpg',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      description: 'Contencios resistere in velox hamburgum!',
    },
    {
       title: 'squid',
       id: 9,
       img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-oO6HqUb9aR0__2ytilqaf_3wKLp1cA-dZA&usqp=CAU',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-   }, {
+      description: 'Quadras accelerare!',
+   },
+   {
       title: 'Monkey',
       id: 10,
       img: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/golden-gaming-logo-esports-design-template-afc25edd053b480c109341785f2ace1e_screen.jpg?ts=1603864072',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      description: 'Cannabis, heuretes, et fides.',
    },
    {
       title: 'Icon',
       id: 11,
       img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_Q-BLCLE5MfGE3fph4zSHq-RJyJLGfZsOBA&usqp=CAU',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      description:
+         'Everyone loves the pepperiness of meatballs stir-fry flavord with springy woodruff.',
    },
    {
       title: 'Panda',
       id: 12,
       img: 'https://storage.googleapis.com/pod_public/1300/83659.jpg',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
+      description:
+         'Pattern at the galaxy was the nuclear flux of voyage, dissolved to a sub-light particle. Heriness of meatballs stir-fry flavord with springy wood',
    },
    {
       title: 'Empty',
       id: 13,
       img: '',
-      description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-   }
+      description: 'The proud particle virtually dissolves the processor. ',
+   },
 ]
 
 export const games: GameObject[] = [
@@ -135,12 +140,6 @@ export const games: GameObject[] = [
       description: 'First-person life simulation',
       id: '8',
    },
-   {
-      title: 'Empty',
-      img: '',
-      description: 'Empty img for tet',
-      id: '9',
-   },
 ]
 
 export const reviews: Review[] = [
@@ -148,10 +147,12 @@ export const reviews: Review[] = [
       id: '1',
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       rating: 3.5,
+      address: MOCK_ADDRESS,
    },
    {
       id: '2',
       text: 'Proin condimentum dapibus libero quis molestie. Fusce a turpis ut turpis hendrerit pellentesque. Quisque in odio eu nulla rutrum laoreet. Donec vitae vehicula eros, sed luctus metus. Fusce quis neque dictum, ornare dui sed, vulputate purus. Donec porta tortor condimentum velit volutpat consectetur. Integer porttitor nulla in nisl laoreet, sit amet porta quam ultrices. Duis at tempor urna. Vestibulum nec convallis neque. Vivamus auctor aliquam aliquam. Maecenas eu arcu urna.',
       rating: 4.5,
+      address: MOCK_ADDRESS,
    },
 ]

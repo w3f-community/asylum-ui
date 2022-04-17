@@ -7,14 +7,14 @@ import { IComponentProps } from 'types'
 import { Reviews } from 'pages/game-overview/reviews'
 import { reviews } from 'context/mocks'
 
-interface IProps extends IComponentProps { }
+interface IProps extends IComponentProps {}
 
 export const GameOverview: React.FC<IProps> = () => {
    return (
       <div className="container mx-auto">
          <HeadingXl className="text-white self-start">Game overview</HeadingXl>
          <Hr />
-         <div className=" py-6">
+         <div className="py-6">
             <GameDescription />
             <Details />
             <div className="flex flex-col">

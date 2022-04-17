@@ -51,11 +51,6 @@
       scrollbar-width: none;
    }
 
-   .search-in-background {
-      @apply bg-search bg-no-repeat;
-      background-position: 98% 50%;
-   }
-
    .gradient-active-effect {
       @apply gradient-hover-effect text-white fill-white before:opacity-100;
    }
@@ -64,7 +59,7 @@
       @apply overflow-hidden z-0 relative before:bg-gradient-active hover:text-white hover:fill-white before:-z-10 before:top-0 before:bottom-0 before:left-0 before:right-0 before:absolute before:opacity-0 before:hover:opacity-100 before:transition-all;
    }
 
-   .icon-hover-effect {
-      @apply hover:fill-asylum-blue transition-all;
+   .gradient-border-effect {
+      @apply overflow-hidden z-0 relative before:bg-gradient-active hover:text-white hover:fill-white before:-z-10 before:top-0 before:bottom-0 before:left-0 before:right-0 before:absolute before:opacity-0 before:hover:opacity-100 before:transition-all;
    }
 }
