@@ -6,9 +6,11 @@ import { Heading } from 'components/text/heading'
 import { Paragraph } from 'components/text/paragraph'
 import { Card } from 'components/card'
 
-export const GameDescription = () => {
+interface IProps { }
+
+export const GameDescription: React.FC<IProps> = () => {
    return (
-      <Card>
+      <Card className="mb-16">
          <HeadingLg className="mb-5">Complete game name A</HeadingLg>
          <div className="flex gap-9">
             <div className="basis-7/12">

@@ -14,7 +14,7 @@ export const GameOverview: React.FC<IProps> = () => {
       <div className="container mx-auto">
          <HeadingXl className="text-white self-start">Game overview</HeadingXl>
          <Hr />
-         <div className="flex flex-col gap-9 py-6">
+         <div className="py-6">
             <GameDescription />
             <Details />
             <div className="flex flex-col">

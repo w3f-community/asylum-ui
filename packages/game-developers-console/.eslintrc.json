@@ -47,14 +47,12 @@
       "no-trailing-spaces": [
          "warn"
       ],
-      "max-len": [
-         "warn",
-         {
-            "code": 100
-         }
-      ],
+      "max-len": "off",
       "no-unused-vars": "warn",
-      "comma-dangle": ["error", "only-multiline"],
+      "comma-dangle": [
+         "error",
+         "only-multiline"
+      ],
       "space-before-function-paren": "off",
       "multiline-ternary": "off"
    }
