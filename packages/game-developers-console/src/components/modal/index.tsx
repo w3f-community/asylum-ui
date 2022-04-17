@@ -38,7 +38,7 @@ export const Modal: React.FC<IProps> = ({ title, open = false, onClose, children
                <div className="flex align-middle justify-center relative py-3">
                   {title && <Heading className="text-white">{title}</Heading>}{' '}
                   <CloseIcon
-                     className="cursor-pointer absolute right-1 top-1 fill-white icon-hover-effect"
+                     className="cursor-pointer absolute right-1 top-1 fill-white hover:fill-asylum-magenta transition-all"
                      onClick={() => onClose && onClose()}
                   />
                </div>

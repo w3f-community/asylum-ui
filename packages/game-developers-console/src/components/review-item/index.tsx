@@ -1,9 +1,11 @@
-import { Review } from '../../types'
+import { Review } from 'types'
 import * as React from 'react'
-import { Card } from '../card'
-import { Avatar } from '../avatar'
-import { Paragraph } from '../text/paragraph'
-import { RatingStarsComponent } from '../rating-star'
+import { Card } from 'components/card'
+import { Avatar } from 'components/avatar'
+import { Paragraph } from 'components/text/paragraph'
+import { RatingStarsComponent } from 'components/rating-star'
+import { formatAddress } from 'utils'
+import { MOCK_ADDRESS } from 'context/mocks'
 
 interface IReviewProps {
    review: Review
@@ -11,13 +13,13 @@ interface IReviewProps {
 
 export const ReviewCard: React.FC<IReviewProps> = ({ review }) => {
    return (
-      <Card>
+      <Card className="mb-9">
          <div className="flex flex-col justify-between gap-5">
             <div className="flex flex-row justify-between">
                <div className="flex items-center">
                   <Avatar />
                   <div className="pl-4">
-                     <Paragraph>0x53D3.....G4T8</Paragraph>
+                     <Paragraph>{formatAddress(MOCK_ADDRESS)}</Paragraph>
                   </div>
                </div>
                <div className="flex justify-center items-center">
