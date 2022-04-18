@@ -36,7 +36,9 @@ module.exports = {
          colors: {
             asylum: {
                blue: '#50BFFF',
-               pink: '#B62BD9',
+            },
+            blue: {
+               500: '#5AB2E4',
             },
             gray: {
                500: '#979797',

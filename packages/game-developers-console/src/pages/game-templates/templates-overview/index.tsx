@@ -17,6 +17,15 @@ export const TemplatesOverview: React.FC<IProps> = ({ title, img, description, i
    const [interpretationsList, setInterpretationsList] =
       React.useState<IInterpretation[]>(interpretations)
 
+   const handleSearch = (value: string) => {
+      const newList = interpretations.filter((item) => {
+         return item.name.toLowerCase().includes(value.toLowerCase())
+      })
+      setInterpretationsList(newList)
+   }
+
+   const variantFilter = () => interpretationsList.map((item: IInterpretation) => item.name)
+
    return (
       <>
          <Card className="mb-20">
@@ -90,12 +99,14 @@ export const TemplatesOverview: React.FC<IProps> = ({ title, img, description, i
 
          <HeadingXl className="text-white mb-20">Interpretations</HeadingXl>
 
-         {/* <SearchInput /> */}
+         <div className="mb-16">
+            <SearchInput onChange={handleSearch} value="" variants={variantFilter()} />
+         </div>
 
          {interpretationsList.map((interpretation: IInterpretation, index: number) => {
             return (
                <Interpretation
-                  key={interpretation.name}
+                  key={index}
                   name={interpretation.name}
                   img={interpretation.img}
                   type={interpretation.type}
