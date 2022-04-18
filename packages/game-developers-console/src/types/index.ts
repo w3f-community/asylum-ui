@@ -28,7 +28,6 @@ export interface Review {
 }
 
 export interface IInterpretation {
-   [x: string]: string
    type: '2d sprite' | '3d sprite'
    name: string
    img: string

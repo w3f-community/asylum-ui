@@ -157,6 +157,7 @@ export const reviews: Review[] = [
 ]
 
 export const interpretations: IInterpretation[] = [
+   // @ts-ignore
    {
       type: '2d sprite',
       description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
@@ -169,6 +170,7 @@ export const interpretations: IInterpretation[] = [
          game: 'Minecraft'
       }
    },
+   // @ts-ignore
    {
       type: '2d sprite',
       description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
@@ -180,6 +182,7 @@ export const interpretations: IInterpretation[] = [
          'custom-something': 'some'
       }
    },
+   // @ts-ignore
    {
       type: '2d sprite',
       description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
@@ -191,6 +194,7 @@ export const interpretations: IInterpretation[] = [
          'custom-something': 'some'
       }
    },
+   // @ts-ignore
    {
       type: '2d sprite',
       description: 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',

@@ -99,7 +99,7 @@ export const TemplatesOverview: React.FC<IProps> = ({ title, img, description, i
                   name={interpretation.name}
                   img={interpretation.img}
                   type={interpretation.type}
-                  description={interpretation.descriptions}
+                  description={interpretation.description}
                   properties={interpretation.properties}
                />
             )
