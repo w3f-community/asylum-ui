@@ -5,14 +5,11 @@ export interface GameObject {
    description: string
 }
 
-export interface ITemplates {
+export interface ITemplate {
    title: string
    img: string
    id: number
    description: string
-   onClick?: (id: number) => void
-   onActionClick?: (id: number) => void
-   actionText?: string
 }
 
 export interface IComponentProps {
@@ -25,6 +22,7 @@ export interface Review {
    text?: string
    date?: string
    rating: number
+   address: string
 }
 
 export interface IInterpretation {

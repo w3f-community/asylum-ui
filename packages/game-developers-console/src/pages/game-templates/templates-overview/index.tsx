@@ -1,19 +1,17 @@
 import * as React from 'react'
 import { Card } from 'components/card'
-import { IInterpretation, ITemplates } from 'types'
+import { IInterpretation, ITemplate } from 'types'
 import { HeadingLg } from 'components/text/heading-lg'
 import { Heading } from 'components/text/heading'
 import { Carousel } from 'react-responsive-carousel'
 import { Paragraph } from 'components/text/paragraph'
 import { HeadingXl } from 'components/text/heading-xl'
-import { SearchInput } from 'components/search-input'
 import { interpretations } from 'context/mocks'
-import { Button } from 'components/button'
 import { Interpretation } from './interpretations'
 
-interface IProps extends ITemplates {}
+interface IProps extends ITemplate {}
 
-export const TemplatesOverview: React.FC<IProps> = ({ title, img, description, id }) => {
+export const TemplatesOverview: React.FC<IProps> = () => {
    const [interpretationsList, setInterpretationsList] =
       React.useState<IInterpretation[]>(interpretations)
 
@@ -99,9 +97,9 @@ export const TemplatesOverview: React.FC<IProps> = ({ title, img, description, i
 
          <HeadingXl className="text-white mb-20">Interpretations</HeadingXl>
 
-         <div className="mb-16">
+         {/* <div className="mb-16">
             <SearchInput onChange={handleSearch} value="" variants={variantFilter()} />
-         </div>
+         </div> */}
 
          {interpretationsList.map((interpretation: IInterpretation, index: number) => {
             return (
