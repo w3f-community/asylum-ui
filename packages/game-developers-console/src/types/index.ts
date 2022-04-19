@@ -1,10 +1,3 @@
-export interface GameObject {
-   title: string
-   img: string
-   id: string
-   description: string
-}
-
 export interface ITemplate {
    title: string
    img: string
@@ -23,4 +16,9 @@ export interface Review {
    date?: string
    rating: number
    address: string
+}
+
+export interface INetwork {
+   name: string
+   endpoint: string
 }

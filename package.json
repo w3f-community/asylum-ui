@@ -12,6 +12,7 @@
   "scripts": {
     "clean": "yarn workspaces run clean",
     "build": "yarn --cwd ./packages/connection-library build",
-    "start": "yarn build && yarn --cwd ./packages/game-developers-console start"
+    "start": "yarn build && yarn --cwd ./packages/game-developers-console start",
+    "seed": "yarn --cwd ./packages/connection-library seed:local"
   }
 }

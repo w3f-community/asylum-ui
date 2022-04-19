@@ -1,15 +1,48 @@
 import { ApiPromise, SubmittableResult, WsProvider } from '@polkadot/api'
 import { KeyringPair } from '@polkadot/keyring/types'
 import { create } from 'ipfs-http-client'
-import { handleTxCallback } from './utils'
+import { handleTxCallback } from 'utils'
+import { SubmittableExtrinsic } from '@polkadot/api-base/types/submittable'
+import { ApiTypes } from '@polkadot/api-base/types/base'
 
 class AsylumApi {
    api: ApiPromise | undefined
    caller: KeyringPair | undefined
 
-   async load(network: string): Promise<AsylumApi> {
-      this.api = await ApiPromise.create({ provider: new WsProvider(network) })
+   async connect(
+      endpoint: string,
+      onConnected?: () => void,
+      onDisconnected?: () => void
+   ): Promise<AsylumApi> {
+      const provider = new WsProvider(endpoint)
+      onConnected && provider.on('connected', onConnected)
+      onDisconnected && provider.on('disconnected', onDisconnected)
+
+      try {
+         this.api = await ApiPromise.create({
+            provider,
+            throwOnConnect: true,
+            throwOnUnknown: true,
+         })
+      } catch (e) {
+         await provider.disconnect()
+         throw e
+      }
+
       return this
+   }
+
+   async disconnect(): Promise<void> {
+      if (this.api) {
+         await this.api.disconnect()
+      }
+   }
+
+   get polkadotApi(): ApiPromise {
+      if (!this.api) {
+         throw new Error('Api is not loaded')
+      }
+      return this.api
    }
 
    withCaller(caller: KeyringPair): AsylumApi {
@@ -23,16 +56,46 @@ class AsylumApi {
       })
       const { cid } = await ipfs.add(JSON.stringify(metadata))
 
-      return `http://localhost:8080/ipfs/${cid.toString()}`
+      return cid.toString()
+   }
+
+   signAndSendWrapped<ApiType extends ApiTypes>(
+      tx: SubmittableExtrinsic<ApiType>
+   ): Promise<SubmittableResult> {
+      return new Promise((resolve, reject) => {
+         tx.signAndSend(this.caller!, handleTxCallback(resolve, reject, this.api!.registry))
+      })
    }
 
    async createGame(id: number, accountId: string, price: number): Promise<SubmittableResult> {
-      return new Promise((resolve, reject) => {
-         this.api!.tx.asylumGDS.createGame(id, accountId, price).signAndSend(
-            this.caller!,
-            handleTxCallback(resolve, reject, this.api!.registry)
-         )
+      return this.signAndSendWrapped(this.api!.tx.asylumGDS.createGame(id, accountId, price))
+   }
+
+   async setGameMetadata(id: number, cid: string): Promise<SubmittableResult> {
+      return this.signAndSendWrapped(this.api!.tx.asylumGDS.setGameMetadata(id, cid))
+   }
+
+   async gamesMetadata(): Promise<string[]> {
+      const entries = await this.api!.query.asylumGDS.gameMetadataOf.entries()
+      return entries.map(([_, exposure]) => {
+         const data = exposure.toHuman()
+         // @ts-ignore
+         return data['data']
       })
+   }
+
+   async games(): Promise<any[]> {
+      const entries = await this.api!.query.asylumGDS.game.entries()
+      return entries.map(([key, exposure]) => {
+         const id = key.args.map((k) => k.toHuman())[0]
+         // @ts-ignore
+         return { ...exposure.toHuman(), id }
+      })
+   }
+
+   async gameMetadataOf(id?: number): Promise<any> {
+      const result = await this.api!.query.asylumGDS.gameMetadataOf(id)
+      return result.toHuman()
    }
 }
 

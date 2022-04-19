@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { GameCard } from '../game-card'
-import { GameObject, IComponentProps } from 'types'
+import { IComponentProps } from 'types'
 import classNames from 'classnames'
 import { observer } from 'mobx-react-lite'
 import { useStore } from 'store'
+import { GameObject } from '@asylum-ui/connection-library'
 
 interface IProps extends IComponentProps {
    games: GameObject[]
@@ -14,6 +15,7 @@ export const GameTable: React.FC<IProps> = observer(({ games, className }) => {
    const handleSelectGame = (game: GameObject) => {
       store.setSelectedGame(game)
    }
+
    return (
       <div
          className={classNames([

@@ -10,8 +10,6 @@ export const ConnectedStep: React.FC<IWalletStepProps> = observer(({ nextStep, o
    const store = useStore()
 
    const handleChange = () => {
-      localStorage.clear()
-      store.setAccount(null)
       nextStep(WalletConnectStepType.AccountSelection)
    }
 
