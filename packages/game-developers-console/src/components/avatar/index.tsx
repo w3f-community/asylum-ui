@@ -15,9 +15,10 @@ export const Avatar: React.FC<IProps> = ({ imgSrc, empty, size = 'sm', className
             backgroundImage: imgSrc ? `url('${imgSrc}')` : '',
          }}
          className={classNames(
-            'bg-cover bg-center w-9 h-9 rounded-full',
+            'bg-cover bg-center',
             {
-               'rounded-2xl w-32 h-32': size === 'lg',
+               'rounded-2xl w-44 h-44': size === 'lg',
+               'w-8 h-8 rounded-full': size === 'sm',
                'bg-gray-500': empty,
                'bg-empty ': !empty && !imgSrc, // bg-empty is default avatar,
             },

@@ -50,7 +50,10 @@ export const Modal: React.FC<IProps> = ({ title, open = false, onClose, children
 }
 
 const ModalContent = forwardRef<HTMLDivElement, IProps>(({ children }, ref) => (
-   <div ref={ref} className="bg-gray-700 rounded-3xl p-4 text-white w-full max-w-xl cursor-auto">
+   <div
+      ref={ref}
+      className="bg-gray-700 rounded-3xl p-4 text-white w-full max-w-xl cursor-auto md:ml-52 lg:ml-72"
+   >
       {children}
    </div>
 ))
@@ -60,7 +63,7 @@ interface IModalOverlayProps extends IComponentProps {}
 
 const ModalOverlay: React.FC<IModalOverlayProps> = ({ children }) => {
    return (
-      <div className="fixed inset-0 z-10 flex items-center justify-center bg-gradient-overlay ml-72 cursor-pointer">
+      <div className="fixed inset-0 z-30 flex items-center justify-center bg-gradient-overlay cursor-pointer">
          {children}
       </div>
    )

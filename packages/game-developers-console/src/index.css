@@ -1,13 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600&display=swap');
-/* Third-party components */
 @import 'vendor.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
    html {
@@ -56,10 +54,10 @@
    }
 
    .gradient-hover-effect {
-      @apply overflow-hidden z-0 relative before:bg-gradient-active hover:text-white hover:fill-white before:-z-10 before:top-0 before:bottom-0 before:left-0 before:right-0 before:absolute before:opacity-0 before:hover:opacity-100 before:transition-all;
+      @apply overflow-hidden z-0 relative before:bg-gradient-active hover:text-white hover:fill-white before:-z-10 before:inset-0 before:absolute before:opacity-0 before:hover:opacity-100 before:transition-all;
    }
 
    .gradient-border-effect {
-      @apply overflow-hidden z-0 relative before:bg-gradient-active hover:text-white hover:fill-white before:-z-10 before:top-0 before:bottom-0 before:left-0 before:right-0 before:absolute before:opacity-0 before:hover:opacity-100 before:transition-all;
+      @apply overflow-hidden z-0 relative before:bg-gradient-active hover:text-white hover:fill-white before:-z-10 before:inset-0 before:absolute before:opacity-0 before:hover:opacity-100 before:transition-all;
    }
 }

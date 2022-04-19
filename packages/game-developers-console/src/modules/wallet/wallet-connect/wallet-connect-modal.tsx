@@ -1,6 +1,6 @@
 import { Modal } from 'components/modal'
 import * as React from 'react'
-import { WalletConnectStepType, WALLET_CONNECT_STEPS } from './steps'
+import { WALLET_CONNECT_STEPS, WalletConnectStepType } from './steps'
 import { observer } from 'mobx-react-lite'
 import { useStore } from 'store'
 

@@ -8,6 +8,7 @@ import { Button } from 'components/button'
 import { ReactComponent as PlayIcon } from 'assets/svg/play.svg'
 import { observer } from 'mobx-react-lite'
 import { useStore } from 'store'
+import { ServerConnect } from 'modules/server-connect'
 
 interface IProps extends IComponentProps {}
 
@@ -17,8 +18,8 @@ export const Sidebar: React.FC<IProps> = observer(() => {
    const location = useLocation()
 
    return (
-      <aside className="hidden basis-52 md:block lg:basis-72 shrink-0 h-screen sticky top-0 bg-white">
-         <div className="flex flex-col items-center py-8 px-2 text-center gap-10">
+      <aside className="hidden basis-52 md:block lg:basis-72 shrink-0 h-screen sticky z-30 top-0 z-40">
+         <div className="flex flex-col items-center py-8 px-2 text-center gap-7 h-full before:bg-white before:rounded-t-3xl before:absolute before:inset-0 before:top-24 before:-z-10">
             <Avatar size="lg" empty={!store.account} imgSrc={store.selectedGame?.img} />
             <div className="flex flex-col items-center text-center">
                <HeadingLg className="mb-2">{store.selectedGame?.title || ''}</HeadingLg>
@@ -33,13 +34,14 @@ export const Sidebar: React.FC<IProps> = observer(() => {
                </Button>
             </div>
 
-            <nav className="flex flex-col max-w-4xl gap-4">
+            <nav className="flex flex-col w-full gap-4 grow max-w-3xl px-9">
                <Button
                   variant="dark"
                   size="sm"
                   className="w-full"
                   onClick={() => navigate('/')}
-                  active={location.pathname === '/'}
+                  active={location.pathname === '/' && store.isConnected}
+                  disabled={!store.isConnected}
                >
                   select game
                </Button>
@@ -48,8 +50,8 @@ export const Sidebar: React.FC<IProps> = observer(() => {
                   size="sm"
                   className="w-full"
                   onClick={() => navigate('/overview')}
-                  active={location.pathname === '/overview'}
-                  disabled={!store.selectedGame || !store.account}
+                  active={location.pathname === '/overview' && store.isConnected}
+                  disabled={!store.selectedGame || !store.account || !store.isConnected}
                >
                   game overview
                </Button>
@@ -58,8 +60,8 @@ export const Sidebar: React.FC<IProps> = observer(() => {
                   size="sm"
                   className="w-full"
                   onClick={() => navigate('/templates')}
-                  active={location.pathname === '/templates'}
-                  disabled={!store.selectedGame || !store.account}
+                  active={location.pathname === '/templates' && store.isConnected}
+                  disabled={!store.selectedGame || !store.account || !store.isConnected}
                >
                   templates
                </Button>
@@ -68,11 +70,12 @@ export const Sidebar: React.FC<IProps> = observer(() => {
                   size="sm"
                   className="w-full"
                   onClick={() => navigate('/items')}
-                  active={location.pathname === '/items'}
-                  disabled={!store.selectedGame || !store.account}
+                  active={location.pathname === '/items' && store.isConnected}
+                  disabled={!store.selectedGame || !store.account || !store.isConnected}
                >
                   items
                </Button>
+               <ServerConnect className="self-end mt-auto w-full" />
             </nav>
          </div>
       </aside>

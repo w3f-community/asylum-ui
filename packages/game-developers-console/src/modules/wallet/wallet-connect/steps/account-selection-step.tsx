@@ -36,48 +36,51 @@ const AccountsEmpty: React.FC = () => (
    </Paragraph>
 )
 
-export const AccountSelectionStep: React.FC<IWalletStepProps> = observer(({ nextStep }) => {
-   const store = useStore()
-   const [accounts, setAccounts] = React.useState<InjectedAccountWithMeta[]>([])
+export const AccountSelectionStep: React.FC<IWalletStepProps> = observer(
+   ({ nextStep, onClose }) => {
+      const store = useStore()
+      const [accounts, setAccounts] = React.useState<InjectedAccountWithMeta[]>([])
 
-   const handleConnect = (account: InjectedAccountWithMeta) => {
-      store.setAccount(account)
-      nextStep(WalletConnectStepType.Connected)
-   }
+      const handleConnect = (account: InjectedAccountWithMeta) => {
+         store.setAccount(account)
+         setTimeout(() => nextStep(WalletConnectStepType.Connected), 150)
+         onClose()
+      }
 
-   const handleDisconnect = () => {
-      localStorage.clear()
-      nextStep(WalletConnectStepType.ExtensionSelection)
-   }
+      const handleDisconnect = () => {
+         localStorage.clear()
+         nextStep(WalletConnectStepType.ExtensionSelection)
+      }
 
-   const fetchAccounts = async () => {
-      const allAccounts = await web3Accounts()
-      setAccounts(allAccounts)
-   }
+      const fetchAccounts = async () => {
+         const allAccounts = await web3Accounts()
+         setAccounts(allAccounts)
+      }
 
-   useEffect(() => {
-      fetchAccounts().catch(console.error)
-   }, [])
+      useEffect(() => {
+         fetchAccounts().catch(console.error)
+      }, [])
 
-   if (accounts.length === 0) {
+      if (accounts.length === 0) {
+         return (
+            <>
+               <AccountsEmpty />
+               <Button variant="dark" size="sm" className="w-full mt-8" onClick={fetchAccounts}>
+                  refresh
+               </Button>
+            </>
+         )
+      }
+
       return (
-         <>
-            <AccountsEmpty />
-            <Button variant="dark" size="sm" className="w-full mt-8" onClick={fetchAccounts}>
-               refresh
+         <div className="flex flex-col gap-4">
+            {accounts.map((account) => (
+               <AccountRow key={account.address} account={account} onSelect={handleConnect} />
+            ))}
+            <Button variant="dark" size="sm" className="w-full mt-4" onClick={handleDisconnect}>
+               disconnect
             </Button>
-         </>
+         </div>
       )
    }
-
-   return (
-      <div className="flex flex-col gap-4">
-         {accounts.map((account) => (
-            <AccountRow key={account.address} account={account} onSelect={handleConnect} />
-         ))}
-         <Button variant="dark" size="sm" className="w-full mt-4" onClick={handleDisconnect}>
-            disconnect
-         </Button>
-      </div>
-   )
-})
+)
