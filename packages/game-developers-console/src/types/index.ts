@@ -31,10 +31,6 @@ export interface IInterpretation {
    img: string
    properties: {
       [key: string]: string
-      // name?: string
-      // format?: string
-      // 'custom-something'?: string
-      // game?: string
    }
    description: string
 }

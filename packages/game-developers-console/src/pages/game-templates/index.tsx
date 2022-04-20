@@ -28,10 +28,6 @@ export const GameTemplates: React.FC<IProps> = () => {
       })
 
    return (
-      // // <div>
-      //    {/* <div className={classNames('flex items-center', { 'cursor-pointer': !!selectedItem })} onClick={() => handleSelectItem(undefined)}>
-      //       {selectedItem && <ArrowIcon className="mx-4" />}
-      //       <HeadingXl className="text-white" >Templates</HeadingXl> */}
       <div className="container mx-auto">
          <div
             onClick={() => setSelectedItem(undefined)}
@@ -40,7 +36,6 @@ export const GameTemplates: React.FC<IProps> = () => {
             {selectedItem && <ArrowIcon className="mx-4" />}
             <HeadingXl className="text-white">Templates</HeadingXl>
          </div>
-         {/* <HeadingXl className="text-white">Templates</HeadingXl> */}
          <Hr />
          {!selectedItem && (
             <div className="py-6">
