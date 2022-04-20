@@ -5,18 +5,19 @@ import { HeadingLg } from 'components/text/heading-lg'
 import { Heading } from 'components/text/heading'
 import { Paragraph } from 'components/text/paragraph'
 import { Card } from 'components/card'
+import { GameMetadata } from '@asylum-ui/connection-library'
 
-interface IProps { }
+interface IProps {
+   game: GameMetadata
+}
 
-export const GameDescription: React.FC<IProps> = () => {
+export const GameDescription: React.FC<IProps> = ({ game }) => {
    return (
       <Card className="mb-16">
-         <HeadingLg className="mb-5">Complete game name A</HeadingLg>
+         <HeadingLg className="mb-5">{game.title}</HeadingLg>
          <div className="flex gap-9">
             <div className="basis-7/12">
-               <Heading className="mb-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-               </Heading>
+               <Heading className="mb-4">{game.shortDescription}</Heading>
                <Carousel
                   className="demo-carousel overflow-hidden"
                   showIndicators={false}

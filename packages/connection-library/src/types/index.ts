@@ -1,6 +1,9 @@
-export interface GameObject {
+export interface GameMetadata {
+   id: string
    title: string
    img: string
-   id: string
+   genre: string
+   shortDescription: string
    description: string
+   gallery: string[]
 }

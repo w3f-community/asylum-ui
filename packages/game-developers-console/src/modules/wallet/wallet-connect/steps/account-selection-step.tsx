@@ -42,6 +42,7 @@ export const AccountSelectionStep: React.FC<IWalletStepProps> = observer(
       const [accounts, setAccounts] = React.useState<InjectedAccountWithMeta[]>([])
 
       const handleConnect = (account: InjectedAccountWithMeta) => {
+         store.setSelectedGame(null)
          store.setAccount(account)
          setTimeout(() => nextStep(WalletConnectStepType.Connected), 150)
          onClose()
