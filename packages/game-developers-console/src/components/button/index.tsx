@@ -31,7 +31,7 @@ export const Button: React.FC<IProps> = ({
             'bg-white text-gray-700': variant === 'light',
             'bg-green-600 text-white': variant === 'success',
             'text-base': size === 'sm',
-            'h-14 rounded-2xl': size === 'lg',
+            'h-12 rounded-2xl': size === 'lg',
             'border-2 border-red-500': error,
             'gradient-hover-effect': variant !== 'success' && !disabled && !active,
             'gradient-active-effect': active,

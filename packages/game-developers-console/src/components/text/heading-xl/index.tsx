@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {
-   children: React.ReactText
+   children: React.ReactNode
 }
 
 export const HeadingXl: React.FC<IProps> = ({ className, children }) => {

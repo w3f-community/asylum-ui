@@ -6,9 +6,9 @@ import { IComponentProps } from 'types'
 interface IProps extends IComponentProps {}
 
 export const SidebarLayout: React.FC<IProps> = ({ children }) => (
-   <div className="flex">
+   <div className="flex bg-gray-700 min-h-screen">
       <Sidebar />
-      <main className="bg-gray-700 p-14 grow">
+      <main className="py-8 px-12 grow">
          <Header />
          {children}
       </main>

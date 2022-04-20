@@ -1,10 +1,3 @@
-export interface GameObject {
-   title: string
-   img: string
-   id: string
-   description: string
-}
-
 export interface ITemplate {
    title: string
    img: string
@@ -33,4 +26,8 @@ export interface IInterpretation {
       [key: string]: string
    }
    description: string
+}
+export interface INetwork {
+   name: string
+   endpoint: string
 }

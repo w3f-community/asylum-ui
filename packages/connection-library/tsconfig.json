@@ -2,8 +2,10 @@
    "extends": "../tsconfig.base.json",
    "compilerOptions": {
       "baseUrl": "./src",
-      "lib": ["dom", "dom.iterable", "esnext"],
-      "jsx": "react-jsx"
+      "lib": ["esnext"],
+      "outDir": "./dist",
+      "declaration": true,
+      "noEmit": false
    },
    "include": ["./src"]
 }

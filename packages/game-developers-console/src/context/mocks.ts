@@ -1,4 +1,4 @@
-import { GameObject, IInterpretation, ITemplate, Review } from 'types'
+import { IInterpretation, ITemplate, Review } from 'types'
 
 export const MOCK_ADDRESS = '5FfA88n8kPDd9vH1D35H87kSsGECZ1sq5QiC5nYxD3VrEA89'
 
@@ -88,57 +88,6 @@ export const templates: ITemplate[] = [
       id: 13,
       img: '',
       description: 'The proud particle virtually dissolves the processor. ',
-   },
-]
-
-export const games: GameObject[] = [
-   {
-      title: 'Fortnite',
-      img: 'https://static-assets-prod.epicgames.com/fortnite/static/webpack/8f9484f10eb14f85a189fb6117a57026.jpg',
-      description: 'Free-to-play Battle Royale',
-      id: '1',
-   },
-   {
-      title: 'GTA V',
-      img: 'https://files.tecnoblog.net/wp-content/uploads/2018/07/gta-v.jpg',
-      description: 'Entertainment blockbusters',
-      id: '2',
-   },
-   {
-      title: 'Last of Us II',
-      img: 'https://upload.wikimedia.org/wikipedia/pt/9/96/The_Last_of_Us_2_capa.png',
-      description: 'Survival game',
-      id: '3',
-   },
-   {
-      title: 'Minecraft',
-      img: 'https://upload.wikimedia.org/wikipedia/uk/4/48/Minecraft_logo.png',
-      description: '3D sandbox game',
-      id: '4',
-   },
-   {
-      title: 'Call of Duty',
-      img: 'https://image.api.playstation.com/vulcan/img/cfn/1130791_COqLRw6IGlDVHxyV8aqC9_YaF0sCN8IbOlVhzJ6sWm5tlpKTjN8npK2vA_mUJUdyQjP4-U4rEnk7cScmlvoLzXi7.png',
-      description: 'First-person shooter',
-      id: '5',
-   },
-   {
-      title: 'RDR2',
-      img: 'https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png',
-      description: 'Western action-adventure',
-      id: '6',
-   },
-   {
-      title: 'Stalker',
-      img: 'https://s1.gaming-cdn.com/images/products/5376/orig-fallback-v1/s-t-a-l-k-e-r-2-heart-of-chornobyl-pc-game-steam-europe-cover.jpg',
-      description: 'First-person shooter',
-      id: '7',
-   },
-   {
-      title: 'Metro 2033',
-      img: 'https://image.api.playstation.com/cdn/EP4062/CUSA00591_00/o0nw1XsrxYS4wuug9cTqPFqPhRinf2zd.png',
-      description: 'First-person life simulation',
-      id: '8',
    },
 ]
 
