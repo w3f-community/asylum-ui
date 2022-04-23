@@ -5,6 +5,7 @@ import { ReactComponent as CloseIcon } from 'assets/svg/close.svg'
 import { Transition } from '@headlessui/react'
 import { forwardRef, useRef } from 'react'
 import { useClickOutsideCallback } from 'hooks'
+import ReactDOM from 'react-dom'
 
 interface IProps extends IComponentProps {
    open?: boolean
@@ -23,7 +24,7 @@ export const Modal: React.FC<IProps> = ({ title, open = false, onClose, children
    const modalRef = useRef<HTMLDivElement>(null)
    useClickOutsideCallback(modalRef, onClose)
 
-   return (
+   return ReactDOM.createPortal(
       <Transition
          show={open}
          enter="transition-opacity duration-150"
@@ -45,7 +46,9 @@ export const Modal: React.FC<IProps> = ({ title, open = false, onClose, children
                {children}
             </ModalContent>
          </ModalOverlay>
-      </Transition>
+      </Transition>,
+      // @ts-ignore
+      document.getElementById('modal-root')
    )
 }
 
