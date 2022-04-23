@@ -18,17 +18,17 @@ yarn
 ```
 
 4. [Optional] Seed data:
-   - Create `.env.local` file in root directory of `connection-libary` with the following content:
+4.1 Create `.env.local` file in root directory of `connection-libary` with the following content:
     
-```
+```bash
 SEEDER_MNEMONIC = eternal danger cherry radar exit damage slam hip say relief awesome middle
 ENDPOINT_URL = ws://127.0.0.1:9944
 ```
-   - Run `yarn seed`
+4.2 Run `yarn seed`
 ```bash
 yarn seed
 ```
-   - Import account to PolkadotJS extension from seed phrase:
+4.3 Import account to PolkadotJS extension from seed phrase:
 ```bash 
 eternal danger cherry radar exit damage slam hip say relief awesome middle
 ```
