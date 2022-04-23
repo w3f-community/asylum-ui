@@ -28,7 +28,7 @@ const seed = async (api: IAsylumApi): Promise<void> => {
       for (const [index] of toEntries(games)) {
          await api.createGame(index, api.caller?.address || '', 0)
          const gameCID = await api.uploadMetadata(games[index])
-         await api.setGameMetadata(index, gameCID)
+         await api.setGameMetadata(index, gameCID, games[index].title, games[index].genre)
          console.log(await api.gameMetadataOf(index))
       }
    } catch (error) {

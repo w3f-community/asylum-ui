@@ -71,8 +71,13 @@ class AsylumApi {
       return this.signAndSendWrapped(this.api!.tx.asylumGDS.createGame(id, accountId, price))
    }
 
-   async setGameMetadata(id: number, cid: string): Promise<SubmittableResult> {
-      return this.signAndSendWrapped(this.api!.tx.asylumGDS.setGameMetadata(id, cid))
+   async setGameMetadata(
+      id: number,
+      cid: string,
+      title: string,
+      genre: string
+   ): Promise<SubmittableResult> {
+      return this.signAndSendWrapped(this.api!.tx.asylumGDS.setGameMetadata(id, cid, title, genre))
    }
 
    async gamesMetadata(): Promise<string[]> {
