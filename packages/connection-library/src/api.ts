@@ -52,7 +52,7 @@ class AsylumApi {
 
    async uploadMetadata(metadata: object): Promise<string> {
       const ipfs = create({
-         url: 'http://localhost:5001',
+         url: 'http://127.0.0.1:5001',
       })
       const { cid } = await ipfs.add(JSON.stringify(metadata))
 
