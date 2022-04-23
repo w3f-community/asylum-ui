@@ -4,15 +4,15 @@ import { IComponentProps } from 'types'
 import classNames from 'classnames'
 import { observer } from 'mobx-react-lite'
 import { useStore } from 'store'
-import { GameObject } from '@asylum-ui/connection-library'
+import { GameMetadata } from '@asylum-ui/connection-library'
 
 interface IProps extends IComponentProps {
-   games: GameObject[]
+   games: GameMetadata[]
 }
 
 export const GameTable: React.FC<IProps> = observer(({ games, className }) => {
    const store = useStore()
-   const handleSelectGame = (game: GameObject) => {
+   const handleSelectGame = (game: GameMetadata) => {
       store.setSelectedGame(game)
    }
 
@@ -24,7 +24,7 @@ export const GameTable: React.FC<IProps> = observer(({ games, className }) => {
          ])}
       >
          {games &&
-            games.map((item: GameObject) => {
+            games.map((item: GameMetadata) => {
                return (
                   <GameCard
                      className={classNames({

@@ -1,7 +1,7 @@
 import { ApiPromise, SubmittableResult, WsProvider } from '@polkadot/api'
 import { KeyringPair } from '@polkadot/keyring/types'
 import { create } from 'ipfs-http-client'
-import { handleTxCallback } from 'utils'
+import { handleTxCallback } from './utils'
 import { SubmittableExtrinsic } from '@polkadot/api-base/types/submittable'
 import { ApiTypes } from '@polkadot/api-base/types/base'
 
@@ -93,7 +93,7 @@ class AsylumApi {
       })
    }
 
-   async gameMetadataOf(id?: number): Promise<any> {
+   async gameMetadataOf(id: number): Promise<any> {
       const result = await this.api!.query.asylumGDS.gameMetadataOf(id)
       return result.toHuman()
    }

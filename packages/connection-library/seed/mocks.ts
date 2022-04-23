@@ -1,4 +1,4 @@
-import { GameObject } from '../src/types'
+import { GameMetadata } from '../src/types'
 
 export const MOCK_ADDRESS = '5FfA88n8kPDd9vH1D35H87kSsGECZ1sq5QiC5nYxD3VrEA89'
 
@@ -91,54 +91,86 @@ export const MOCK_ADDRESS = '5FfA88n8kPDd9vH1D35H87kSsGECZ1sq5QiC5nYxD3VrEA89'
 //    },
 // ]
 
-export const games: GameObject[] = [
+export const games: GameMetadata[] = [
    {
+      id: '1',
       title: 'Fortnite',
       img: 'https://static-assets-prod.epicgames.com/fortnite/static/webpack/8f9484f10eb14f85a189fb6117a57026.jpg',
-      description: 'Free-to-play Battle Royale',
-      id: '1',
+      genre: 'Free-to-play Battle Royale',
+      shortDescription: 'Join the Resistance in the final battle to free the Zero Point!',
+      description:
+         'The IO has lined up guards and sky stations, but the Resistance is equipped with new tactics like sprinting, mantling, and more. Board an Armored Battle Bus to be a powerful force or attach a Cow Catcher to your truck for extra ramming power. Take on your opponents in the ultimate battle for the Zero Point in Chapter 3 Season 2: Resistance!\n' +
+         'The Chapter 3 Season 2 Battle Pass includes the Master of the Mystic Arts, Doctor Strange. Joining him in the Battle Pass are characters like Tsuki 2.0, the familiar foe Gunnar, and revealed at last: The Origin. Also, complete special Quests to “reprogram” the Omni Sword Pickaxe. Configure it with a different blade, guard, color, and even sound!',
+      gallery: [
+         'https://static-assets-prod.epicgames.com/fortnite/static/webpack/8f9484f10eb14f85a189fb6117a57026.jpg',
+         'https://images.nintendolife.com/screenshots/90272/large.jpg',
+         'https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fphotography-blog%2Fpic2-1600x900-775a0694cc0b0f854ef48399ebc33a2db0bac25c.png',
+         'https://thefortnitegame.com/images/uploads/products/1/k3h5H_screen_1.jpg',
+         'https://www.usitility.com/media/software/screenshots/screenshot-fortnite-battle-royale-13268.webp',
+      ],
    },
    {
+      id: '2',
       title: 'GTA V',
       img: 'https://files.tecnoblog.net/wp-content/uploads/2018/07/gta-v.jpg',
+      genre: 'Entertainment blockbusters',
+      shortDescription: '',
       description: 'Entertainment blockbusters',
-      id: '2',
+      gallery: [],
    },
    {
+      id: '3',
       title: 'Last of Us II',
       img: 'https://upload.wikimedia.org/wikipedia/pt/9/96/The_Last_of_Us_2_capa.png',
-      description: 'Survival game',
-      id: '3',
+      genre: 'Survival game',
+      shortDescription: '',
+      description: 'Entertainment blockbusters',
+      gallery: [],
    },
    {
+      id: '4',
       title: 'Minecraft',
       img: 'https://upload.wikimedia.org/wikipedia/uk/4/48/Minecraft_logo.png',
-      description: '3D sandbox game',
-      id: '4',
+      genre: '3D sandbox game',
+      shortDescription: '',
+      description: 'Entertainment blockbusters',
+      gallery: [],
    },
    {
+      id: '5',
       title: 'Call of Duty',
       img: 'https://image.api.playstation.com/vulcan/img/cfn/1130791_COqLRw6IGlDVHxyV8aqC9_YaF0sCN8IbOlVhzJ6sWm5tlpKTjN8npK2vA_mUJUdyQjP4-U4rEnk7cScmlvoLzXi7.png',
-      description: 'First-person shooter',
-      id: '5',
+      genre: 'First-person shooter',
+      shortDescription: '',
+      description: 'Entertainment blockbusters',
+      gallery: [],
    },
    {
+      id: '6',
       title: 'RDR2',
       img: 'https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png',
-      description: 'Western action-adventure',
-      id: '6',
+      genre: 'Western action-adventure',
+      shortDescription: '',
+      description: 'Entertainment blockbusters',
+      gallery: [],
    },
    {
+      id: '7',
       title: 'Stalker',
       img: 'https://s1.gaming-cdn.com/images/products/5376/orig-fallback-v1/s-t-a-l-k-e-r-2-heart-of-chornobyl-pc-game-steam-europe-cover.jpg',
-      description: 'First-person shooter',
-      id: '7',
+      genre: 'First-person shooter',
+      shortDescription: '',
+      description: 'Entertainment blockbusters',
+      gallery: [],
    },
    {
+      id: '8',
       title: 'Metro 2033',
       img: 'https://image.api.playstation.com/cdn/EP4062/CUSA00591_00/o0nw1XsrxYS4wuug9cTqPFqPhRinf2zd.png',
-      description: 'First-person life simulation',
-      id: '8',
+      genre: 'First-person life simulation',
+      shortDescription: '',
+      description: 'Entertainment blockbusters',
+      gallery: [],
    },
 ]
 //
