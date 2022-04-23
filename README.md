@@ -1,6 +1,6 @@
 # Asylum ui
 
-d### Run Game Developers Console (localy)
+### Run Game Developers Console (localy)
 
 1. Build and run [asylum-item-nft](https://gitlab.com/asylum-space/asylum-item-nft) substrate node:
 ```bash
