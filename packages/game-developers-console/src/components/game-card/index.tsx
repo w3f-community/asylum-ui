@@ -1,7 +1,7 @@
 import * as React from 'react'
-
 import { IComponentProps } from 'types'
 import classNames from 'classnames'
+import { Heading } from 'components/text/heading'
 
 interface IProps extends IComponentProps {
    title: string
@@ -22,14 +22,19 @@ export const GameCard: React.FC<IProps> = ({
    return (
       <div
          className={classNames([
-            'flex flex-col bg-white cursor-pointer basis-1/3 rounded-2xl transition-all duration-400 overflow-hidden',
+            'group flex flex-col bg-white cursor-pointer basis-1/3 rounded-2xl transition-all duration-400 overflow-hidden',
             { 'gradient-active-effect': active, 'gradient-hover-effect': !active },
             className,
          ])}
          onClick={() => onClick(id)}
       >
-         {/* // Todo refactor this text to textComponent */}
-         <p className="text-center py-2">{title}</p>
+         <Heading
+            className={classNames('text-center py-2 group-hover:text-white', {
+               'text-white': active,
+            })}
+         >
+            {title}
+         </Heading>
          <div
             style={{ backgroundImage: img ? `url('${img}')` : '' }}
             className="w-full aspect-square bg-cover bg-center"

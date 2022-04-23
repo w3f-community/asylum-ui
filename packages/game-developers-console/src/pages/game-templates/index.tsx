@@ -7,6 +7,8 @@ import * as React from 'react'
 import { ITemplate } from 'types'
 import { MOCK_ADDRESS, templates } from 'context/mocks'
 import { Paragraph } from 'components/text/paragraph'
+import { Button } from 'components/button'
+import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
 
 interface IProps {}
 
@@ -26,7 +28,12 @@ export const GameTemplates: React.FC<IProps> = () => {
 
    return (
       <div className="container mx-auto">
-         <HeadingXl className="text-white">Templates</HeadingXl>
+         <div className="flex justify-between items-center">
+            <HeadingXl className="text-white">Templates</HeadingXl>
+            <Button variant="light">
+               <PlusIcon className="fill-text-base w-4 h-4 inline-block mr-1" /> create template
+            </Button>
+         </div>
          <Hr />
          <div className="py-6">
             <SearchAutocomplete

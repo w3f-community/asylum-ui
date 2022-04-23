@@ -6,10 +6,12 @@ import { App } from 'App'
 import { BrowserRouter } from 'react-router-dom'
 import { StoreProvider } from 'store'
 import { AsylumApiProvider } from 'context/api-provider'
+import { ScrollToTop } from 'utils/scroll-to-top'
 
 ReactDOM.render(
    <React.StrictMode>
       <BrowserRouter>
+         <ScrollToTop />
          <StoreProvider>
             <AsylumApiProvider>
                <App />

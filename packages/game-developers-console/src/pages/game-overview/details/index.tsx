@@ -7,6 +7,7 @@ import { HeadingLg } from 'components/text/heading-lg'
 import { useAsylumApi } from 'hooks'
 import { fetchPlayersCount } from 'api'
 import { GameWithMetadata } from 'store/app-store'
+import { useNavigate } from 'react-router-dom'
 
 interface IProps {
    game: GameWithMetadata
@@ -14,6 +15,7 @@ interface IProps {
 
 export const Details: React.FC<IProps> = ({ game }) => {
    const { data: playersNumber } = useAsylumApi(fetchPlayersCount())
+   const navigate = useNavigate()
 
    return (
       <Card className="mb-16">
@@ -31,7 +33,9 @@ export const Details: React.FC<IProps> = ({ game }) => {
                <Heading>Associated templates:</Heading>
                <Paragraph className="font-secondary">{game.templates?.length || 0}</Paragraph>
             </div>
-            <Button variant="dark">show all templates</Button>
+            <Button variant="dark" onClick={() => navigate('/templates')}>
+               show all templates
+            </Button>
          </div>
       </Card>
    )

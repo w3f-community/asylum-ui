@@ -43,9 +43,7 @@ export const ListCardItem: React.FC<IProps> = ({
                {description}
             </Paragraph>
             <div className="flex flex-row justify-between items-center">
-               <Paragraph className="font-oxanim group-hover:text-white">
-                  {formatAddress(address)}
-               </Paragraph>
+               <Paragraph className="group-hover:text-white">{formatAddress(address)}</Paragraph>
                <Button
                   variant="dark"
                   className="before:hidden hover:bg-white hover:text-gray-700"

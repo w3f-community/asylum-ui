@@ -25,7 +25,7 @@ export const Button: React.FC<IProps> = ({
    <button
       onClick={onClick}
       className={classNames(
-         'group rounded-xl px-6 py-2 text-base text-center transition-all',
+         'group rounded-xl px-6 py-2 text-base text-center font-secondary transition-all',
          {
             'bg-gray-800 text-white': variant === 'dark' && !disabled,
             'bg-white text-gray-700': variant === 'light',

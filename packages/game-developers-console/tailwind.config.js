@@ -27,7 +27,7 @@ module.exports = {
          },
          fontFamily: {
             sans: ['ubuntu', ...defaultTheme.fontFamily.sans],
-            secondary: ['Oxanium', 'cursive'],
+            secondary: ['Oxanium', ...defaultTheme.fontFamily.sans],
          },
          colors: {
             asylum: {
