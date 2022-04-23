@@ -5,7 +5,6 @@ import { HeadingXl } from 'components/text/heading-xl'
 import { GameDescription } from './game-description'
 import { IComponentProps } from 'types'
 import { Reviews } from 'pages/game-overview/reviews'
-import { reviews } from 'context/mocks'
 import { observer } from 'mobx-react-lite'
 import { useStore } from 'store'
 import { Paragraph } from 'components/text/paragraph'
@@ -25,9 +24,9 @@ export const GameOverview: React.FC<IProps> = observer(() => {
          <Hr />
          <div className="py-6">
             <GameDescription game={store.selectedGame} />
-            <Details />
+            <Details game={store.selectedGame} />
             <div className="flex flex-col">
-               <Reviews reviews={reviews} />
+               <Reviews reviews={store.selectedGame.reviews} />
             </div>
          </div>
       </div>

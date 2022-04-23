@@ -1,4 +1,4 @@
-import { GameMetadata } from '../src/types'
+import { GameMetadata, Review } from '../src/types'
 
 export const MOCK_ADDRESS = '5FfA88n8kPDd9vH1D35H87kSsGECZ1sq5QiC5nYxD3VrEA89'
 
@@ -91,9 +91,24 @@ export const MOCK_ADDRESS = '5FfA88n8kPDd9vH1D35H87kSsGECZ1sq5QiC5nYxD3VrEA89'
 //    },
 // ]
 
-export const games: GameMetadata[] = [
+export const reviews: Review[] = [
    {
       id: '1',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      rating: 3.5,
+      address: MOCK_ADDRESS,
+   },
+   {
+      id: '2',
+      text: 'Proin condimentum dapibus libero quis molestie. Fusce a turpis ut turpis hendrerit pellentesque. Quisque in odio eu nulla rutrum laoreet. Donec vitae vehicula eros, sed luctus metus. Fusce quis neque dictum, ornare dui sed, vulputate purus. Donec porta tortor condimentum velit volutpat consectetur. Integer porttitor nulla in nisl laoreet, sit amet porta quam ultrices. Duis at tempor urna. Vestibulum nec convallis neque. Vivamus auctor aliquam aliquam. Maecenas eu arcu urna.',
+      rating: 4.5,
+      address: MOCK_ADDRESS,
+   },
+]
+
+export const games: GameMetadata[] = [
+   {
+      id: '0',
       title: 'Fortnite',
       img: 'https://static-assets-prod.epicgames.com/fortnite/static/webpack/8f9484f10eb14f85a189fb6117a57026.jpg',
       genre: 'Free-to-play Battle Royale',
@@ -108,71 +123,80 @@ export const games: GameMetadata[] = [
          'https://thefortnitegame.com/images/uploads/products/1/k3h5H_screen_1.jpg',
          'https://www.usitility.com/media/software/screenshots/screenshot-fortnite-battle-royale-13268.webp',
       ],
+      reviews,
    },
    {
-      id: '2',
+      id: '1',
       title: 'GTA V',
       img: 'https://files.tecnoblog.net/wp-content/uploads/2018/07/gta-v.jpg',
       genre: 'Entertainment blockbusters',
       shortDescription: '',
       description: 'Entertainment blockbusters',
       gallery: [],
+      reviews: [],
    },
    {
-      id: '3',
+      id: '2',
       title: 'Last of Us II',
       img: 'https://upload.wikimedia.org/wikipedia/pt/9/96/The_Last_of_Us_2_capa.png',
       genre: 'Survival game',
       shortDescription: '',
       description: 'Entertainment blockbusters',
       gallery: [],
+      reviews: [],
    },
    {
-      id: '4',
+      id: '3',
       title: 'Minecraft',
       img: 'https://upload.wikimedia.org/wikipedia/uk/4/48/Minecraft_logo.png',
       genre: '3D sandbox game',
       shortDescription: '',
       description: 'Entertainment blockbusters',
       gallery: [],
+      reviews: [],
    },
    {
-      id: '5',
+      id: '4',
       title: 'Call of Duty',
       img: 'https://image.api.playstation.com/vulcan/img/cfn/1130791_COqLRw6IGlDVHxyV8aqC9_YaF0sCN8IbOlVhzJ6sWm5tlpKTjN8npK2vA_mUJUdyQjP4-U4rEnk7cScmlvoLzXi7.png',
       genre: 'First-person shooter',
       shortDescription: '',
       description: 'Entertainment blockbusters',
       gallery: [],
+      reviews: [],
    },
    {
-      id: '6',
+      id: '5',
       title: 'RDR2',
       img: 'https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png',
       genre: 'Western action-adventure',
       shortDescription: '',
       description: 'Entertainment blockbusters',
       gallery: [],
+      reviews: [],
    },
    {
-      id: '7',
+      id: '6',
       title: 'Stalker',
       img: 'https://s1.gaming-cdn.com/images/products/5376/orig-fallback-v1/s-t-a-l-k-e-r-2-heart-of-chornobyl-pc-game-steam-europe-cover.jpg',
       genre: 'First-person shooter',
       shortDescription: '',
       description: 'Entertainment blockbusters',
       gallery: [],
+      reviews: [],
    },
    {
-      id: '8',
+      id: '7',
       title: 'Metro 2033',
       img: 'https://image.api.playstation.com/cdn/EP4062/CUSA00591_00/o0nw1XsrxYS4wuug9cTqPFqPhRinf2zd.png',
       genre: 'First-person life simulation',
       shortDescription: '',
       description: 'Entertainment blockbusters',
       gallery: [],
+      reviews: [],
    },
 ]
+
 //
 // export const reviews: Review[] = [
 //    {

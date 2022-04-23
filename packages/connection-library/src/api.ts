@@ -4,6 +4,7 @@ import { create } from 'ipfs-http-client'
 import { handleTxCallback } from './utils'
 import { SubmittableExtrinsic } from '@polkadot/api-base/types/submittable'
 import { ApiTypes } from '@polkadot/api-base/types/base'
+import { Game, GameMetadata } from './types'
 
 class AsylumApi {
    api: ApiPromise | undefined
@@ -80,16 +81,7 @@ class AsylumApi {
       return this.signAndSendWrapped(this.api!.tx.asylumGDS.setGameMetadata(id, cid, title, genre))
    }
 
-   async gamesMetadata(): Promise<string[]> {
-      const entries = await this.api!.query.asylumGDS.gameMetadataOf.entries()
-      return entries.map(([_, exposure]) => {
-         const data = exposure.toHuman()
-         // @ts-ignore
-         return data['data']
-      })
-   }
-
-   async games(): Promise<any[]> {
+   async games(): Promise<Game[]> {
       const entries = await this.api!.query.asylumGDS.game.entries()
       return entries.map(([key, exposure]) => {
          const id = key.args.map((k) => k.toHuman())[0]
@@ -98,9 +90,19 @@ class AsylumApi {
       })
    }
 
-   async gameMetadataOf(id: number): Promise<any> {
+   async gameMetadataOf(id: number): Promise<GameMetadata> {
       const result = await this.api!.query.asylumGDS.gameMetadataOf(id)
+      // @ts-ignore
       return result.toHuman()
+   }
+
+   async tickets(): Promise<any[]> {
+      const entries = await this.api!.query.asylumGDS.ticket.entries()
+      return entries.map(([key, exposure]) => {
+         const id = key.args.map((k) => k.toHuman())[0]
+         // @ts-ignore
+         return { ...exposure.toHuman(), id }
+      })
    }
 }
 

@@ -1,4 +1,3 @@
-import { Review } from 'types'
 import * as React from 'react'
 import { Card } from 'components/card'
 import { Avatar } from 'components/avatar'
@@ -6,6 +5,7 @@ import { Paragraph } from 'components/text/paragraph'
 import { RatingStarsComponent } from 'components/rating-star'
 import { formatAddress } from 'utils'
 import { MOCK_ADDRESS } from 'context/mocks'
+import { Review } from '@asylum-ui/connection-library'
 
 interface IReviewProps {
    review: Review
@@ -13,7 +13,7 @@ interface IReviewProps {
 
 export const ReviewCard: React.FC<IReviewProps> = ({ review }) => {
    return (
-      <Card className="mb-9">
+      <Card>
          <div className="flex flex-col justify-between gap-5">
             <div className="flex flex-row justify-between">
                <div className="flex items-center">

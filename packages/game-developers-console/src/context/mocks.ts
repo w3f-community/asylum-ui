@@ -1,4 +1,4 @@
-import { ITemplate, Review } from 'types'
+import { ITemplate } from 'types'
 
 export const MOCK_ADDRESS = '5FfA88n8kPDd9vH1D35H87kSsGECZ1sq5QiC5nYxD3VrEA89'
 
@@ -88,20 +88,5 @@ export const templates: ITemplate[] = [
       id: 13,
       img: '',
       description: 'The proud particle virtually dissolves the processor. ',
-   },
-]
-
-export const reviews: Review[] = [
-   {
-      id: '1',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      rating: 3.5,
-      address: MOCK_ADDRESS,
-   },
-   {
-      id: '2',
-      text: 'Proin condimentum dapibus libero quis molestie. Fusce a turpis ut turpis hendrerit pellentesque. Quisque in odio eu nulla rutrum laoreet. Donec vitae vehicula eros, sed luctus metus. Fusce quis neque dictum, ornare dui sed, vulputate purus. Donec porta tortor condimentum velit volutpat consectetur. Integer porttitor nulla in nisl laoreet, sit amet porta quam ultrices. Duis at tempor urna. Vestibulum nec convallis neque. Vivamus auctor aliquam aliquam. Maecenas eu arcu urna.',
-      rating: 4.5,
-      address: MOCK_ADDRESS,
    },
 ]

@@ -1,11 +1,13 @@
 import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
 import { action, makeObservable, observable } from 'mobx'
-import { GameMetadata } from '@asylum-ui/connection-library'
+import { Game, GameMetadata } from '@asylum-ui/connection-library'
 import { INetwork } from 'types'
+
+export type GameWithMetadata = Game & GameMetadata
 
 class AppStore {
    account: InjectedAccountWithMeta | null = null
-   selectedGame: GameMetadata | null = null
+   selectedGame: GameWithMetadata | null = null
    network: INetwork | null = null
    isConnected: boolean = false
 
@@ -30,7 +32,7 @@ class AppStore {
       this.account = account
    }
 
-   setSelectedGame(game: GameMetadata | null) {
+   setSelectedGame(game: GameWithMetadata | null) {
       this.selectedGame = game
    }
 
