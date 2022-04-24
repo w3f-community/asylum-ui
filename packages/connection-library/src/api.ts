@@ -85,8 +85,8 @@ class AsylumApi {
       const entries = await this.api!.query.asylumGDS.game.entries()
       return entries.map(([key, exposure]) => {
          const id = key.args.map((k) => k.toHuman())[0]
-         // @ts-ignore
          return {
+            // @ts-ignore
             ...exposure.toHuman(),
             id,
          }
@@ -120,11 +120,11 @@ class AsylumApi {
    }
 
    // TODO
-   // async templateInterpretations(id: number): Promise<Interpretation[]> {
-   //    const result = await this.api!.query.asylumCore.templateIntepretations.entries(id);
-   //    // @ts-ignore
-   //    return readMapFromStorage(result);
-   // }
+   async templateInterpretations(id: number): Promise<Interpretation[]> {
+      const result = await this.api!.query.asylumCore.templateIntepretations.entries(id)
+      // @ts-ignore
+      return readMapFromStorage(result)
+   }
 
    // TODO
    // async itemInterpretations(id: number): Promise<Interpretation[]> {

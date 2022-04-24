@@ -54,7 +54,8 @@ const seedTemplates = async (api: IAsylumApi): Promise<void> => {
       // TODO
       await api.createTemplate('template_n', '', 10, [
          {
-            tags: ['odin'],            interpretation: {
+            tags: ['odin'],
+            interpretation: {
                id: 12,
                src: '4444',
                metadata: '3232',
