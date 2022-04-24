@@ -1,4 +1,4 @@
-import { GameMetadata, Review } from '../src/types'
+import { GameMetadata, Interpretation, Review } from '../src/types'
 
 export const MOCK_ADDRESS = '5FfA88n8kPDd9vH1D35H87kSsGECZ1sq5QiC5nYxD3VrEA89'
 
@@ -38,7 +38,7 @@ export const tags = [
       },
    },
    {
-      tag: '.png',
+      tag: 'png',
       metadata: {
          description: 'Anything in .png format',
          metadataExtensions: {
@@ -54,7 +54,7 @@ export const tags = [
       },
    },
    {
-      tag: '.jpeg',
+      tag: 'jpeg',
       metadata: {
          description: 'Anything in .jpeg format',
          metadataExtensions: {
@@ -70,7 +70,7 @@ export const tags = [
       },
    },
    {
-      tag: '.jpg',
+      tag: 'jpg',
       metadata: {
          description: 'Anything in .jpg format',
          metadataExtensions: {
@@ -85,6 +85,53 @@ export const tags = [
          },
       },
    },
+]
+
+// TODO: naming
+interface ITemplate {
+   name: string
+   metadata: {
+      description: string
+   }
+   max: number | undefined
+   interpretations: [
+      {
+         tags: string[]
+         interpretation: {
+            id: string
+            src: string | undefined
+            metadata: any
+            // | {
+            //      [index: string]: any
+            //   }
+            // | undefined
+         }
+      }
+   ]
+}
+
+export const templates: ITemplate[] = [
+   {
+      name: 'Old sword',
+      metadata: {
+         description: 'Lorem ipsum dolor sit amet, consect adipiscing elit.',
+      },
+      max: 100,
+      interpretations: [
+         {
+            tags: ['default-view', 'png'],
+            interpretation: {
+               id: '', // ?
+               src: '/img/sword.png',
+               metadata: {
+                  fieldName: 'fieldValue',
+                  fileFormat: '.png',
+               },
+            },
+         },
+      ],
+   },
+   // TODO: extend
 ]
 
 // export const templates: ITemplate[] = [

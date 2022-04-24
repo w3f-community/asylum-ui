@@ -1,8 +1,12 @@
 import * as dotenv from 'dotenv'
-import { AsylumApi } from '../src'
+import { AsylumApi, Interpretation } from '../src'
 import { Keyring } from '@polkadot/api'
 import { IAsylumApi } from '../dist'
-import { games as gamesMockData, tags as tagsMockData } from './mocks'
+import {
+   games as gamesMockData,
+   tags as tagsMockData,
+   templates as templatesMockData,
+} from './mocks'
 import { KeyringPair } from '@polkadot/keyring/types'
 
 dotenv.config()
@@ -57,27 +61,39 @@ const seedTemplates = async (api: IAsylumApi): Promise<void> => {
    try {
       console.log('Initializing templates...')
 
-      // TODO
-      await api.createTemplate('template_n', '', 10, [
-         {
-            tags: ['odin'],
-            interpretation: {
-               id: '12',
-               src: '4444',
-               metadata: '3232',
-            },
-         },
-         {
-            tags: ['odin'],
-            interpretation: {
-               id: '13',
-               src: '4444',
-               metadata: '3232',
-            },
-         },
-      ])
+      for (const [index] of toEntries(templatesMockData)) {
+         const entry = templatesMockData[index]
 
-      console.log(await api.templateInterpretations(0))
+         const templateMetadataCID = await api.uploadMetadata(entry.metadata)
+
+         const interpretations = [] as Interpretation[]
+
+         for (const [index] of toEntries(entry.interpretations)) {
+            const interpretationEntry = entry.interpretations[index]
+
+            const metadataCID = await api.uploadMetadata(
+               interpretationEntry.interpretation.metadata
+            )
+            // temporary solution, in the future we should upload file to ipfs and paste a hash here
+            const srcCID = interpretationEntry.interpretation.src
+
+            interpretations[index] = {
+               tags: interpretationEntry.tags,
+               interpretation: {
+                  id: index.toString(),
+                  src: srcCID,
+                  metadata: metadataCID,
+               },
+            }
+         }
+
+         await api.createTemplate(entry.name, templateMetadataCID, entry.max, interpretations)
+
+         console.log(
+            `Added template '${entry.name}' with metadata: '${templateMetadataCID}' and interpretations:`
+         )
+         console.log(await api.templateInterpretations(index))
+      }
 
       console.log('[Initializing templates] SUCCEED')
    } catch (error) {
