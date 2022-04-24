@@ -11,7 +11,7 @@
       "clean": "rimraf dist && rimraf node_modules",
       "build": "tsc",
       "publish": "yarn run build && yarn publish",
-      "seed:local": "yarn build && npx ts-node -O '{\"module\":\"commonjs\"}' -r dotenv/config  seed/index.ts dotenv_config_path=.env.local"
+      "seed:local": "yarn build && npx ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" -r dotenv/config  seed/index.ts dotenv_config_path=.env.local"
    },
    "dependencies": {
       "@polkadot/api": "^8.0.2",
