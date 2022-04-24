@@ -43,8 +43,8 @@ export const handleTxCallback =
 export const mapEntries = (entries: [StorageKey<AnyTuple>, Codec][]) => {
    return entries.map(([key, exposure]) => {
       const id = key.args.map((k) => k.toHuman())[0]
-      // @ts-ignore
       return {
+         // @ts-ignore
          ...exposure.toHuman(),
          id,
       }

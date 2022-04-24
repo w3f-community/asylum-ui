@@ -54,8 +54,7 @@ const seedTemplates = async (api: IAsylumApi): Promise<void> => {
       // TODO
       await api.createTemplate('template_n', '', 10, [
          {
-            tags: ['odin'],
-            interpretation: {
+            tags: ['odin'],            interpretation: {
                id: 12,
                src: '4444',
                metadata: '3232',
@@ -63,7 +62,7 @@ const seedTemplates = async (api: IAsylumApi): Promise<void> => {
          },
       ])
 
-      console.log(await api.templateInterpretations(0))
+      // console.log(await api.templateInterpretations(0))
 
       console.log('[Initializing templates] SUCCEED')
    } catch (error) {
