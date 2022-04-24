@@ -1,5 +1,7 @@
 import { SubmittableResult } from '@polkadot/api'
 import { Registry } from '@polkadot/types/types'
+import { StorageKey } from '@polkadot/types'
+import { AnyTuple, Codec } from '@polkadot/types-codec/types'
 
 export const handleTxCallback =
    (
@@ -36,4 +38,12 @@ export const handleTxCallback =
       } else if (result.isError) {
          reject(result.toString())
       }
+   }
+
+   export const readMapFromStorage = (entries: [StorageKey<AnyTuple>, Codec][]) => {
+      return entries.map(([key, exposure]) => {
+         const id = key.args.map((k) => k.toHuman())[0]
+         // @ts-ignore
+         return { ...exposure.toHuman(), id }
+      })
    }
