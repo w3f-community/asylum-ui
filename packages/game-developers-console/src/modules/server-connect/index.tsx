@@ -11,7 +11,7 @@ interface IProps extends IComponentProps {}
 export const ServerConnect: React.FC<IProps> = observer(({ className }) => {
    const store = useStore()
    const buttonText = store.network?.name || 'disconnected'
-   const [isModalOpen, setIsModalOpen] = React.useState(false)
+   const [open, setOpen] = React.useState(false)
 
    return (
       <div className={classNames(className)}>
@@ -19,7 +19,7 @@ export const ServerConnect: React.FC<IProps> = observer(({ className }) => {
             variant="dark"
             size="sm"
             className="w-full flex items-center gap-2"
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => setOpen(true)}
          >
             <span className="grow">{buttonText}</span>
             <span
@@ -29,7 +29,7 @@ export const ServerConnect: React.FC<IProps> = observer(({ className }) => {
                })}
             />
          </Button>
-         <ServerConnectModal open={isModalOpen} onClose={() => setIsModalOpen(false)} />
+         <ServerConnectModal open={open} onClose={() => setOpen(false)} />
       </div>
    )
 })
