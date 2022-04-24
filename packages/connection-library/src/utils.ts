@@ -40,10 +40,13 @@ export const handleTxCallback =
       }
    }
 
-   export const readMapFromStorage = (entries: [StorageKey<AnyTuple>, Codec][]) => {
-      return entries.map(([key, exposure]) => {
-         const id = key.args.map((k) => k.toHuman())[0]
-         // @ts-ignore
-         return { ...exposure.toHuman(), id }
-      })
-   }
+export const mapEntries = (entries: [StorageKey<AnyTuple>, Codec][]) => {
+   return entries.map(([key, exposure]) => {
+      const id = key.args.map((k) => k.toHuman())[0]
+      // @ts-ignore
+      return {
+         ...exposure.toHuman(),
+         id,
+      }
+   })
+}

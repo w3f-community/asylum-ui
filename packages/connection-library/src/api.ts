@@ -1,11 +1,10 @@
 import { ApiPromise, SubmittableResult, WsProvider } from '@polkadot/api'
 import { KeyringPair } from '@polkadot/keyring/types'
 import { create } from 'ipfs-http-client'
-import { handleTxCallback, readMapFromStorage } from './utils'
+import { handleTxCallback, mapEntries } from './utils'
 import { SubmittableExtrinsic } from '@polkadot/api-base/types/submittable'
 import { ApiTypes } from '@polkadot/api-base/types/base'
 import { Game, GameMetadata, Interpretation } from './types'
-
 
 class AsylumApi {
    api: ApiPromise | undefined
@@ -87,7 +86,10 @@ class AsylumApi {
       return entries.map(([key, exposure]) => {
          const id = key.args.map((k) => k.toHuman())[0]
          // @ts-ignore
-         return { ...exposure.toHuman(), id }
+         return {
+            ...exposure.toHuman(),
+            id,
+         }
       })
    }
 
@@ -99,22 +101,22 @@ class AsylumApi {
 
    async tickets(): Promise<any[]> {
       const entries = await this.api!.query.asylumGDS.ticket.entries()
-      return readMapFromStorage(entries)
+      return mapEntries(entries)
    }
 
    // TODO
    // async proposals(): Promise<any[]> {
-      
+
    // }
 
    async tags(): Promise<any[]> {
       const entries = await this.api!.query.asylumCore.tags.entries()
-      return readMapFromStorage(entries)
+      return mapEntries(entries)
    }
 
    async tagMetadataOf(id: string): Promise<any> {
-      const result = await this.api!.query.asylumCore.tags(id);
-      return result.toHuman();
+      const result = await this.api!.query.asylumCore.tags(id)
+      return result.toHuman()
    }
 
    // TODO
@@ -131,12 +133,9 @@ class AsylumApi {
    //    return result.toHuman();
    // }
 
-   async createInterpretationTag(
-      tag: string,
-      metadata: string,
-   ): Promise<SubmittableResult> {
+   async createInterpretationTag(tag: string, metadata: string): Promise<SubmittableResult> {
       const tx = this.api!.tx.asylumCore.createInterpretationTag(tag, metadata)
-      return this.signAndSendWrapped(tx);
+      return this.signAndSendWrapped(tx)
    }
 
    async createTemplate(
@@ -145,8 +144,13 @@ class AsylumApi {
       max: number | undefined,
       interpretations: Interpretation[]
    ): Promise<SubmittableResult> {
-      const tx = this.api!.tx.asylumCore.createTemplate(templateName, metadata, max, interpretations)
-      return this.signAndSendWrapped(tx);
+      const tx = this.api!.tx.asylumCore.createTemplate(
+         templateName,
+         metadata,
+         max,
+         interpretations
+      )
+      return this.signAndSendWrapped(tx)
    }
 }
 

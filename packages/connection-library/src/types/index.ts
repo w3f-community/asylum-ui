@@ -29,12 +29,12 @@ export interface Review {
 }
 
 export interface InterpretationInfo {
-	id: any, //TODO BoundedInterpretationId,
-	src: string | undefined,
-	metadata: string | undefined,
+   id: any //TODO BoundedInterpretationId,
+   src: string | undefined
+   metadata: string | undefined
 }
 
 export interface Interpretation {
-   tags: string[],
+   tags: string[]
    interpretation: InterpretationInfo
 }

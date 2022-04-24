@@ -24,7 +24,7 @@ const prepareSeeder = async (api: IAsylumApi): Promise<KeyringPair> => {
 
 const seed = async (api: IAsylumApi): Promise<void> => {
    console.log('Starting seed...')
-   
+
    await seedTags(api)
    await seedGames(api)
    await seedTemplates(api)
@@ -35,59 +35,60 @@ const seed = async (api: IAsylumApi): Promise<void> => {
 const seedTags = async (api: IAsylumApi): Promise<void> => {
    try {
       console.log('Initializing tags...')
-      
+
       // TODO
-      await api.createInterpretationTag("odin", "dwa");
-      console.log(await api.tagMetadataOf("odin"))
-      
+      await api.createInterpretationTag('odin', 'dwa')
+      console.log(await api.tagMetadataOf('odin'))
+
       console.log('[Initializing tags] SUCCEED')
    } catch (error) {
       console.error('[Initializing tags] FAILED')
-      console.error('[Initializing tags] Error: ' + error)      
+      console.error('[Initializing tags] Error: ' + error)
    }
 }
 
 const seedTemplates = async (api: IAsylumApi): Promise<void> => {
    try {
       console.log('Initializing templates...')
-      
+
       // TODO
-      await api.createTemplate("tenplate_n", "", 10, [{
-         tags: ["odin"],
-         interpretation: {
-            id: 12,
-            src: "4444",
-            metadata: "3232"
-         } }]);
+      await api.createTemplate('template_n', '', 10, [
+         {
+            tags: ['odin'],
+            interpretation: {
+               id: 12,
+               src: '4444',
+               metadata: '3232',
+            },
+         },
+      ])
 
       console.log(await api.templateInterpretations(0))
 
       console.log('[Initializing templates] SUCCEED')
    } catch (error) {
       console.error('[Initializing templates] FAILED')
-      console.error('[Initializing templates] Error: ' + error)      
+      console.error('[Initializing templates] Error: ' + error)
    }
 }
 
 const seedGames = async (api: IAsylumApi): Promise<void> => {
    try {
       console.log('Initializing games...')
-      
+
       for (const [index] of toEntries(games)) {
          await api.createGame(index, api.caller?.address || '', 0)
          const gameCID = await api.uploadMetadata(games[index])
          await api.setGameMetadata(index, gameCID, games[index].title, games[index].genre)
          console.log(await api.gameMetadataOf(index))
-
       }
 
       console.log('[Initializing games] SUCCEED')
    } catch (error) {
       console.error('[Initializing games] FAILED')
-      console.error('[Initializing games] Error: ' + error)      
+      console.error('[Initializing games] Error: ' + error)
    }
 }
-
 
 AsylumApi.connect(process.env.ENDPOINT_URL || '')
    .then(async (api) => {
