@@ -27,3 +27,14 @@ export interface Review {
    rating: number
    address: string
 }
+
+export interface InterpretationInfo {
+	id: any, //TODO BoundedInterpretationId,
+	src: string | undefined,
+	metadata: string | undefined,
+}
+
+export interface Interpretation {
+   tags: string[],
+   interpretation: InterpretationInfo
+}
