@@ -40,12 +40,16 @@ export const handleTxCallback =
       }
    }
 
-export const mapEntries = (entries: [StorageKey<AnyTuple>, Codec][]) => {
+export const mapEntries = (
+   entries: [StorageKey<AnyTuple>, Codec][],
+   codecConverter?: ((codec: Codec) => any) | undefined
+) => {
    return entries.map(([key, exposure]) => {
-      const id = key.args.map((k) => k.toHuman())[0]
+      // using join here 'cause key may be composite
+      const id = key.args.map((k) => k.toHuman()).join(':')
+      const content = codecConverter ? codecConverter(exposure) : exposure.toHuman()
       return {
-         // @ts-ignore
-         ...exposure.toHuman(),
+         ...content,
          id,
       }
    })

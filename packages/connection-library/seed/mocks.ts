@@ -2,6 +2,91 @@ import { GameMetadata, Review } from '../src/types'
 
 export const MOCK_ADDRESS = '5FfA88n8kPDd9vH1D35H87kSsGECZ1sq5QiC5nYxD3VrEA89'
 
+export const tags = [
+   {
+      tag: 'default-view',
+      metadata: {
+         description: 'The default visualization for item. MUST be present in all NFTs.',
+         metadataExtensions: {
+            fields: [
+               {
+                  name: 'fieldName',
+                  type: 'string',
+                  default: 'fieldValue',
+                  description: 'Redundant field, used just for definition of json schema',
+               },
+            ],
+         },
+      },
+   },
+   {
+      tag: '2d-sprite',
+      metadata: {
+         description: '2d picture representation',
+         metadataExtensions: {
+            fields: [],
+         },
+      },
+   },
+   {
+      tag: '3d-model',
+      metadata: {
+         description: '3d model representation',
+         metadataExtensions: {
+            fields: [],
+         },
+      },
+   },
+   {
+      tag: '.png',
+      metadata: {
+         description: 'Anything in .png format',
+         metadataExtensions: {
+            fields: [
+               {
+                  name: 'fileFormat',
+                  type: 'string',
+                  default: '.png',
+                  description: 'Used to help client parse content correctly',
+               },
+            ],
+         },
+      },
+   },
+   {
+      tag: '.jpeg',
+      metadata: {
+         description: 'Anything in .jpeg format',
+         metadataExtensions: {
+            fields: [
+               {
+                  name: 'fileFormat',
+                  type: 'string',
+                  default: '.jpeg',
+                  description: 'Used to help client parse content correctly',
+               },
+            ],
+         },
+      },
+   },
+   {
+      tag: '.jpg',
+      metadata: {
+         description: 'Anything in .jpg format',
+         metadataExtensions: {
+            fields: [
+               {
+                  name: 'fileFormat',
+                  type: 'string',
+                  default: '.jpg',
+                  description: 'Used to help client parse content correctly',
+               },
+            ],
+         },
+      },
+   },
+]
+
 // export const templates: ITemplate[] = [
 //    {
 //       title: 'Old sword',

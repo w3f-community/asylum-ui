@@ -119,19 +119,31 @@ class AsylumApi {
       return result.toHuman()
    }
 
-   // TODO
    async templateInterpretations(id: number): Promise<Interpretation[]> {
       const result = await this.api!.query.asylumCore.templateIntepretations.entries(id)
-      // @ts-ignore
-      return readMapFromStorage(result)
+      return mapEntries(result, (i) => {
+         const json = i.toHuman()
+         return {
+            // @ts-ignore
+            interpretation: json['0'],
+            // @ts-ignore
+            tags: json['1'],
+         }
+      })
    }
 
-   // TODO
-   // async itemInterpretations(id: number): Promise<Interpretation[]> {
-   //    const result = await this.api!.query.asylumCore.itemIntepretations(id, {});
-   //    // @ts-ignore
-   //    return result.toHuman();
-   // }
+   async itemInterpretations(id: number): Promise<Interpretation[]> {
+      const result = await this.api!.query.asylumCore.itemIntepretations.entries(id)
+      return mapEntries(result, (i) => {
+         const json = i.toHuman()
+         return {
+            // @ts-ignore
+            interpretation: json['0'],
+            // @ts-ignore
+            tags: json['1'],
+         }
+      })
+   }
 
    async createInterpretationTag(tag: string, metadata: string): Promise<SubmittableResult> {
       const tx = this.api!.tx.asylumCore.createInterpretationTag(tag, metadata)

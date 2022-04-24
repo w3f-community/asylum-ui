@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv'
 import { AsylumApi } from '../src'
 import { Keyring } from '@polkadot/api'
 import { IAsylumApi } from '../dist'
-import { games } from './mocks'
+import { games as gamesMockData, tags as tagsMockData } from './mocks'
 import { KeyringPair } from '@polkadot/keyring/types'
 
 dotenv.config()
@@ -36,9 +36,15 @@ const seedTags = async (api: IAsylumApi): Promise<void> => {
    try {
       console.log('Initializing tags...')
 
-      // TODO
-      await api.createInterpretationTag('odin', 'dwa')
-      console.log(await api.tagMetadataOf('odin'))
+      for (const [index] of toEntries(tagsMockData)) {
+         const entry = tagsMockData[index]
+
+         const metadataCID = await api.uploadMetadata(entry.metadata)
+         await api.createInterpretationTag(entry.tag, metadataCID)
+
+         console.log(`Added tag '${entry.tag}' with metadata:`)
+         console.log(await api.tagMetadataOf(entry.tag))
+      }
 
       console.log('[Initializing tags] SUCCEED')
    } catch (error) {
@@ -56,14 +62,22 @@ const seedTemplates = async (api: IAsylumApi): Promise<void> => {
          {
             tags: ['odin'],
             interpretation: {
-               id: 12,
+               id: '12',
+               src: '4444',
+               metadata: '3232',
+            },
+         },
+         {
+            tags: ['odin'],
+            interpretation: {
+               id: '13',
                src: '4444',
                metadata: '3232',
             },
          },
       ])
 
-      // console.log(await api.templateInterpretations(0))
+      console.log(await api.templateInterpretations(0))
 
       console.log('[Initializing templates] SUCCEED')
    } catch (error) {
@@ -76,10 +90,15 @@ const seedGames = async (api: IAsylumApi): Promise<void> => {
    try {
       console.log('Initializing games...')
 
-      for (const [index] of toEntries(games)) {
+      for (const [index] of toEntries(gamesMockData)) {
          await api.createGame(index, api.caller?.address || '', 0)
-         const gameCID = await api.uploadMetadata(games[index])
-         await api.setGameMetadata(index, gameCID, games[index].title, games[index].genre)
+         const gameCID = await api.uploadMetadata(gamesMockData[index])
+         await api.setGameMetadata(
+            index,
+            gameCID,
+            gamesMockData[index].title,
+            gamesMockData[index].genre
+         )
          console.log(await api.gameMetadataOf(index))
       }
 
