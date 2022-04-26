@@ -4,7 +4,7 @@ import { create } from 'ipfs-http-client'
 import { handleTxCallback, mapEntries } from './utils'
 import { SubmittableExtrinsic } from '@polkadot/api-base/types/submittable'
 import { ApiTypes } from '@polkadot/api-base/types/base'
-import { Game, GameMetadata, Interpretation } from './types'
+import { ChangeSet, Game, GameMetadata, Interpretation, Tag } from './types'
 
 class AsylumApi {
    api: ApiPromise | undefined
@@ -81,16 +81,19 @@ class AsylumApi {
       return this.signAndSendWrapped(this.api!.tx.asylumGDS.setGameMetadata(id, cid, title, genre))
    }
 
+   async addTemplateSupport(gameId: number, templateId: number): Promise<SubmittableResult> {
+      return this.signAndSendWrapped(this.api!.tx.asylumGDS.addTemplateSupport(gameId, templateId))
+   }
+
    async games(): Promise<Game[]> {
       const entries = await this.api!.query.asylumGDS.game.entries()
-      return entries.map(([key, exposure]) => {
-         const id = key.args.map((k) => k.toHuman())[0]
-         return {
-            // @ts-ignore
-            ...exposure.toHuman(),
-            id,
-         }
-      })
+      return mapEntries(entries)
+   }
+
+   async game(id: number): Promise<Game> {
+      const game = await this.api!.query.asylumGDS.game(id)
+      // @ts-ignore
+      return game.toHuman()
    }
 
    async gameMetadataOf(id: number): Promise<GameMetadata> {
@@ -105,9 +108,32 @@ class AsylumApi {
    }
 
    // TODO
-   // async proposals(): Promise<any[]> {
+   async submitTemplateChangeProposal(
+      author: string,
+      templateId: number,
+      changeSet: ChangeSet
+   ): Promise<SubmittableResult> {
+      // this.submitTemplateChangeProposal("dew", 23, [
+      //    {
+      //       Add : {
+      //          interpretations: []
+      //       },
+      //       Modify: {
+      //          interpretations: []
+      //       }
 
-   // }
+      //    }
+      // ])
+
+      return this.signAndSendWrapped(
+         this.api!.tx.asylumCore.submitTemplateChangeProposal(author, templateId, changeSet)
+      )
+   }
+
+   async proposals(): Promise<any[]> {
+      const entries = await this.api!.query.asylumCore.proposals.entries()
+      return mapEntries(entries)
+   }
 
    async tags(): Promise<any[]> {
       const entries = await this.api!.query.asylumCore.tags.entries()
@@ -145,7 +171,7 @@ class AsylumApi {
       })
    }
 
-   async createInterpretationTag(tag: string, metadata: string): Promise<SubmittableResult> {
+   async createInterpretationTag(tag: Tag, metadata: string): Promise<SubmittableResult> {
       const tx = this.api!.tx.asylumCore.createInterpretationTag(tag, metadata)
       return this.signAndSendWrapped(tx)
    }

@@ -1,3 +1,6 @@
+export type Tag = string
+export type InterpretationId = string
+
 export interface GameMetadata {
    id: string
    title: string
@@ -29,12 +32,44 @@ export interface Review {
 }
 
 export interface InterpretationInfo {
-   id: string
+   id: InterpretationId
    src: string | undefined
    metadata: string | undefined
 }
 
 export interface Interpretation {
-   tags: string[]
+   tags: Tag[]
    interpretation: InterpretationInfo
+}
+
+export declare type ChangeSet = Array<
+   | TemplateChangeAdd
+   | TemplateChangeModify
+   | TemplateChangeModifyTags
+   | TemplateChangeRemoveInterpretation
+>
+
+type TemplateChangeAdd = {
+   Add: {
+      interpretations: Interpretation[]
+   }
+}
+
+type TemplateChangeModify = {
+   Modify: {
+      interpretations: InterpretationInfo[]
+   }
+}
+
+type TemplateChangeModifyTags = {
+   ModifyTags: {
+      interpretationId: InterpretationId
+      tags: Tag[]
+   }
+}
+
+type TemplateChangeRemoveInterpretation = {
+   RemoveInterpretation: {
+      interpretationId: InterpretationId
+   }
 }

@@ -6,6 +6,7 @@ import {
    games as gamesMockData,
    tags as tagsMockData,
    templates as templatesMockData,
+   proposals as proposalsMockData,
 } from './mocks'
 import { KeyringPair } from '@polkadot/keyring/types'
 
@@ -30,10 +31,31 @@ const seed = async (api: IAsylumApi): Promise<void> => {
    console.log('Starting seed...')
 
    await seedTags(api)
-   await seedGames(api)
    await seedTemplates(api)
+   await seedProposals(api)
+   await seedGames(api)
 
    console.log('Seed finished')
+}
+
+const seedProposals = async (api: IAsylumApi): Promise<void> => {
+   try {
+      console.log('Initializing proposals...')
+
+      for (const [index] of toEntries(proposalsMockData)) {
+         const entry = proposalsMockData[index]
+
+         await api.submitTemplateChangeProposal(entry.author, entry.templateId, entry.changeSet)
+
+         console.log(`Added proposal for template: '${entry.templateId}'`)
+      }
+
+      console.log(await api.proposals())
+      console.log('[Initializing proposals] SUCCEED')
+   } catch (error) {
+      console.error('[Initializing proposals] FAILED')
+      console.error('[Initializing proposals] Error: ' + error)
+   }
 }
 
 const seedTags = async (api: IAsylumApi): Promise<void> => {
@@ -107,15 +129,25 @@ const seedGames = async (api: IAsylumApi): Promise<void> => {
       console.log('Initializing games...')
 
       for (const [index] of toEntries(gamesMockData)) {
+         const entry = gamesMockData[index]
+
          await api.createGame(index, api.caller?.address || '', 0)
-         const gameCID = await api.uploadMetadata(gamesMockData[index])
-         await api.setGameMetadata(
-            index,
-            gameCID,
-            gamesMockData[index].title,
-            gamesMockData[index].genre
-         )
+         const gameCID = await api.uploadMetadata(entry)
+         await api.setGameMetadata(index, gameCID, entry.title, entry.genre)
+
+         console.log(`Added game '${entry.title}' with metadata:`)
          console.log(await api.gameMetadataOf(index))
+
+         for (const [index] of toEntries(entry.supportedTemplates)) {
+            await api.addTemplateSupport(entry.id, entry.supportedTemplates[index])
+
+            console.log(
+               `Added template association: game '${entry.title}' <> templateId:'${entry.supportedTemplates[index]}'`
+            )
+         }
+
+         console.log(`Game '${entry.title}':`)
+         console.log(await api.game(index))
       }
 
       console.log('[Initializing games] SUCCEED')

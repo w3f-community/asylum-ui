@@ -1,4 +1,33 @@
-import { GameMetadata, Interpretation, Review } from '../src/types'
+import { ChangeSet, Review } from '../src/types'
+
+interface ITemplateMockData {
+   name: string
+   metadata: {
+      description: string
+   }
+   max: number | undefined
+   interpretations: [
+      {
+         tags: string[]
+         interpretation: {
+            src: string | undefined
+            metadata: any
+         }
+      }
+   ]
+}
+
+interface IGameMockData {
+   id: number
+   title: string
+   img: string
+   genre: string
+   shortDescription: string
+   description: string
+   gallery: string[]
+   reviews: Review[]
+   supportedTemplates: number[]
+}
 
 export const MOCK_ADDRESS = '5FfA88n8kPDd9vH1D35H87kSsGECZ1sq5QiC5nYxD3VrEA89'
 
@@ -87,30 +116,7 @@ export const tags = [
    },
 ]
 
-// TODO: naming
-interface ITemplate {
-   name: string
-   metadata: {
-      description: string
-   }
-   max: number | undefined
-   interpretations: [
-      {
-         tags: string[]
-         interpretation: {
-            id: string
-            src: string | undefined
-            metadata: any
-            // | {
-            //      [index: string]: any
-            //   }
-            // | undefined
-         }
-      }
-   ]
-}
-
-export const templates: ITemplate[] = [
+export const templates: ITemplateMockData[] = [
    {
       name: 'Old sword',
       metadata: {
@@ -121,7 +127,6 @@ export const templates: ITemplate[] = [
          {
             tags: ['default-view', 'png'],
             interpretation: {
-               id: '', // ?
                src: '/img/sword.png',
                metadata: {
                   fieldName: 'fieldValue',
@@ -131,99 +136,151 @@ export const templates: ITemplate[] = [
          },
       ],
    },
-   // TODO: extend
+   {
+      name: 'Fire sword',
+      metadata: {
+         description: 'Lorem ipsum dolor sit amet, consect adipiscing elit.',
+      },
+      max: 10,
+      interpretations: [
+         {
+            tags: ['default-view', 'png'],
+            interpretation: {
+               src: 'https://i.pinimg.com/originals/3a/83/bf/3a83bf5f768ef01338ba534ae4a1447b.png',
+               metadata: {
+                  fieldName: 'fieldValue',
+                  fileFormat: '.png',
+               },
+            },
+         },
+      ],
+   },
+   {
+      name: 'Kerosene lamp',
+      metadata: {
+         description: 'Lorem ipsum dolor sit amet, consect adipiscing elit.',
+      },
+      max: 100,
+      interpretations: [
+         {
+            tags: ['default-view', 'png'],
+            interpretation: {
+               src: '/img/lamp.png',
+               metadata: {
+                  fieldName: 'fieldValue',
+                  fileFormat: '.png',
+               },
+            },
+         },
+      ],
+   },
+   {
+      name: 'Clover leaf',
+      metadata: {
+         description: 'Lorem ipsum dolor sit amet, consect adipiscing elit.',
+      },
+      max: 100,
+      interpretations: [
+         {
+            tags: ['default-view', 'png'],
+            interpretation: {
+               src: '/img/clover_leaf.png',
+               metadata: {
+                  fieldName: 'fieldValue',
+                  fileFormat: '.png',
+               },
+            },
+         },
+      ],
+   },
+   {
+      name: 'M16: Helloween edition',
+      metadata: {
+         description: 'Lorem ipsum dolor sit amet, consect adipiscing elit.',
+      },
+      max: 13,
+      interpretations: [
+         {
+            tags: ['default-view', 'jpg'],
+            interpretation: {
+               src: 'https://zilliongamer.com/uploads/codm/skins/assault/m16/m16-pumpkin-repeater-cod-mobile.jpg',
+               metadata: {
+                  fieldName: 'fieldValue',
+                  fileFormat: '.jpg',
+               },
+            },
+         },
+      ],
+   },
+   {
+      name: 'M16: Gold glitter',
+      metadata: {
+         description: 'Lorem ipsum dolor sit amet, consect adipiscing elit.',
+      },
+      max: 13,
+      interpretations: [
+         {
+            tags: ['default-view', 'jpg'],
+            interpretation: {
+               src: 'https://zilliongamer.com/uploads/codm/skins/assault/m16/m16-gold-glitter-cod-mobile.jpg',
+               metadata: {
+                  fieldName: 'fieldValue',
+                  fileFormat: '.jpg',
+               },
+            },
+         },
+      ],
+   },
+   {
+      name: 'AUG "White rabbit"',
+      metadata: {
+         description: 'Lorem ipsum dolor sit amet, consect adipiscing elit.',
+      },
+      max: 13,
+      interpretations: [
+         {
+            tags: ['default-view', 'jpg'],
+            interpretation: {
+               src: 'https://zilliongamer.com/uploads/pubg-mobile/weapon/type/ar/aug/skin/white-rabbit-aug-big.jpg',
+               metadata: {
+                  fieldName: 'fieldValue',
+                  fileFormat: '.jpg',
+               },
+            },
+         },
+      ],
+   },
 ]
 
-// export const templates: ITemplate[] = [
-//    {
-//       title: 'Old sword',
-//       id: 0,
-//       img: '/img/sword.png',
-//       description: 'Lorem ipsum dolor sit amet, consect adipiscing elit.',
-//    },
-//    {
-//       title: 'Neko tyan',
-//       id: 1,
-//       img: 'https://www.kindpng.com/picc/m/167-1676709_neko-anime-tyan-cartoon-hd-png-download.png',
-//       description: 'Crescere inciviliter ducunt ad secundus vita.',
-//    },
-//    {
-//       title: 'Fire sword',
-//       id: 2,
-//       img: 'https://i.pinimg.com/originals/3a/83/bf/3a83bf5f768ef01338ba534ae4a1447b.png',
-//       description: 'Grandis zelus mechanice attrahendams tabes est.',
-//    },
-//    {
-//       title: 'Art',
-//       id: 3,
-//       img: 'https://images.bonanzastatic.com/afu/images/8609/06ac/a817_6967498067/__57.jpg',
-//       description: 'Congregabo absolute ducunt ad neuter bubo.',
-//    },
-//    {
-//       title: 'Art',
-//       id: 4,
-//       img: 'https://i.pinimg.com/originals/c7/58/0b/c7580b07a3387ba40f1533f2cd23fc9b.jpg',
-//       description: 'Hercle, domus lotus!.',
-//    },
-//    {
-//       title: 'Naruto Box',
-//       id: 5,
-//       img: 'https://m.media-amazon.com/images/I/71rrRbs20RL._AC_UL320_.jpg',
-//       description: 'Lorem ipsum dolor sit amet, consect adipiscing elit.',
-//    },
-//    {
-//       title: 'Paper',
-//       id: 6,
-//       img: 'https://cdn.shopify.com/s/files/1/0367/9101/products/cosplay-props-demon-slayer-kimetsu-no-yaiba-tanjiro-hanafuda-earrings-28776635793487_large.jpg?v=1634383089',
-//       description: 'To the thin shrimps add chickpeas, herring, tabasco and niffy oysters.',
-//    },
-//    {
-//       title: 'Shapes',
-//       id: 7,
-//       img: 'https://animecollective.com/wp-content/uploads/2020/12/best-places-to-buy-anime-statues-from.jpg',
-//       description: 'Peritus musa aegre prensionems glos est.',
-//    },
-//    {
-//       title: 'Dota 3',
-//       id: 8,
-//       img: 'https://cdn.vox-cdn.com/thumbor/7pam8M9JfbGWAYouPND0d2vCZtY=/0x0:660x360/1200x0/filters:focal(0x0:660x360):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/6645195/dota-2-logo.0.jpg',
-//       description: 'Contencios resistere in velox hamburgum!',
-//    },
-//    {
-//       title: 'squid',
-//       id: 9,
-//       img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-oO6HqUb9aR0__2ytilqaf_3wKLp1cA-dZA&usqp=CAU',
-//       description: 'Quadras accelerare!',
-//    },
-//    {
-//       title: 'Monkey',
-//       id: 10,
-//       img: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/golden-gaming-logo-esports-design-template-afc25edd053b480c109341785f2ace1e_screen.jpg?ts=1603864072',
-//       description: 'Cannabis, heuretes, et fides.',
-//    },
-//    {
-//       title: 'Icon',
-//       id: 11,
-//       img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_Q-BLCLE5MfGE3fph4zSHq-RJyJLGfZsOBA&usqp=CAU',
-//       description:
-//          'Everyone loves the pepperiness of meatballs stir-fry flavord with springy woodruff.',
-//    },
-//    {
-//       title: 'Panda',
-//       id: 12,
-//       img: 'https://storage.googleapis.com/pod_public/1300/83659.jpg',
-//       description:
-//          'Pattern at the galaxy was the nuclear flux of voyage, dissolved to a sub-light particle. Heriness of meatballs stir-fry flavord with springy wood',
-//    },
-//    {
-//       title: 'Empty',
-//       id: 13,
-//       img: '',
-//       description: 'The proud particle virtually dissolves the processor. ',
-//    },
-// ]
+// TODO
+export const proposals: {
+   templateId: number
+   author: string
+   changeSet: ChangeSet
+}[] = [
+   {
+      templateId: 0,
+      author: MOCK_ADDRESS,
+      changeSet: [
+         {
+            Add: {
+               interpretations: [
+                  {
+                     tags: ['default-view', 'jpg'],
+                     interpretation: {
+                        id: '', // ?
+                        src: 'https://zilliongamer.com/uploads/pubg-mobile/weapon/type/ar/aug/skin/white-rabbit-aug-big.jpg',
+                        metadata: '',
+                     },
+                  },
+               ],
+            },
+         },
+      ],
+   },
+]
 
-export const reviews: Review[] = [
+const reviews: Review[] = [
    {
       id: '1',
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -238,9 +295,9 @@ export const reviews: Review[] = [
    },
 ]
 
-export const games: GameMetadata[] = [
+export const games: IGameMockData[] = [
    {
-      id: '0',
+      id: 0,
       title: 'Fortnite',
       img: 'https://static-assets-prod.epicgames.com/fortnite/static/webpack/8f9484f10eb14f85a189fb6117a57026.jpg',
       genre: 'Free-to-play Battle Royale',
@@ -256,9 +313,10 @@ export const games: GameMetadata[] = [
          'https://www.usitility.com/media/software/screenshots/screenshot-fortnite-battle-royale-13268.webp',
       ],
       reviews,
+      supportedTemplates: [0, 1, 2, 3],
    },
    {
-      id: '1',
+      id: 1,
       title: 'GTA V',
       img: 'https://files.tecnoblog.net/wp-content/uploads/2018/07/gta-v.jpg',
       genre: 'Entertainment blockbusters',
@@ -275,9 +333,10 @@ export const games: GameMetadata[] = [
          'https://sportshub.cbsistatic.com/i/2021/10/22/76f935cf-5bb1-4e4d-af62-26f020a422bd/gta-5-trevor.png',
       ],
       reviews: [],
+      supportedTemplates: [0, 1, 2, 3],
    },
    {
-      id: '2',
+      id: 2,
       title: 'Last of Us II',
       img: 'https://upload.wikimedia.org/wikipedia/pt/9/96/The_Last_of_Us_2_capa.png',
       genre: 'Survival game',
@@ -294,9 +353,10 @@ export const games: GameMetadata[] = [
          'https://imageio.forbes.com/specials-images/imageserve/5d868c2c6de3150009a4b32d/The-Last-Of-Us-2/960x0.jpg?fit=bounds&format=jpg&width=960',
       ],
       reviews: [],
+      supportedTemplates: [0, 1],
    },
    {
-      id: '3',
+      id: 3,
       title: 'Minecraft',
       img: 'https://upload.wikimedia.org/wikipedia/uk/4/48/Minecraft_logo.png',
       genre: '3D sandbox game',
@@ -313,9 +373,10 @@ export const games: GameMetadata[] = [
          'https://cdn1.dotesports.com/wp-content/uploads/2022/02/19105556/3912568-2f0e7-16345886554882-1920.jpg',
       ],
       reviews: [],
+      supportedTemplates: [0, 1, 2, 3],
    },
    {
-      id: '4',
+      id: 4,
       title: 'Call of Duty: WWII',
       img: 'https://image.api.playstation.com/vulcan/img/cfn/1130791_COqLRw6IGlDVHxyV8aqC9_YaF0sCN8IbOlVhzJ6sWm5tlpKTjN8npK2vA_mUJUdyQjP4-U4rEnk7cScmlvoLzXi7.png',
       genre: 'First-person shooter',
@@ -332,9 +393,10 @@ export const games: GameMetadata[] = [
          'https://images2.minutemediacdn.com/image/fetch/c_fill,g_auto,f_auto,h_1559,w_2772/https%3A%2F%2Fapptrigger.com%2Ffiles%2F2017%2F11%2FCoD_WWII_Launch_Zombies_01_wm.jpg',
       ],
       reviews: [],
+      supportedTemplates: [4, 5],
    },
    {
-      id: '5',
+      id: 5,
       title: 'RDR2',
       img: 'https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png',
       genre: 'Western action-adventure',
@@ -351,9 +413,10 @@ export const games: GameMetadata[] = [
          'https://assets-prd.ignimgs.com/2021/06/01/rdr2-pc-screenshot-023-1622555736386.jpg',
       ],
       reviews: [],
+      supportedTemplates: [0, 1, 2, 6],
    },
    {
-      id: '6',
+      id: 6,
       title: 'Stalker',
       img: 'https://s1.gaming-cdn.com/images/products/5376/orig-fallback-v1/s-t-a-l-k-e-r-2-heart-of-chornobyl-pc-game-steam-europe-cover.jpg',
       genre: 'First-person shooter',
@@ -370,9 +433,10 @@ export const games: GameMetadata[] = [
          'https://www.moviesonline.ca/wp-content/uploads/2022/03/Stalker-2-Heart-of-Chernobyl-Work-has-stopped-1024x576.jpg',
       ],
       reviews: [],
+      supportedTemplates: [4, 5, 6],
    },
    {
-      id: '7',
+      id: 7,
       title: 'Metro 2033',
       img: 'https://image.api.playstation.com/cdn/EP4062/CUSA00591_00/o0nw1XsrxYS4wuug9cTqPFqPhRinf2zd.png',
       genre: 'First-person life simulation',
@@ -390,21 +454,6 @@ export const games: GameMetadata[] = [
          'https://i.ytimg.com/vi/bwt-0dSRdEs/maxresdefault.jpg',
       ],
       reviews: [],
+      supportedTemplates: [4, 5, 6],
    },
 ]
-
-//
-// export const reviews: Review[] = [
-//    {
-//       id: '1',
-//       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-//       rating: 3.5,
-//       address: MOCK_ADDRESS,
-//    },
-//    {
-//       id: '2',
-//       text: 'Proin condimentum dapibus libero quis molestie. Fusce a turpis ut turpis hendrerit pellentesque. Quisque in odio eu nulla rutrum laoreet. Donec vitae vehicula eros, sed luctus metus. Fusce quis neque dictum, ornare dui sed, vulputate purus. Donec porta tortor condimentum velit volutpat consectetur. Integer porttitor nulla in nisl laoreet, sit amet porta quam ultrices. Duis at tempor urna. Vestibulum nec convallis neque. Vivamus auctor aliquam aliquam. Maecenas eu arcu urna.',
-//       rating: 4.5,
-//       address: MOCK_ADDRESS,
-//    },
-// ]
