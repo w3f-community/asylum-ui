@@ -15,10 +15,11 @@ export interface GameMetadata {
 export interface Game {
    id: string
    owner: string
-   issuer: string
-   admin: string
-   freezer: string
+   issuer: string[]
+   admin: string[]
+   freezer: string[]
    templates: string[] | null
+   assets: number[] | null
    price: number
 }
 
