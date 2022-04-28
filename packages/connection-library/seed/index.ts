@@ -131,7 +131,7 @@ const seedGames = async (api: IAsylumApi): Promise<void> => {
       for (const [index] of toEntries(gamesMockData)) {
          const entry = gamesMockData[index]
 
-         await api.createGame(index, api.caller?.address || '', 0)
+         await api.createGame(index, [api.caller?.address || ''], 0)
          const gameCID = await api.uploadMetadata(entry)
          await api.setGameMetadata(index, gameCID, entry.title, entry.genre)
 
