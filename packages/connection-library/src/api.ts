@@ -60,6 +60,15 @@ class AsylumApi {
       return cid.toString()
    }
 
+   async uploadFile(buffer: ArrayBuffer): Promise<string> {
+      const ipfs = create({
+         url: 'http://127.0.0.1:5001',
+      })
+      const { cid } = await ipfs.add(buffer)
+
+      return cid.toString()
+   }
+
    signAndSendWrapped<ApiType extends ApiTypes>(
       tx: SubmittableExtrinsic<ApiType>
    ): Promise<SubmittableResult> {
@@ -81,7 +90,7 @@ class AsylumApi {
       return this.signAndSendWrapped(this.api!.tx.asylumGDS.setGameMetadata(id, cid, title, genre))
    }
 
-   async addTemplateSupport(gameId: number, templateId: number): Promise<SubmittableResult> {
+   async addTemplateSupport(gameId: string, templateId: number): Promise<SubmittableResult> {
       return this.signAndSendWrapped(this.api!.tx.asylumGDS.addTemplateSupport(gameId, templateId))
    }
 
@@ -113,18 +122,6 @@ class AsylumApi {
       templateId: number,
       changeSet: ChangeSet
    ): Promise<SubmittableResult> {
-      // this.submitTemplateChangeProposal("dew", 23, [
-      //    {
-      //       Add : {
-      //          interpretations: []
-      //       },
-      //       Modify: {
-      //          interpretations: []
-      //       }
-
-      //    }
-      // ])
-
       return this.signAndSendWrapped(
          this.api!.tx.asylumCore.submitTemplateChangeProposal(author, templateId, changeSet)
       )

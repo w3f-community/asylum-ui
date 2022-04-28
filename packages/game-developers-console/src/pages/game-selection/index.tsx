@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useEffect } from 'react'
 import noop from 'lodash/noop'
 import { GameTable } from 'components/game-table'
 import { Hr } from 'components/hr'
@@ -27,6 +28,10 @@ export const GameList = observer(() => {
    const { data: games, refetch } = store.account
       ? useAsylumApi(fetchGamesByAccount(store.account))
       : { data: [], refetch: noop }
+
+   useEffect(() => {
+      refetch()
+   }, [store.account])
 
    return (
       <div className="container mx-auto">

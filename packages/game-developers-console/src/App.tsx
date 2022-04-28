@@ -2,13 +2,14 @@ import * as React from 'react'
 import { GameOverview } from 'pages/game-overview'
 import { GameList } from 'pages/game-selection'
 import { SidebarLayout } from 'layout/sidebar-layout'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import { GameTemplates } from 'pages/game-templates'
 import { GameItems } from 'pages/game-items'
 import { observer } from 'mobx-react-lite'
 import { useStore } from 'store'
 import { NotConnectedNetwork } from 'pages/not-connected-network'
 import { NotConnectedWallet } from 'pages/not-connected-wallet'
+import { useEffect } from 'react'
 
 const AppRoutes = () => (
    <Routes>
@@ -21,6 +22,11 @@ const AppRoutes = () => (
 
 export const App = observer(() => {
    const store = useStore()
+   const navigate = useNavigate()
+
+   useEffect(() => {
+      navigate('/')
+   }, [store.account])
 
    return (
       <SidebarLayout>

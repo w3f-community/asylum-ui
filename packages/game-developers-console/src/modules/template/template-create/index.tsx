@@ -9,7 +9,7 @@ export const TemplateCreate: React.FC = () => {
    return (
       <>
          <Button variant="light" onClick={() => setOpen(true)}>
-            <PlusIcon className="fill-text-base w-4 h-4 inline-block mr-1" />
+            <PlusIcon className="fill-text-base w-4 h-4 inline-block mr-2" />
             create template
          </Button>
          <TemplateCreateModal open={open} onClose={() => setOpen(false)} />

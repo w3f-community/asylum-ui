@@ -31,6 +31,10 @@ yarn
     ```bash 
     eternal danger cherry radar exit damage slam hip say relief awesome middle
     ```
+   > NOTE: seeded data will be lost after each restart of `node-asylum`. To keep your data after restart, you can use `--base-path` option.
+   ```bash
+   ./node-asylum --dev --base-path /tmp/node-asylum
+   ```
    
 5. Start Game Developers Console locally:
 ```bash 

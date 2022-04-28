@@ -18,7 +18,7 @@ interface ITemplateMockData {
 }
 
 interface IGameMockData {
-   id: number
+   id: string
    title: string
    img: string
    genre: string
@@ -37,14 +37,7 @@ export const tags = [
       metadata: {
          description: 'The default visualization for item. MUST be present in all NFTs.',
          metadataExtensions: {
-            fields: [
-               {
-                  name: 'fieldName',
-                  type: 'string',
-                  default: 'fieldValue',
-                  description: 'Redundant field, used just for definition of json schema',
-               },
-            ],
+            fields: [],
          },
       },
    },
@@ -297,7 +290,7 @@ const reviews: Review[] = [
 
 export const games: IGameMockData[] = [
    {
-      id: 0,
+      id: '0',
       title: 'Fortnite',
       img: 'https://static-assets-prod.epicgames.com/fortnite/static/webpack/8f9484f10eb14f85a189fb6117a57026.jpg',
       genre: 'Free-to-play Battle Royale',
@@ -316,7 +309,7 @@ export const games: IGameMockData[] = [
       supportedTemplates: [0, 1, 2, 3],
    },
    {
-      id: 1,
+      id: '1',
       title: 'GTA V',
       img: 'https://files.tecnoblog.net/wp-content/uploads/2018/07/gta-v.jpg',
       genre: 'Entertainment blockbusters',
@@ -336,7 +329,7 @@ export const games: IGameMockData[] = [
       supportedTemplates: [0, 1, 2, 3],
    },
    {
-      id: 2,
+      id: '2',
       title: 'Last of Us II',
       img: 'https://upload.wikimedia.org/wikipedia/pt/9/96/The_Last_of_Us_2_capa.png',
       genre: 'Survival game',
@@ -356,7 +349,7 @@ export const games: IGameMockData[] = [
       supportedTemplates: [0, 1],
    },
    {
-      id: 3,
+      id: '3',
       title: 'Minecraft',
       img: 'https://upload.wikimedia.org/wikipedia/uk/4/48/Minecraft_logo.png',
       genre: '3D sandbox game',
@@ -376,7 +369,7 @@ export const games: IGameMockData[] = [
       supportedTemplates: [0, 1, 2, 3],
    },
    {
-      id: 4,
+      id: '4',
       title: 'Call of Duty: WWII',
       img: 'https://image.api.playstation.com/vulcan/img/cfn/1130791_COqLRw6IGlDVHxyV8aqC9_YaF0sCN8IbOlVhzJ6sWm5tlpKTjN8npK2vA_mUJUdyQjP4-U4rEnk7cScmlvoLzXi7.png',
       genre: 'First-person shooter',
@@ -396,7 +389,7 @@ export const games: IGameMockData[] = [
       supportedTemplates: [4, 5],
    },
    {
-      id: 5,
+      id: '5',
       title: 'RDR2',
       img: 'https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png',
       genre: 'Western action-adventure',
@@ -416,7 +409,7 @@ export const games: IGameMockData[] = [
       supportedTemplates: [0, 1, 2, 6],
    },
    {
-      id: 6,
+      id: '6',
       title: 'Stalker',
       img: 'https://s1.gaming-cdn.com/images/products/5376/orig-fallback-v1/s-t-a-l-k-e-r-2-heart-of-chornobyl-pc-game-steam-europe-cover.jpg',
       genre: 'First-person shooter',
@@ -436,7 +429,7 @@ export const games: IGameMockData[] = [
       supportedTemplates: [4, 5, 6],
    },
    {
-      id: 7,
+      id: '7',
       title: 'Metro 2033',
       img: 'https://image.api.playstation.com/cdn/EP4062/CUSA00591_00/o0nw1XsrxYS4wuug9cTqPFqPhRinf2zd.png',
       genre: 'First-person life simulation',

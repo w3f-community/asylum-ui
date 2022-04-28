@@ -88,7 +88,7 @@ const seedTemplates = async (api: IAsylumApi): Promise<void> => {
 
          const templateMetadataCID = await api.uploadMetadata(entry.metadata)
 
-         const interpretations = [] as Interpretation[]
+         const interpretations: Interpretation[] = []
 
          for (const [index] of toEntries(entry.interpretations)) {
             const interpretationEntry = entry.interpretations[index]
