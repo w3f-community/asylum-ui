@@ -1,6 +1,8 @@
-import { ReactComponent as DisconnectedIcon } from 'assets/svg/disconnected.svg'
-import { Paragraph } from 'components/text/paragraph'
 import * as React from 'react'
+
+import { Paragraph } from 'components/text/paragraph'
+
+import { ReactComponent as DisconnectedIcon } from 'assets/svg/disconnected.svg'
 
 interface IProps {}
 

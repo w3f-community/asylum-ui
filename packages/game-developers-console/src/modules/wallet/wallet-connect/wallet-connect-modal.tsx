@@ -1,7 +1,9 @@
-import { Modal } from 'components/modal'
 import * as React from 'react'
+
 import { WALLET_CONNECT_STEPS, WalletConnectStepType } from './steps'
+import { Modal } from 'components/modal'
 import { observer } from 'mobx-react-lite'
+
 import { useStore } from 'store'
 
 interface IProps {

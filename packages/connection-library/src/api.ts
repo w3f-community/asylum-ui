@@ -4,11 +4,15 @@ import { create } from 'ipfs-http-client'
 import { handleTxCallback, mapEntries } from './utils'
 import { SubmittableExtrinsic } from '@polkadot/api-base/types/submittable'
 import { ApiTypes } from '@polkadot/api-base/types/base'
-import { ChangeSet, Game, GameMetadata, Interpretation, Tag } from './types'
+import { ChangeSet, Game, GameMetadata, Interpretation, Tag, TagName, Template } from './types'
+import { Signer } from '@polkadot/api/types'
+import { omit } from 'lodash/fp'
 
 class AsylumApi {
    api: ApiPromise | undefined
-   caller: KeyringPair | undefined
+   keyringPair: KeyringPair | undefined
+   address: string | undefined
+   injectedSigner: Signer | undefined
 
    async connect(
       endpoint: string,
@@ -46,8 +50,14 @@ class AsylumApi {
       return this.api
    }
 
-   withCaller(caller: KeyringPair): AsylumApi {
-      this.caller = caller
+   withKeyringPair(keyringPair: KeyringPair): AsylumApi {
+      this.keyringPair = keyringPair
+      return this
+   }
+
+   withInjectedSigner(address: string, signer: Signer): AsylumApi {
+      this.address = address
+      this.injectedSigner = signer
       return this
    }
 
@@ -73,7 +83,24 @@ class AsylumApi {
       tx: SubmittableExtrinsic<ApiType>
    ): Promise<SubmittableResult> {
       return new Promise((resolve, reject) => {
-         tx.signAndSend(this.caller!, handleTxCallback(resolve, reject, this.api!.registry))
+         try {
+            if (this.keyringPair) {
+               tx.signAndSend(
+                  this.keyringPair!,
+                  handleTxCallback(resolve, reject, this.api!.registry)
+               )
+            } else if (this.injectedSigner && this.address) {
+               tx.signAndSend(
+                  this.address,
+                  { signer: this.injectedSigner },
+                  handleTxCallback(resolve, reject, this.api!.registry)
+               )
+            } else {
+               reject(new Error('No keyringPair or injectedSigner provided'))
+            }
+         } catch (e) {
+            reject(e)
+         }
       })
    }
 
@@ -132,7 +159,7 @@ class AsylumApi {
       return mapEntries(entries)
    }
 
-   async tags(): Promise<any[]> {
+   async tags(): Promise<Tag[]> {
       const entries = await this.api!.query.asylumCore.tags.entries()
       return mapEntries(entries)
    }
@@ -142,7 +169,7 @@ class AsylumApi {
       return result.toHuman()
    }
 
-   async templateInterpretations(id: number): Promise<Interpretation[]> {
+   async templateInterpretations(id: string): Promise<Interpretation[]> {
       const result = await this.api!.query.asylumCore.templateIntepretations.entries(id)
       return mapEntries(result, (i) => {
          const json = i.toHuman()
@@ -168,7 +195,7 @@ class AsylumApi {
       })
    }
 
-   async createInterpretationTag(tag: Tag, metadata: string): Promise<SubmittableResult> {
+   async createInterpretationTag(tag: TagName, metadata: string): Promise<SubmittableResult> {
       const tx = this.api!.tx.asylumCore.createInterpretationTag(tag, metadata)
       return this.signAndSendWrapped(tx)
    }
@@ -186,6 +213,26 @@ class AsylumApi {
          interpretations
       )
       return this.signAndSendWrapped(tx)
+   }
+
+   async template(id: string): Promise<Template> {
+      const template: any = (await this.api!.query.rmrkCore.collections(id)).toHuman()
+      return {
+         ...omit('symbol', template),
+         id,
+         name: template.symbol,
+      } as Template
+   }
+
+   async templates(): Promise<Template[]> {
+      const entries = await this.api!.query.rmrkCore.collections.entries()
+      return mapEntries(entries, (data) => {
+         const json = data.toHuman() as any
+         return {
+            ...omit('symbol', json),
+            name: json.symbol,
+         }
+      })
    }
 }
 

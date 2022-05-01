@@ -21,7 +21,7 @@ const prepareSeeder = async (api: IAsylumApi): Promise<KeyringPair> => {
    const alice = new Keyring({ type: 'sr25519' }).addFromUri('//Alice')
 
    await api
-      .withCaller(alice)
+      .withKeyringPair(alice)
       .signAndSendWrapped(api.polkadotApi.tx.balances.transfer(seeder.address, 10 ** 12))
 
    return seeder
@@ -114,7 +114,7 @@ const seedTemplates = async (api: IAsylumApi): Promise<void> => {
          console.log(
             `Added template '${entry.name}' with metadata: '${templateMetadataCID}' and interpretations:`
          )
-         console.log(await api.templateInterpretations(index))
+         console.log(await api.templateInterpretations(index.toString()))
       }
 
       console.log('[Initializing templates] SUCCEED')
@@ -131,7 +131,7 @@ const seedGames = async (api: IAsylumApi): Promise<void> => {
       for (const [index] of toEntries(gamesMockData)) {
          const entry = gamesMockData[index]
 
-         await api.createGame(index, [api.caller?.address || ''], 0)
+         await api.createGame(index, [api.keyringPair?.address || ''], 0)
          const gameCID = await api.uploadMetadata(entry)
          await api.setGameMetadata(index, gameCID, entry.title, entry.genre)
 
@@ -159,7 +159,7 @@ const seedGames = async (api: IAsylumApi): Promise<void> => {
 
 AsylumApi.connect(process.env.ENDPOINT_URL || '')
    .then(async (api) => {
-      await seed(api.withCaller(await prepareSeeder(api)))
+      await seed(api.withKeyringPair(await prepareSeeder(api)))
       terminate(0)
    })
    .catch((err) => {

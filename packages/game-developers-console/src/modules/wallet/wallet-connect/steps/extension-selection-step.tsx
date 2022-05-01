@@ -1,10 +1,12 @@
 import * as React from 'react'
+
+import { IWalletStepProps, WalletConnectStepType } from './index'
 import { web3Enable } from '@polkadot/extension-dapp'
 import { Button } from 'components/button'
-import { ReactComponent as PolkadotIcon } from 'assets/svg/polkadot.svg'
-import { ReactComponent as ArrowRightIcon } from 'assets/svg/arrow-right.svg'
 import { Paragraph } from 'components/text/paragraph'
-import { IWalletStepProps, WalletConnectStepType } from './index'
+
+import { ReactComponent as ArrowRightIcon } from 'assets/svg/arrow-right.svg'
+import { ReactComponent as PolkadotIcon } from 'assets/svg/polkadot.svg'
 
 export const ExtensionSelectionStep: React.FC<IWalletStepProps> = ({ nextStep }) => {
    const [error, setError] = React.useState(false)

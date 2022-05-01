@@ -1,7 +1,9 @@
 import * as React from 'react'
-import { IComponentProps } from 'types'
+
 import classNames from 'classnames'
 import { Heading } from 'components/text/heading'
+
+import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {
    title: string

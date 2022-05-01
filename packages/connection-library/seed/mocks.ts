@@ -35,7 +35,8 @@ export const tags = [
    {
       tag: 'default-view',
       metadata: {
-         description: 'The default visualization for item. MUST be present in all NFTs.',
+         id: 'default-view',
+         description: 'The default representation of item',
          metadataExtensions: {
             fields: [],
          },
@@ -44,6 +45,7 @@ export const tags = [
    {
       tag: '2d-sprite',
       metadata: {
+         id: '2d-sprite',
          description: '2d picture representation',
          metadataExtensions: {
             fields: [],
@@ -53,6 +55,7 @@ export const tags = [
    {
       tag: '3d-model',
       metadata: {
+         id: '3d-model',
          description: '3d model representation',
          metadataExtensions: {
             fields: [],
@@ -62,14 +65,15 @@ export const tags = [
    {
       tag: 'png',
       metadata: {
-         description: 'Anything in .png format',
+         id: 'png',
+         description: 'in PNG format',
          metadataExtensions: {
             fields: [
                {
-                  name: 'fileFormat',
+                  name: 'format',
                   type: 'string',
-                  default: '.png',
-                  description: 'Used to help client parse content correctly',
+                  defaultValue: '.png',
+                  description: 'The format of source is PNG',
                },
             ],
          },
@@ -78,14 +82,15 @@ export const tags = [
    {
       tag: 'jpeg',
       metadata: {
-         description: 'Anything in .jpeg format',
+         id: 'jpeg',
+         description: 'in JPEG format',
          metadataExtensions: {
             fields: [
                {
-                  name: 'fileFormat',
+                  name: 'format',
                   type: 'string',
-                  default: '.jpeg',
-                  description: 'Used to help client parse content correctly',
+                  defaultValue: '.jpeg',
+                  description: 'The format of source is JPEG',
                },
             ],
          },
@@ -94,14 +99,15 @@ export const tags = [
    {
       tag: 'jpg',
       metadata: {
-         description: 'Anything in .jpg format',
+         id: 'jpg',
+         description: 'in JPG format',
          metadataExtensions: {
             fields: [
                {
-                  name: 'fileFormat',
+                  name: 'format',
                   type: 'string',
-                  default: '.jpg',
-                  description: 'Used to help client parse content correctly',
+                  defaultValue: '.jpg',
+                  description: 'The format of source is JPG',
                },
             ],
          },
@@ -142,7 +148,7 @@ export const templates: ITemplateMockData[] = [
                src: 'https://i.pinimg.com/originals/3a/83/bf/3a83bf5f768ef01338ba534ae4a1447b.png',
                metadata: {
                   fieldName: 'fieldValue',
-                  fileFormat: '.png',
+                  format: '.png',
                },
             },
          },
@@ -161,7 +167,7 @@ export const templates: ITemplateMockData[] = [
                src: '/img/lamp.png',
                metadata: {
                   fieldName: 'fieldValue',
-                  fileFormat: '.png',
+                  format: '.png',
                },
             },
          },
@@ -180,7 +186,7 @@ export const templates: ITemplateMockData[] = [
                src: '/img/clover_leaf.png',
                metadata: {
                   fieldName: 'fieldValue',
-                  fileFormat: '.png',
+                  format: '.png',
                },
             },
          },
@@ -199,7 +205,7 @@ export const templates: ITemplateMockData[] = [
                src: 'https://zilliongamer.com/uploads/codm/skins/assault/m16/m16-pumpkin-repeater-cod-mobile.jpg',
                metadata: {
                   fieldName: 'fieldValue',
-                  fileFormat: '.jpg',
+                  format: '.jpg',
                },
             },
          },
@@ -218,7 +224,7 @@ export const templates: ITemplateMockData[] = [
                src: 'https://zilliongamer.com/uploads/codm/skins/assault/m16/m16-gold-glitter-cod-mobile.jpg',
                metadata: {
                   fieldName: 'fieldValue',
-                  fileFormat: '.jpg',
+                  format: '.jpg',
                },
             },
          },
@@ -237,7 +243,7 @@ export const templates: ITemplateMockData[] = [
                src: 'https://zilliongamer.com/uploads/pubg-mobile/weapon/type/ar/aug/skin/white-rabbit-aug-big.jpg',
                metadata: {
                   fieldName: 'fieldValue',
-                  fileFormat: '.jpg',
+                  format: '.jpg',
                },
             },
          },

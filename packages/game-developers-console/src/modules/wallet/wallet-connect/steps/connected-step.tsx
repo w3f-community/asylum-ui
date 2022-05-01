@@ -1,10 +1,12 @@
 import * as React from 'react'
-import { observer } from 'mobx-react-lite'
-import { useStore } from 'store'
-import { Button } from 'components/button'
-import { IWalletStepProps, WalletConnectStepType } from './index'
-import { CopyAddressButton } from '../components/copy-address-button'
+
 import { AddressName } from '../components/address-name'
+import { CopyAddressButton } from '../components/copy-address-button'
+import { IWalletStepProps, WalletConnectStepType } from './index'
+import { Button } from 'components/button'
+import { observer } from 'mobx-react-lite'
+
+import { useStore } from 'store'
 
 export const ConnectedStep: React.FC<IWalletStepProps> = observer(({ nextStep, onClose }) => {
    const store = useStore()

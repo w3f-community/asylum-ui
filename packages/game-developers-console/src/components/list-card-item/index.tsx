@@ -1,17 +1,19 @@
+import * as React from 'react'
+
 import { Button } from 'components/button'
 import { HeadingLg } from 'components/text/heading-lg'
 import { Paragraph } from 'components/text/paragraph'
-import * as React from 'react'
+
 import { formatAddress } from 'utils'
 
 interface IProps {
    title: string
    img: string
-   id: number
+   id: string
    description: string
    address: string
-   onClick?: (id: number) => void
-   onActionClick?: (id: number) => void
+   onClick?: (id: string) => void
+   onActionClick?: (id: string) => void
    actionText?: string
 }
 

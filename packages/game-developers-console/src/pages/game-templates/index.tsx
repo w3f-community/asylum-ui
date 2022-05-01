@@ -1,29 +1,49 @@
-import { map } from 'lodash'
-import { ListCardItem } from 'components/list-card-item'
+import * as React from 'react'
+
 import { Hr } from 'components/hr'
+import { ListCardItem } from 'components/list-card-item'
 import { SearchAutocomplete } from 'components/search-autocomplete'
 import { HeadingXl } from 'components/text/heading-xl'
-import * as React from 'react'
-import { ITemplate } from 'types'
-import { MOCK_ADDRESS, templates } from 'context/mocks'
 import { Paragraph } from 'components/text/paragraph'
+import { flow, map, uniq } from 'lodash/fp'
+import { useQuery } from 'react-query'
+import { useNavigate } from 'react-router-dom'
+
+import { fetchTemplates } from 'api'
 import { TemplateCreate } from 'modules/template/template-create'
+import { TemplateWithMetadata } from 'types'
 
 interface IProps {}
 
-export const GameTemplates: React.FC<IProps> = () => {
-   const [query, setQuery] = React.useState('')
-   const [templateList, setTemplateList] = React.useState<ITemplate[]>(templates)
+function GameTemplatesSkeleton() {
+   return (
+      <div className="flex items-center justify-center space-x-2 animate-pulse">
+         <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-9 w-full opacity-75">
+            {[...Array(6).fill(0)].map((_, i) => (
+               <div
+                  key={i}
+                  className="bg-white p-5 rounded-2xl cursor-pointer group flex flex-col h-[407px]"
+               />
+            ))}
+         </div>
+      </div>
+   )
+}
 
-   const filterTemplates = (inputValue: string, items: ITemplate[]): ITemplate[] =>
+export const GameTemplates: React.FC<IProps> = () => {
+   const navigate = useNavigate()
+   const [query, setQuery] = React.useState('')
+   const { data: templates, isLoading } = useQuery('templates', () => fetchTemplates())
+
+   const filterTemplates = (
+      inputValue: string,
+      items: TemplateWithMetadata[]
+   ): TemplateWithMetadata[] =>
       items.filter((item) => {
-         return item.title.toLowerCase().includes(inputValue.toLowerCase())
+         return item.name?.toLowerCase().includes(inputValue.toLowerCase())
       })
 
-   const handleSearch = (query: string) => {
-      setTemplateList(filterTemplates(query, templates))
-      setQuery(query)
-   }
+   const filteredTemplates = templates?.length ? filterTemplates(query, templates) : []
 
    return (
       <div className="container mx-auto">
@@ -35,23 +55,32 @@ export const GameTemplates: React.FC<IProps> = () => {
          <div className="py-6">
             <SearchAutocomplete
                className="mb-10"
-               variants={map(templates, 'title')}
-               onSelect={handleSearch}
+               variants={flow(map('name'), uniq)(templates)}
+               onSelect={setQuery}
             />
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-9 w-full">
-               {templateList.map((item: ITemplate) => (
-                  <ListCardItem
-                     key={item.id}
-                     {...item}
-                     actionText="mint item"
-                     address={MOCK_ADDRESS}
-                  />
-               ))}
-            </div>
-            {templateList.length === 0 && (
-               <Paragraph className="text-white">
-                  Your search - <strong>{query}</strong> - did not match any Templates.
-               </Paragraph>
+            {isLoading && <GameTemplatesSkeleton />}
+            {!isLoading && (
+               <>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-9 w-full">
+                     {filteredTemplates.map((item: TemplateWithMetadata) => (
+                        <ListCardItem
+                           key={item.id}
+                           id={item.id}
+                           title={item.name}
+                           img={item.img}
+                           description={item.description}
+                           address={item.issuer}
+                           actionText="mint item"
+                           onClick={() => navigate(`/templates/${item.id}`)}
+                        />
+                     ))}
+                  </div>
+                  {query && filteredTemplates.length === 0 && (
+                     <Paragraph className="text-white">
+                        Your search - <strong>{query}</strong> - did not match any Templates.
+                     </Paragraph>
+                  )}
+               </>
             )}
          </div>
       </div>

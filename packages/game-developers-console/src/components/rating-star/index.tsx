@@ -1,7 +1,8 @@
 import * as React from 'react'
+
+import { ReactComponent as EmptyStarIcon } from 'assets/svg/empty-star.svg'
 import { ReactComponent as FillStarIcon } from 'assets/svg/fill-star.svg'
 import { ReactComponent as HalfStarIcon } from 'assets/svg/half-star.svg'
-import { ReactComponent as EmptyStarIcon } from 'assets/svg/empty-star.svg'
 
 interface IProps {
    rating: number

@@ -1,57 +1,55 @@
 import * as React from 'react'
 import { useEffect } from 'react'
-import { InputSelect } from 'components/input-select'
+
 import { InputFileUpload } from 'components/input-file-upload'
 import { InputLabel } from 'components/input-label'
-import { ReactComponent as CopyIcon } from 'assets/svg/copy.svg'
-import { ReactComponent as CheckmarkIcon } from 'assets/svg/checkmark.svg'
-import { filter, find, findLast, flow, join, keys, map } from 'lodash/fp'
-import hljs from 'highlight.js'
-import { AsylumApi } from '@asylum-ui/connection-library'
+import { InputSelect } from 'components/input-select'
 import { FormikProps } from 'formik'
+import hljs from 'highlight.js'
+import { omit } from 'lodash/fp'
+import { observer } from 'mobx-react-lite'
+import { useQuery } from 'react-query'
+import { OptionProps, components } from 'react-select'
 
-interface IProps {
-   formik: FormikProps<any>
+import { AsylumApi, CID, TagMetadata } from '@asylum-ui/connection-library'
+
+import { fetchTags } from 'api'
+import { ReactComponent as CheckmarkIcon } from 'assets/svg/checkmark.svg'
+import { ReactComponent as CopyIcon } from 'assets/svg/copy.svg'
+import { useStore } from 'store'
+import { generateMetadata } from 'utils'
+
+interface IProps<T extends InterpretationFormValues> {
+   formik: FormikProps<T>
 }
 
-export const InterpretationCreate: React.FC<IProps> = ({ formik }) => {
+export interface InterpretationFormValues {
+   tags: TagMetadata[]
+   src: CID | null
+}
+
+const Option = (props: OptionProps<TagMetadata, true>) => {
+   return (
+      <components.Option {...props}>
+         {props.label} <span className="text-gray-400">- {props.data.description}</span>
+      </components.Option>
+   )
+}
+
+export const InterpretationCreate = <T extends InterpretationFormValues>({ formik }: IProps<T>) => {
+   const { data: tags } = useQuery('tags', () => fetchTags())
    const [copied, setCopied] = React.useState(false)
-   const tags = ['default-view', '2d-sprite', 'png', 'jpg', 'jpeg']
-   const options = tags.map((value) => ({
-      value,
-      label: value,
-   }))
+   const [metadata, setMetadata] = React.useState<any>({})
 
-   const tagsDescription: Record<string, string> = {
-      'default-view': 'Default view representation of item',
-      '2d-sprite': '2d sprite representation of item',
-      png: 'in PNG format',
-      jpg: 'in JPG format',
-      jpeg: 'in JPEG format',
-   }
-
-   const metadata = {
-      format: findLast(
-         (tag: string) => ['png', 'jpg', 'jpeg'].includes(tag),
-         map('value', formik.values.tags)
-      ),
-   }
-   const generateDescription = () =>
-      flow(
-         keys,
-         filter((tag) =>
-            ['png', 'jpg', 'jpeg'].includes(tag)
-               ? metadata.format === tag
-               : !!find({ value: tag }, formik.values.tags)
-         ),
-         map((tag) => tagsDescription[tag]),
-         join(' ')
-      )(tagsDescription)
+   useEffect(() => {
+      if (formik.values.tags) {
+         setMetadata(generateMetadata(formik.values.tags).metadata)
+      }
+   }, [formik.values.tags])
 
    const metadataFull = {
       src: formik.values.src,
-      description: generateDescription(),
-      metadata,
+      metadata: omit(['conflictedTags', 'conflictedFields'], metadata),
    }
    const metadataHtml = hljs.highlight('json', JSON.stringify(metadataFull, null, 2)).value
 
@@ -74,16 +72,20 @@ export const InterpretationCreate: React.FC<IProps> = ({ formik }) => {
             name="tags"
             value={formik.values.tags}
             onChange={(value) => formik.setFieldValue('tags', value)}
-            defaultValue={[options[0]]}
-            options={options}
+            options={tags || []}
+            getOptionLabel={(option) => option.id}
+            getOptionValue={(option) => option.id}
+            errorMessage={formik.errors.tags as string}
+            Option={Option}
          />
          <InputFileUpload
+            accept="image/*"
             name="source"
             label="Source"
-            value={formik.values.src}
+            value={formik.values.src || undefined}
+            errorMessage={(formik.touched.src && formik.errors.src) as string}
             onLoad={handleSourceLoad}
          />
-
          <div>
             <InputLabel className="mb-2">Raw Metadata</InputLabel>
             <div className="bg-white text-gray-700 p-4 text-sm rounded-xl relative">

@@ -1,13 +1,16 @@
 import * as React from 'react'
-import { Modal } from 'components/modal'
-import { Button } from 'components/button'
+
 import classNames from 'classnames'
+import { Button } from 'components/button'
+import { Modal } from 'components/modal'
+import { Paragraph } from 'components/text/paragraph'
 import { observer } from 'mobx-react-lite'
+import { useNavigate } from 'react-router-dom'
+
+import { AsylumApi } from '@asylum-ui/connection-library'
+
 import { useStore } from 'store'
 import { INetwork } from 'types'
-import { useNavigate } from 'react-router-dom'
-import { AsylumApi } from '@asylum-ui/connection-library'
-import { Paragraph } from 'components/text/paragraph'
 
 interface IProps {
    open: boolean

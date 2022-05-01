@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { forwardRef, useRef } from 'react'
+
 import { Heading } from '../text/heading'
-import { IComponentProps } from 'types'
-import { ReactComponent as CloseIcon } from 'assets/svg/close.svg'
-import ReactDOM from 'react-dom'
 import classNames from 'classnames'
+import ReactDOM from 'react-dom'
+
+import { ReactComponent as CloseIcon } from 'assets/svg/close.svg'
+import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {
    open?: boolean

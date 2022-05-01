@@ -1,11 +1,14 @@
 import * as React from 'react'
-import { Card } from 'components/card'
+
 import { Avatar } from 'components/avatar'
-import { Paragraph } from 'components/text/paragraph'
+import { Card } from 'components/card'
 import { RatingStarsComponent } from 'components/rating-star'
-import { formatAddress } from 'utils'
-import { MOCK_ADDRESS } from 'context/mocks'
+import { Paragraph } from 'components/text/paragraph'
+
 import { Review } from '@asylum-ui/connection-library'
+
+import { MOCK_ADDRESS } from 'context/mocks'
+import { formatAddress } from 'utils'
 
 interface IReviewProps {
    review: Review

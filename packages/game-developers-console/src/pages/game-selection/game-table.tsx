@@ -1,10 +1,12 @@
 import * as React from 'react'
-import { GameCard } from '../game-card'
-import { IComponentProps } from 'types'
+
+import { GameCard } from './game-card'
 import classNames from 'classnames'
 import { observer } from 'mobx-react-lite'
+
 import { useStore } from 'store'
 import { GameWithMetadata } from 'store/app-store'
+import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {
    games: GameWithMetadata[]

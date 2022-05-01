@@ -1,6 +1,8 @@
 import * as React from 'react'
-import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
+
 import { Button } from 'components/button'
+
+import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
 import { TemplateCreateModal } from 'modules/template/template-create-modal'
 
 export const TemplateCreate: React.FC = () => {

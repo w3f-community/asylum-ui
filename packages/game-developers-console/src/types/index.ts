@@ -1,8 +1,8 @@
-export interface ITemplate {
-   title: string
-   img: string
-   id: number
+import { Template } from '@asylum-ui/connection-library'
+
+export interface TemplateWithMetadata extends Template {
    description: string
+   img: string
 }
 
 export interface IComponentProps {

@@ -1,38 +1,138 @@
 import * as React from 'react'
-import { Modal } from 'components/modal'
+
+import { Button } from 'components/button'
 import { InputField } from 'components/input-field'
-import { useFormik } from 'formik'
-import { observer } from 'mobx-react-lite'
-import { useStore } from 'store'
-import { formatAddress } from 'utils'
+import { Modal } from 'components/modal'
 import { Paragraph } from 'components/text/paragraph'
+import { useFormik } from 'formik'
 import 'highlight.js/styles/github.css'
-import { InterpretationCreate } from 'modules/template/interpretation-create'
+import { find, map } from 'lodash/fp'
+import { observer } from 'mobx-react-lite'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { toast } from 'react-toastify'
+
+import { AsylumApi, CID, Interpretation } from '@asylum-ui/connection-library'
+
+import { SubmittableResult } from '@polkadot/api'
+import { fetchTags } from 'api'
+import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
+import {
+   InterpretationCreate,
+   InterpretationFormValues,
+} from 'modules/template/interpretation-create'
+import { useStore } from 'store'
+import { formatAddress, generateMetadata } from 'utils'
 
 interface IProps {
    open: boolean
    onClose?: () => void
 }
 
+interface TemplateFormValues {
+   name: string
+   issuer: string
+   description: string
+}
+
+interface CreateTemplateProps {
+   name: string
+   metadata: CID
+   max: number
+   interpretations: Interpretation[]
+}
+
 export const TemplateCreateModal: React.FC<IProps> = observer(({ open, onClose }) => {
    const store = useStore()
+   const queryClient = useQueryClient()
+   const { data: tags } = useQuery('tags', () => fetchTags())
+   const mutation = useMutation(
+      ({ name, metadata, max, interpretations }: CreateTemplateProps): Promise<SubmittableResult> =>
+         AsylumApi.createTemplate(name, metadata, max, interpretations),
+      {
+         onSuccess: () => {
+            queryClient.invalidateQueries('templates')
+         },
+      }
+   )
+   const defaultTag = find({ id: 'default-view' }, tags)
 
-   const tags = ['default-view', '2d-sprite', 'png', 'jpg', 'jpeg']
-   const options = tags.map((value) => ({
-      value,
-      label: value,
-   }))
-
-   const formik = useFormik({
+   const formik = useFormik<TemplateFormValues & InterpretationFormValues>({
+      enableReinitialize: true,
+      validateOnChange: true,
       initialValues: {
          name: '',
-         issuer: store?.account?.address,
+         issuer: store?.account?.address || '',
          description: '',
-         tags: [options[0]] as { value: string; label: string }[],
+         tags: defaultTag ? [defaultTag] : [],
          src: null,
       },
-      onSubmit: (values) => {
-         console.log(values)
+      validate: (values) => {
+         const errors: any = {}
+         if (!values.name) {
+            errors.name = 'Name is required'
+         }
+         if (!values.description) {
+            errors.description = 'Description is required'
+         }
+         if (!find({ id: 'default-view' }, values.tags)) {
+            errors.tags =
+               'Template should include at least one interpretation with "default-view" tag'
+         }
+         if (values.tags.length) {
+            const { conflictedFields, conflictedTags } = generateMetadata(values.tags)
+            if (conflictedFields.length) {
+               errors.tags = `Tags ${JSON.stringify(
+                  map('id', conflictedTags)
+               )} have conflicting metadata fields: ${JSON.stringify(conflictedFields)}`
+            }
+         }
+         if (!values.src) {
+            errors.src = 'Interpretation source is required'
+         }
+         return errors
+      },
+      onSubmit: async (values, { setSubmitting, resetForm }) => {
+         setSubmitting(true)
+         try {
+            const templateMetadataCID = await AsylumApi.uploadMetadata({
+               description: values.description,
+            })
+            const interpretationMetadataCID = await AsylumApi.uploadMetadata(
+               generateMetadata(values.tags).metadata
+            )
+
+            await mutation.mutate(
+               {
+                  name: values.name,
+                  metadata: templateMetadataCID,
+                  max: 100,
+                  interpretations: [
+                     {
+                        tags: map('id', values.tags),
+                        interpretation: {
+                           id: map('id', values.tags).join('-'),
+                           src: values.src || '',
+                           metadata: interpretationMetadataCID,
+                        },
+                     },
+                  ],
+               },
+               {
+                  onSuccess: () => {
+                     toast.success(`Template "${values.name}" was created!`)
+                     resetForm()
+                     onClose && onClose()
+                  },
+                  onError: (error: any) => {
+                     toast.error(error.message)
+                  },
+               }
+            )
+         } catch (e: any) {
+            toast.error(e.message)
+         } finally {
+            setSubmitting(false)
+         }
       },
    })
 
@@ -56,6 +156,7 @@ export const TemplateCreateModal: React.FC<IProps> = observer(({ open, onClose }
                   name="name"
                   value={formik.values.name}
                   onChange={formik.handleChange}
+                  errorMessage={(formik.touched.name && formik.errors.name) as string}
                />
                <InputField
                   className="basis-4/12"
@@ -74,6 +175,7 @@ export const TemplateCreateModal: React.FC<IProps> = observer(({ open, onClose }
                rows={3}
                value={formik.values.description}
                onChange={formik.handleChange}
+               errorMessage={(formik.touched.description && formik.errors.description) as string}
             />
             <Paragraph className="text-white mt-2 ml-1">
                You have to create at least one interpretation with tag{' '}
@@ -84,6 +186,10 @@ export const TemplateCreateModal: React.FC<IProps> = observer(({ open, onClose }
             </Paragraph>
 
             <InterpretationCreate formik={formik} />
+
+            <Button variant="light" className="mt-7" onClick={formik.submitForm}>
+               <PlusIcon className="fill-text-base w-4 h-4 inline-block mr-2" /> create template
+            </Button>
          </div>
       </Modal>
    )

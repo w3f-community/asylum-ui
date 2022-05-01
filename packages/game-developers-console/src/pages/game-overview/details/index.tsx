@@ -1,20 +1,22 @@
 import * as React from 'react'
+
 import { Button } from 'components/button'
 import { Card } from 'components/card'
 import { Heading } from 'components/text/heading'
-import { Paragraph } from 'components/text/paragraph'
 import { HeadingLg } from 'components/text/heading-lg'
-import { useAsylumApi } from 'hooks'
+import { Paragraph } from 'components/text/paragraph'
+import { useQuery } from 'react-query'
+import { useNavigate } from 'react-router-dom'
+
 import { fetchPlayersCount } from 'api'
 import { GameWithMetadata } from 'store/app-store'
-import { useNavigate } from 'react-router-dom'
 
 interface IProps {
    game: GameWithMetadata
 }
 
 export const Details: React.FC<IProps> = ({ game }) => {
-   const { data: playersNumber } = useAsylumApi(fetchPlayersCount())
+   const { data: playersCount } = useQuery('playersCount', () => fetchPlayersCount())
    const navigate = useNavigate()
 
    return (
@@ -23,7 +25,7 @@ export const Details: React.FC<IProps> = ({ game }) => {
          <div className="flex flex-row justify-between">
             <div className="grow">
                <Heading>Number of players:</Heading>
-               <Paragraph className="font-secondary">{playersNumber}</Paragraph>
+               <Paragraph className="font-secondary">{playersCount}</Paragraph>
             </div>
             <div className="grow">
                <Heading>Minted items:</Heading>

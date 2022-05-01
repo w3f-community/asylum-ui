@@ -1,10 +1,12 @@
 import * as React from 'react'
-import { Button } from 'components/button'
-import { IComponentProps } from 'types'
+
 import classNames from 'classnames'
-import { ServerConnectModal } from 'modules/server-connect/server-connect-modal'
+import { Button } from 'components/button'
 import { observer } from 'mobx-react-lite'
+
+import { ServerConnectModal } from 'modules/server-connect/server-connect-modal'
 import { useStore } from 'store'
+import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {}
 

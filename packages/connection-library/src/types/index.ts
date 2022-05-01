@@ -1,5 +1,6 @@
-export type Tag = string
+export type TagName = string
 export type InterpretationId = string
+export type CID = string
 
 export interface GameMetadata {
    id: string
@@ -32,14 +33,41 @@ export interface Review {
    address: string
 }
 
+export interface Template {
+   id: string
+   name: string
+   max: string
+   metadata: CID
+   issuer: string
+   nftCount: number
+}
+
 export interface InterpretationInfo {
    id: InterpretationId
    src: string | undefined
-   metadata: string | undefined
+   metadata: CID | undefined
+}
+
+export interface Tag {
+   id: TagName
+   metadata: CID
+}
+
+export interface TagMetadataField {
+   name: string
+   type: string
+   defaultValue?: string
+   description?: string
+}
+
+export interface TagMetadata {
+   id: TagName
+   description: string
+   metadataExtensions: { fields: TagMetadataField[] }
 }
 
 export interface Interpretation {
-   tags: Tag[]
+   tags: TagName[]
    interpretation: InterpretationInfo
 }
 
@@ -65,7 +93,7 @@ type TemplateChangeModify = {
 type TemplateChangeModifyTags = {
    ModifyTags: {
       interpretationId: InterpretationId
-      tags: Tag[]
+      tags: TagName[]
    }
 }
 

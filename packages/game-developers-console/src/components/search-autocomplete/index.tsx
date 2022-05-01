@@ -1,10 +1,12 @@
-import { Heading } from 'components/text/heading'
 import * as React from 'react'
-import { InputField } from 'components/input-field'
-import { ReactComponent as SearchIcon } from 'assets/svg/search.svg'
-import { ReactComponent as CloseIcon } from 'assets/svg/close.svg'
-import { IComponentProps } from 'types'
+
 import classNames from 'classnames'
+import { InputField } from 'components/input-field'
+import { Heading } from 'components/text/heading'
+
+import { ReactComponent as CloseIcon } from 'assets/svg/close.svg'
+import { ReactComponent as SearchIcon } from 'assets/svg/search.svg'
+import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {
    onSelect: (value: string) => void
@@ -53,7 +55,7 @@ export const SearchAutocomplete: React.FC<IProps> = ({
 
    const filterVariants = (value: string) => {
       const filteredVariants = variants.filter((variant) =>
-         variant.toLowerCase().includes(value.toLowerCase())
+         variant?.toLowerCase().includes(value.toLowerCase())
       )
       setSuggestions(filteredVariants)
    }
