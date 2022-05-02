@@ -30,4 +30,3 @@ ReactDOM.render(
 )
 
 reportWebVitals()
-export { ReviewCard } from './components/review-item'
