@@ -1,11 +1,12 @@
+import { apiTypes } from './api-types'
+import { ChangeSet, Game, GameMetadata, Interpretation, Tag, TagName, Template } from './types'
+import { handleTxCallback, mapEntries } from './utils'
 import { ApiPromise, SubmittableResult, WsProvider } from '@polkadot/api'
+import { ApiTypes } from '@polkadot/api-base/types/base'
+import { SubmittableExtrinsic } from '@polkadot/api-base/types/submittable'
+import { Signer } from '@polkadot/api/types'
 import { KeyringPair } from '@polkadot/keyring/types'
 import { create } from 'ipfs-http-client'
-import { handleTxCallback, mapEntries } from './utils'
-import { SubmittableExtrinsic } from '@polkadot/api-base/types/submittable'
-import { ApiTypes } from '@polkadot/api-base/types/base'
-import { ChangeSet, Game, GameMetadata, Interpretation, Tag, TagName, Template } from './types'
-import { Signer } from '@polkadot/api/types'
 import { omit } from 'lodash/fp'
 
 class AsylumApi {
@@ -28,6 +29,7 @@ class AsylumApi {
             provider,
             throwOnConnect: true,
             throwOnUnknown: true,
+            types: apiTypes,
          })
       } catch (e) {
          await provider.disconnect()
@@ -143,14 +145,17 @@ class AsylumApi {
       return mapEntries(entries)
    }
 
-   // TODO
    async submitTemplateChangeProposal(
       author: string,
       templateId: number,
       changeSet: ChangeSet
    ): Promise<SubmittableResult> {
       return this.signAndSendWrapped(
-         this.api!.tx.asylumCore.submitTemplateChangeProposal(author, templateId, changeSet)
+         this.api!.tx.asylumCore.submitTemplateChangeProposal(
+            author,
+            templateId,
+            changeSet.map((x) => x.convert(this.api!))
+         )
       )
    }
 

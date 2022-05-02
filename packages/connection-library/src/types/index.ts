@@ -1,3 +1,6 @@
+import { ApiPromise } from '@polkadot/api'
+import { Codec } from '@polkadot/types-codec/types/codec'
+
 export type TagName = string
 export type InterpretationId = string
 export type CID = string
@@ -78,27 +81,73 @@ export declare type ChangeSet = Array<
    | TemplateChangeRemoveInterpretation
 >
 
-type TemplateChangeAdd = {
-   Add: {
-      interpretations: Interpretation[]
+export interface ICodecConvertor {
+   convert(api: ApiPromise): Codec
+}
+
+export class TemplateChangeAdd implements ICodecConvertor {
+   interpretations: Interpretation[]
+
+   constructor(interpretations: Interpretation[]) {
+      this.interpretations = interpretations
+   }
+
+   convert(api: ApiPromise): Codec {
+      return api?.createType('Change', {
+         Add: {
+            interpretations: this.interpretations.map((x) => [x.interpretation, x.tags]),
+         },
+      })
    }
 }
 
-type TemplateChangeModify = {
-   Modify: {
-      interpretations: InterpretationInfo[]
+export class TemplateChangeModify implements ICodecConvertor {
+   interpretations: InterpretationInfo[]
+
+   constructor(interpretations: InterpretationInfo[]) {
+      this.interpretations = interpretations
+   }
+
+   convert(api: ApiPromise): Codec {
+      return api.createType('Change', {
+         Modify: {
+            interpretations: this.interpretations,
+         },
+      })
    }
 }
 
-type TemplateChangeModifyTags = {
-   ModifyTags: {
-      interpretationId: InterpretationId
-      tags: TagName[]
+export class TemplateChangeModifyTags implements ICodecConvertor {
+   interpretationId: InterpretationId
+   tags: Tag[]
+
+   constructor(interpretationId: InterpretationId, tags: Tag[]) {
+      this.interpretationId = interpretationId
+      this.tags = tags
+   }
+
+   convert(api: ApiPromise): Codec {
+      return api.createType('Change', {
+         ModifyTags: {
+            tags: this.tags,
+            interpretationId: this.interpretationId,
+         },
+      })
    }
 }
 
-type TemplateChangeRemoveInterpretation = {
-   RemoveInterpretation: {
-      interpretationId: InterpretationId
+export class TemplateChangeRemoveInterpretation implements ICodecConvertor {
+   interpretationId: InterpretationId
+
+   constructor(interpretationId: InterpretationId) {
+      this.interpretationId = interpretationId
+   }
+
+   convert(api: ApiPromise): Codec {
+      return api?.createType('Change', {
+         RemoveInterpretation: {
+            interpretationId: this.interpretationId,
+         },
+      })
    }
 }

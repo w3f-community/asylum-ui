@@ -1,4 +1,4 @@
-import { ChangeSet, Review } from '../src/types'
+import { ChangeSet, Review, TemplateChangeAdd } from '../src/types'
 
 interface ITemplateMockData {
    name: string
@@ -261,20 +261,16 @@ export const proposals: {
       templateId: 0,
       author: MOCK_ADDRESS,
       changeSet: [
-         {
-            Add: {
-               interpretations: [
-                  {
-                     tags: ['default-view', 'jpg'],
-                     interpretation: {
-                        id: '', // ?
-                        src: 'https://zilliongamer.com/uploads/pubg-mobile/weapon/type/ar/aug/skin/white-rabbit-aug-big.jpg',
-                        metadata: '',
-                     },
-                  },
-               ],
+         new TemplateChangeAdd([
+            {
+               tags: ['2d-sprite', 'jpg'],
+               interpretation: {
+                  id: '355',
+                  src: 'https://zilliongamer.com/uploads/pubg-mobile/weapon/type/ar/aug/skin/white-rabbit-aug-big.jpg',
+                  metadata: 'QmQkvrZ15r4inndd3mpbtHSuxzWbL6Z4ehywVFReANRzoM',
+               },
             },
-         },
+         ]),
       ],
    },
 ]

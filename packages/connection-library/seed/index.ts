@@ -1,14 +1,14 @@
-import * as dotenv from 'dotenv'
-import { AsylumApi, Interpretation } from '../src'
-import { Keyring } from '@polkadot/api'
 import { IAsylumApi } from '../dist'
+import { AsylumApi, Interpretation } from '../src'
 import {
    games as gamesMockData,
    tags as tagsMockData,
    templates as templatesMockData,
    proposals as proposalsMockData,
 } from './mocks'
+import { Keyring } from '@polkadot/api'
 import { KeyringPair } from '@polkadot/keyring/types'
+import * as dotenv from 'dotenv'
 
 dotenv.config()
 
