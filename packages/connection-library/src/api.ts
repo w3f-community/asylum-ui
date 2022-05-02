@@ -145,6 +145,11 @@ class AsylumApi {
       return mapEntries(entries)
    }
 
+   async nextProposalId(): Promise<number> {
+      // @ts-ignore
+      return (await this.api!.query.asylumCore.nextProposalId()).toNumber()
+   }
+
    async submitTemplateChangeProposal(
       author: string,
       templateId: number,
