@@ -1,9 +1,11 @@
 import * as React from 'react'
 
+import { Button } from 'components/button'
 import { Modal } from 'components/modal'
 import { useFormik } from 'formik'
 import { find, map } from 'lodash/fp'
 
+import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
 import {
    InterpretationCreate,
    InterpretationFormValues,
@@ -62,6 +64,9 @@ export const AddInterpretationModal: React.FC<IProps> = ({ open, onClose }) => {
       >
          <div className="p-4 flex flex-col gap-4 pb-8">
             <InterpretationCreate formik={formik} />
+            <Button variant="light" className="mt-7" onClick={formik.submitForm}>
+               <PlusIcon className="fill-text-base w-4 h-4 inline-block mr-2" /> add interpretation
+            </Button>
          </div>
       </Modal>
    )
