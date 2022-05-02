@@ -128,7 +128,7 @@ export const TemplateOverview: React.FC = observer(() => {
                                  alt={interpretation.interpretation.id}
                               />
                            </div>
-                           <div className="overflow-auto">
+                           <div className="overflow-auto grow">
                               <Paragraph className="flex items-center mb-3 gap-1 justify-end">
                                  {interpretation.tags?.map((tag) => (
                                     <Tag key={tag}>{tag}</Tag>
@@ -136,8 +136,8 @@ export const TemplateOverview: React.FC = observer(() => {
                               </Paragraph>
                               <JsonRaw
                                  metadata={interpretation.metadata}
-                                 className="!p-0 static"
-                                 copyButtonClassName="-bottom-2 top-auto -right-0"
+                                 className="!p-0 !static"
+                                 copyButtonClassName="bottom-2 top-auto right-3"
                               />
                            </div>
                         </div>
