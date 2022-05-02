@@ -48,6 +48,9 @@ const seedProposals = async (api: IAsylumApi): Promise<void> => {
          await api.submitTemplateChangeProposal(entry.author, entry.templateId, entry.changeSet)
 
          console.log(`Added proposal for template: '${entry.templateId}'`)
+
+         // remove to disable auto template update
+         await api.updateTemplate(entry.templateId, index)
       }
 
       console.log(await api.proposals())
