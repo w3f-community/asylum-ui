@@ -3,20 +3,62 @@ import * as React from 'react'
 import { Button } from 'components/button'
 import { Modal } from 'components/modal'
 import { useFormik } from 'formik'
+import { find, map } from 'lodash/fp'
+import { useMutation, useQueryClient } from 'react-query'
+import { toast } from 'react-toastify'
 
+import { AsylumApi, ChangeSet, TemplateChangeAdd } from '@asylum-ui/connection-library'
+
+import { SubmittableResult } from '@polkadot/api'
 import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
 import {
    InterpretationCreateForm,
    InterpretationFormValues,
    validateInterpretation,
 } from 'modules/template/interpretation-create-form'
+import { TemplateWithMetadata } from 'types'
+import { generateMetadata } from 'utils'
+
+interface SubmitTemplateChangeProposalProps {
+   author: string
+   templateId: number
+   changeSet: ChangeSet
+}
+
+interface TemplateUpdateProps {
+   templateId: number
+   proposalId: number
+}
 
 interface IProps {
+   template: TemplateWithMetadata
    open: boolean
    onClose: () => void
 }
 
-export const AddInterpretationModal: React.FC<IProps> = ({ open, onClose }) => {
+export const AddInterpretationModal: React.FC<IProps> = ({ template, open, onClose }) => {
+   const queryClient = useQueryClient()
+
+   const mutation = useMutation(
+      ({
+         author,
+         templateId,
+         changeSet,
+      }: SubmitTemplateChangeProposalProps): Promise<SubmittableResult> =>
+         AsylumApi.submitTemplateChangeProposal(author, templateId, changeSet)
+   )
+
+   const templateUpdateMutation = useMutation(
+      ({ templateId, proposalId }: TemplateUpdateProps): Promise<SubmittableResult> =>
+         AsylumApi.updateTemplate(templateId, proposalId),
+      {
+         onSuccess: () => {
+            queryClient.invalidateQueries(['interpretations', template.id])
+            queryClient.invalidateQueries(['templates', template.id])
+         },
+      }
+   )
+
    const formik = useFormik<InterpretationFormValues>({
       enableReinitialize: true,
       validateOnChange: true,
@@ -25,10 +67,66 @@ export const AddInterpretationModal: React.FC<IProps> = ({ open, onClose }) => {
          src: null,
       },
       validate: validateInterpretation,
-      onSubmit: async (values, { setSubmitting }) => {
+      onSubmit: async (values, { setSubmitting, resetForm }) => {
          setSubmitting(true)
+
          try {
-            console.log(values)
+            if (!values.src) throw new Error("Interpretation's src can not be empty!")
+
+            const metadata = generateMetadata(values.tags).metadata
+            const metadataCID = await AsylumApi.uploadMetadata(metadata)
+
+            const changeSet = [
+               new TemplateChangeAdd([
+                  {
+                     tags: values.tags.map((i) => i.id),
+                     interpretation: {
+                        id: map('id', values.tags).join('-'),
+                        src: values.src,
+                        metadata: metadataCID,
+                     },
+                  },
+               ]),
+            ]
+
+            // temporary hack, remove before go to prod
+            const proposalId = await AsylumApi.nextProposalId()
+
+            const templateId = parseInt(template.id)
+
+            console.log(AsylumApi.address, parseInt(template.id), changeSet, proposalId)
+
+            await mutation.mutateAsync(
+               {
+                  author: AsylumApi.address || '',
+                  templateId,
+                  changeSet,
+               },
+               {
+                  onError: (error: any) => {
+                     toast.error(error.message)
+                  },
+               }
+            )
+
+            await templateUpdateMutation.mutateAsync(
+               {
+                  templateId,
+                  proposalId,
+               },
+               {
+                  onSuccess: async () => {
+                     toast.success('The interpretation was successfully added!')
+                     resetForm()
+                     onClose && onClose()
+                  },
+                  onError: (error: any) => {
+                     toast.error(error.message)
+                  },
+               }
+            )
+         } catch (e: any) {
+            toast.error(e.message)
          } finally {
             setSubmitting(false)
          }
@@ -39,8 +137,8 @@ export const AddInterpretationModal: React.FC<IProps> = ({ open, onClose }) => {
       <Modal
          open={open}
          onClose={() => {
-            onClose()
             formik.resetForm()
+            onClose && onClose()
          }}
          title="Add interpretation"
          className="text-white"

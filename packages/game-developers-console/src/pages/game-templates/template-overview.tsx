@@ -169,6 +169,7 @@ export const TemplateOverview: React.FC = observer(() => {
                      interpretation
                   </Button>
                   <AddInterpretationModal
+                     template={template}
                      open={isAddInterpretationModalOpen}
                      onClose={() => setIsAddInterpretationModalOpen(false)}
                   />
