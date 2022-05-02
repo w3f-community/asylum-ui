@@ -4,13 +4,13 @@ import classNames from 'classnames'
 import { Button } from 'components/button'
 import { Card } from 'components/card'
 import { Hr } from 'components/hr'
+import { JsonRaw } from 'components/json-raw'
 import { SearchAutocomplete } from 'components/search-autocomplete'
 import { Tag } from 'components/tag'
 import { Heading } from 'components/text/heading'
 import { HeadingLg } from 'components/text/heading-lg'
 import { HeadingXl } from 'components/text/heading-xl'
 import { Paragraph } from 'components/text/paragraph'
-import hljs from 'highlight.js'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from 'react-query'
 import { Carousel } from 'react-responsive-carousel'
@@ -18,8 +18,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { fetchTemplate, fetchTemplateInterpretationsMetadata } from 'api'
 import { ReactComponent as ArrowLeftIcon } from 'assets/svg/arrow-left.svg'
-import { ReactComponent as CheckmarkIcon } from 'assets/svg/checkmark.svg'
-import { ReactComponent as CopyIcon } from 'assets/svg/copy.svg'
 import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
 import { useStore } from 'store'
 import { formatAddress } from 'utils'
@@ -30,17 +28,10 @@ export const TemplateOverview: React.FC = observer(() => {
    const store = useStore()
    const [seeMore, setSeeMore] = React.useState(false)
 
-   const [copied, setCopied] = React.useState(false)
-
-   const copiedMessage = copied ? 'copied' : 'copy'
-   const copiedIcon = copied ? <CheckmarkIcon /> : <CopyIcon />
-
    const { data: template } = useQuery(['templates', id], () => fetchTemplate(id || ''))
    const { data: interpretations } = useQuery(['interpretations', id], () =>
       fetchTemplateInterpretationsMetadata(id || '')
    )
-
-   console.log(interpretations)
 
    if (!template) return null
 
@@ -77,7 +68,6 @@ export const TemplateOverview: React.FC = observer(() => {
 
                <div className="flex gap-9">
                   <div className="basis-7/12">
-                     {/* <Paragraph className="mb-4">{game.shortDescription}</Paragraph> */}
                      <Carousel
                         className="demo-carousel overflow-hidden"
                         showIndicators={false}
@@ -130,42 +120,25 @@ export const TemplateOverview: React.FC = observer(() => {
                <div className="flex flex-col gap-6 pb-40">
                   {interpretations?.map((interpretation) => (
                      <Card key={interpretation.interpretation.id} className="py-3 px-4 relative">
-                        <div>
-                           <div
-                              className="flex gap-3 items-center basis-48 !absolute bottom-2 right-3 hover:bg-gray-200 cursor-pointer py-2 px-4 rounded-xl transition-all text-base flex items-center gap-2 font-secondary"
-                              onClick={() => {
-                                 navigator.clipboard.writeText(
-                                    JSON.stringify(interpretation.metadata, null, 2)
-                                 )
-                                 setCopied(true)
-                              }}
-                           >
-                              {copiedIcon} {copiedMessage}
+                        <div className="flex gap-9">
+                           <div className="basis-[170px]">
+                              <img
+                                 className="aspect-square object-cover object-center rounded-xl"
+                                 src={interpretation.interpretation.src}
+                                 alt={interpretation.interpretation.id}
+                              />
                            </div>
-                           <img
-                              className="aspect-square object-cover object-center rounded-xl w-[170px] h-[170px] float-left mr-6"
-                              src={interpretation.interpretation.src}
-                              alt={interpretation.interpretation.id}
-                           />
-                           <div className="grow">
+                           <div className="overflow-auto">
                               <Paragraph className="flex items-center mb-3 gap-1 justify-end">
                                  {interpretation.tags?.map((tag) => (
                                     <Tag key={tag}>{tag}</Tag>
                                  ))}
                               </Paragraph>
-                              <div>
-                                 <div className="bg-white text-gray-700 text-sm rounded-xl">
-                                    <pre
-                                       className="hljs-json overflow-auto"
-                                       dangerouslySetInnerHTML={{
-                                          __html: hljs.highlight(
-                                             'json',
-                                             JSON.stringify(interpretation.metadata, null, 2)
-                                          ).value,
-                                       }}
-                                    />
-                                 </div>
-                              </div>
+                              <JsonRaw
+                                 metadata={interpretation.metadata}
+                                 className="!p-0 static"
+                                 copyButtonClassName="-bottom-2 top-auto -right-0"
+                              />
                            </div>
                         </div>
                      </Card>

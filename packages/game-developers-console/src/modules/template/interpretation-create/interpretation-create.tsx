@@ -4,19 +4,15 @@ import { useEffect } from 'react'
 import { InputFileUpload } from 'components/input-file-upload'
 import { InputLabel } from 'components/input-label'
 import { InputSelect } from 'components/input-select'
+import { JsonRaw } from 'components/json-raw'
 import { FormikProps } from 'formik'
-import hljs from 'highlight.js'
 import { omit } from 'lodash/fp'
-import { observer } from 'mobx-react-lite'
 import { useQuery } from 'react-query'
 import { OptionProps, components } from 'react-select'
 
 import { AsylumApi, CID, TagMetadata } from '@asylum-ui/connection-library'
 
 import { fetchTags } from 'api'
-import { ReactComponent as CheckmarkIcon } from 'assets/svg/checkmark.svg'
-import { ReactComponent as CopyIcon } from 'assets/svg/copy.svg'
-import { useStore } from 'store'
 import { generateMetadata } from 'utils'
 
 interface IProps<T extends InterpretationFormValues> {
@@ -38,7 +34,6 @@ const Option = (props: OptionProps<TagMetadata, true>) => {
 
 export const InterpretationCreate = <T extends InterpretationFormValues>({ formik }: IProps<T>) => {
    const { data: tags } = useQuery('tags', () => fetchTags())
-   const [copied, setCopied] = React.useState(false)
    const [metadata, setMetadata] = React.useState<any>({})
 
    useEffect(() => {
@@ -51,19 +46,11 @@ export const InterpretationCreate = <T extends InterpretationFormValues>({ formi
       src: formik.values.src,
       metadata: omit(['conflictedTags', 'conflictedFields'], metadata),
    }
-   const metadataHtml = hljs.highlight('json', JSON.stringify(metadataFull, null, 2)).value
 
    const handleSourceLoad = async (buffer: ArrayBuffer) => {
       const CID = await AsylumApi.uploadFile(buffer)
       await formik.setFieldValue('src', CID)
    }
-
-   const copiedMessage = copied ? 'copied' : 'copy'
-   const copiedIcon = copied ? <CheckmarkIcon /> : <CopyIcon />
-
-   useEffect(() => {
-      setCopied(false)
-   }, [formik.values])
 
    return (
       <>
@@ -88,21 +75,7 @@ export const InterpretationCreate = <T extends InterpretationFormValues>({ formi
          />
          <div>
             <InputLabel className="mb-2">Raw Metadata</InputLabel>
-            <div className="bg-white text-gray-700 p-4 text-sm rounded-xl relative">
-               <div
-                  className="flex gap-3 items-center basis-48 !absolute top-2 right-3 hover:bg-gray-200 cursor-pointer py-2 px-4 rounded-xl transition-all text-base flex items-center gap-2 font-secondary"
-                  onClick={() => {
-                     navigator.clipboard.writeText(JSON.stringify(metadataFull, null, 2))
-                     setCopied(true)
-                  }}
-               >
-                  {copiedIcon} {copiedMessage}
-               </div>
-               <pre
-                  className="hljs-json overflow-auto"
-                  dangerouslySetInnerHTML={{ __html: metadataHtml }}
-               />
-            </div>
+            <JsonRaw metadata={metadataFull} />
          </div>
       </>
    )
