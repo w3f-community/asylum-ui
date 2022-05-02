@@ -102,22 +102,6 @@ export const TemplateCreateModal: React.FC<IProps> = observer(({ open, onClose }
                generateMetadata(values.tags).metadata
             )
 
-            console.log({
-               name: values.name,
-               metadata: templateMetadataCID,
-               max: 100,
-               interpretations: [
-                  {
-                     tags: map('id', values.tags),
-                     interpretation: {
-                        id: map('id', values.tags).join('-'),
-                        src: values.src || '',
-                        metadata: interpretationMetadataCID,
-                     },
-                  },
-               ],
-            })
-
             await mutation.mutate(
                {
                   name: values.name,

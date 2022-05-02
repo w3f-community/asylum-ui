@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Ref, useRef } from 'react'
 
 import classNames from 'classnames'
 import { Button } from 'components/button'
@@ -19,6 +20,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { fetchTemplate, fetchTemplateInterpretationsMetadata } from 'api'
 import { ReactComponent as ArrowLeftIcon } from 'assets/svg/arrow-left.svg'
 import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
+import { AddInterpretationModal } from 'pages/game-templates/add-interpretation-modal'
 import { useStore } from 'store'
 import { formatAddress } from 'utils'
 
@@ -27,6 +29,12 @@ export const TemplateOverview: React.FC = observer(() => {
    const navigate = useNavigate()
    const store = useStore()
    const [seeMore, setSeeMore] = React.useState(false)
+   const descriptionRef: Ref<HTMLDivElement> = useRef(null)
+   const isDescriptionClamped = descriptionRef.current
+      ? descriptionRef.current.scrollHeight > descriptionRef.current.clientHeight
+      : false
+
+   const [isModalOpen, setIsModalOpen] = React.useState(false)
 
    const { data: template } = useQuery(['templates', id], () => fetchTemplate(id || ''))
    const { data: interpretations } = useQuery(['interpretations', id], () =>
@@ -75,34 +83,39 @@ export const TemplateOverview: React.FC = observer(() => {
                         showThumbs={true}
                         showStatus={false}
                      >
-                        {[
+                        {interpretations?.map((interpretation) => (
                            <img
-                              key={0}
-                              src={template.img}
-                              alt={template.name}
+                              key={interpretation.interpretation.id}
+                              src={interpretation.interpretation.src}
+                              alt={interpretation.interpretation.id}
                               className="aspect-video object-cover object-center"
-                           />,
-                        ]}
+                           />
+                        ))}
                      </Carousel>
                   </div>
                   <div className="basis-5/12">
                      <Heading className="mb-4">Description</Heading>
-                     <div className={classNames({ 'line-clamp-15': !seeMore })}>
+                     <div
+                        ref={descriptionRef}
+                        className={classNames({ 'line-clamp-15': !seeMore })}
+                     >
                         {template?.description.split('\n').map((paragraph, index) => (
                            <Paragraph key={index} className="mb-3">
                               {paragraph}
                            </Paragraph>
                         ))}
                      </div>
-                     <a
-                        className={classNames(
-                           'cursor-pointer underline text-base text-asylum-blue',
-                           { hidden: seeMore }
-                        )}
-                        onClick={() => setSeeMore(true)}
-                     >
-                        See more
-                     </a>
+                     {isDescriptionClamped && (
+                        <a
+                           className={classNames(
+                              'cursor-pointer underline text-base text-asylum-blue',
+                              { hidden: seeMore }
+                           )}
+                           onClick={() => setSeeMore(true)}
+                        >
+                           See more
+                        </a>
+                     )}
                   </div>
                </div>
             </Card>
@@ -110,10 +123,19 @@ export const TemplateOverview: React.FC = observer(() => {
             <div>
                <div className="flex justify-between items-center mb-6">
                   <HeadingXl className="text-white">Interpretations</HeadingXl>
-                  <Button variant="light" onClick={() => {}}>
+                  <Button
+                     variant="light"
+                     onClick={() => {
+                        setIsModalOpen(true)
+                     }}
+                  >
                      <PlusIcon className="fill-text-base w-4 h-4 inline-block mr-2" /> add
                      interpretation
                   </Button>
+                  <AddInterpretationModal
+                     open={isModalOpen}
+                     onClose={() => setIsModalOpen(false)}
+                  />
                </div>
                <SearchAutocomplete onSelect={() => {}} className="mb-6" />
 
