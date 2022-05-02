@@ -25,7 +25,10 @@ export const GameCard: React.FC<IProps> = ({
       <div
          className={classNames([
             'group flex flex-col bg-white cursor-pointer basis-1/3 rounded-2xl transition-all duration-400 overflow-hidden',
-            { 'gradient-active-effect': active, 'gradient-hover-effect': !active },
+            {
+               'gradient-active-effect': active,
+               'gradient-hover-effect': !active,
+            },
             className,
          ])}
          onClick={() => onClick(id)}

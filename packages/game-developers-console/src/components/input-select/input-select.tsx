@@ -116,6 +116,7 @@ export const InputSelect = <OptionType extends any>({
                }),
                multiValueRemove: (base) => ({
                   ...base,
+                  color: 'white',
                   ':hover': {
                      ...base[':hover'],
                      borderTopRightRadius: '0.5rem',

@@ -1,1 +1,1 @@
-export { TemplateCreateModal } from './template-create-modal'
+export { TemplateCreateModal } from 'modules/template/template-create-modal'

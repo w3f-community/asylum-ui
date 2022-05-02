@@ -35,7 +35,10 @@ export const Modal: React.FC<IProps> = ({
       <>
          <ModalOverlay
             onClose={onClose}
-            className={classNames({ 'opacity-0 invisible': !open, 'opacity-100 visible': open })}
+            className={classNames({
+               'opacity-0 invisible': !open,
+               'opacity-100 visible': open,
+            })}
          >
             <ModalContent ref={modalRef} maxWidth={maxWidth}>
                <div className="flex align-middle justify-center relative py-3">

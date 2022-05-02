@@ -73,7 +73,10 @@ export const fetchTemplateInterpretationsMetadata = async (
             interpretation.interpretation.src = await getFile(imageSource)
          }
 
-         return { ...interpretation, metadata } as InterpretationWithMetadata
+         return {
+            ...interpretation,
+            metadata,
+         } as InterpretationWithMetadata
       }, interpretations)
    )
 }

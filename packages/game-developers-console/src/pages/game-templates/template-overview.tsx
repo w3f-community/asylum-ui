@@ -5,40 +5,65 @@ import classNames from 'classnames'
 import { Button } from 'components/button'
 import { Card } from 'components/card'
 import { Hr } from 'components/hr'
+import { InputSelect } from 'components/input-select'
 import { JsonRaw } from 'components/json-raw'
-import { SearchAutocomplete } from 'components/search-autocomplete'
 import { Tag } from 'components/tag'
 import { Heading } from 'components/text/heading'
 import { HeadingLg } from 'components/text/heading-lg'
 import { HeadingXl } from 'components/text/heading-xl'
 import { Paragraph } from 'components/text/paragraph'
+import { every, filter, includes, map } from 'lodash/fp'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from 'react-query'
 import { Carousel } from 'react-responsive-carousel'
 import { useNavigate, useParams } from 'react-router-dom'
+import { OptionProps, components } from 'react-select'
 
-import { fetchTemplate, fetchTemplateInterpretationsMetadata } from 'api'
+import { TagMetadata } from '@asylum-ui/connection-library'
+
+import { fetchTags, fetchTemplate, fetchTemplateInterpretationsMetadata } from 'api'
 import { ReactComponent as ArrowLeftIcon } from 'assets/svg/arrow-left.svg'
+import { ReactComponent as EditIcon } from 'assets/svg/pen.svg'
 import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
 import { AddInterpretationModal } from 'pages/game-templates/add-interpretation-modal'
-import { useStore } from 'store'
+import { EditTemplateModal } from 'pages/game-templates/edit-template-modal'
+import { InterpretationWithMetadata } from 'types'
 import { formatAddress } from 'utils'
+
+const Option = (props: OptionProps<TagMetadata, true>) => {
+   return (
+      <components.Option {...props}>
+         {props.label} <span className="text-gray-400">- {props.data.description}</span>
+      </components.Option>
+   )
+}
 
 export const TemplateOverview: React.FC = observer(() => {
    const { id } = useParams()
    const navigate = useNavigate()
-   const store = useStore()
+   const { data: tags } = useQuery('tags', () => fetchTags())
    const [seeMore, setSeeMore] = React.useState(false)
    const descriptionRef: Ref<HTMLDivElement> = useRef(null)
+   const [filterTags, setFilterTags] = React.useState<TagMetadata[]>([])
+   const [interpretationsFiltered, setInterpretationsFiltered] = React.useState<
+      InterpretationWithMetadata[]
+   >([])
    const isDescriptionClamped = descriptionRef.current
       ? descriptionRef.current.scrollHeight > descriptionRef.current.clientHeight
       : false
 
-   const [isModalOpen, setIsModalOpen] = React.useState(false)
+   const [isAddInterpretationModalOpen, setIsAddInterpretationModalOpen] = React.useState(false)
+   const [isEditTemplateModalOpen, setIsEditTemplateModalOpen] = React.useState(false)
 
    const { data: template } = useQuery(['templates', id], () => fetchTemplate(id || ''))
-   const { data: interpretations } = useQuery(['interpretations', id], () =>
-      fetchTemplateInterpretationsMetadata(id || '')
+   const { data: interpretations } = useQuery(
+      ['interpretations', id],
+      () => fetchTemplateInterpretationsMetadata(id || ''),
+      {
+         onSuccess(data) {
+            setInterpretationsFiltered(data)
+         },
+      }
    )
 
    if (!template) return null
@@ -58,10 +83,21 @@ export const TemplateOverview: React.FC = observer(() => {
          </div>
          <Hr />
          <div className="py-6 flex flex-col gap-8">
-            <Card>
+            <Card className="relative">
                <div className="flex gap-9 mb-5">
                   <div className="flex gap-4 basis-7/12 justify-between">
-                     <HeadingLg>{template.name}</HeadingLg>
+                     <HeadingLg className="flex gap-3 items-center">
+                        {template.name}
+                        <EditIcon
+                           className="hover:fill-asylum-magenta transition-all cursor-pointer mb-1"
+                           onClick={() => setIsEditTemplateModalOpen(true)}
+                        />
+                        <EditTemplateModal
+                           template={template}
+                           open={isEditTemplateModalOpen}
+                           onClose={() => setIsEditTemplateModalOpen(false)}
+                        />
+                     </HeadingLg>
                      <div className="font-secondary">
                         ID: <span className="font-light">{template.id}</span>
                      </div>
@@ -126,21 +162,60 @@ export const TemplateOverview: React.FC = observer(() => {
                   <Button
                      variant="light"
                      onClick={() => {
-                        setIsModalOpen(true)
+                        setIsAddInterpretationModalOpen(true)
                      }}
                   >
                      <PlusIcon className="fill-text-base w-4 h-4 inline-block mr-2" /> add
                      interpretation
                   </Button>
                   <AddInterpretationModal
-                     open={isModalOpen}
-                     onClose={() => setIsModalOpen(false)}
+                     open={isAddInterpretationModalOpen}
+                     onClose={() => setIsAddInterpretationModalOpen(false)}
                   />
                </div>
-               <SearchAutocomplete onSelect={() => {}} className="mb-6" />
+
+               <InputSelect
+                  placeholder="Filter by tags"
+                  name="tags"
+                  className="mb-9"
+                  value={filterTags}
+                  onChange={(value) => {
+                     setFilterTags(value as TagMetadata[])
+                     if (value.length) {
+                        setInterpretationsFiltered(
+                           filter(
+                              (interpretation) =>
+                                 every(
+                                    (tag) => includes(tag, interpretation.tags),
+                                    map('id', value)
+                                 ),
+                              interpretations
+                           ) as InterpretationWithMetadata[]
+                        )
+                     } else {
+                        setInterpretationsFiltered(interpretations || [])
+                     }
+                  }}
+                  options={tags || []}
+                  getOptionLabel={(option) => option.id}
+                  getOptionValue={(option) => option.id}
+                  Option={Option}
+               />
 
                <div className="flex flex-col gap-6 pb-40">
-                  {interpretations?.map((interpretation) => (
+                  {interpretationsFiltered.length === 0 && (
+                     <div className="text-white">
+                        <Paragraph className="flex gap-3 items-center">
+                           No interpretations found with set of tags:{' '}
+                           <div className="flex gap-1">
+                              {filterTags.map((tag) => (
+                                 <Tag key={tag.id}>{tag.id}</Tag>
+                              ))}
+                           </div>
+                        </Paragraph>
+                     </div>
+                  )}
+                  {interpretationsFiltered?.map((interpretation) => (
                      <Card key={interpretation.interpretation.id} className="py-3 px-4 relative">
                         <div className="flex gap-9">
                            <div className="basis-[170px]">

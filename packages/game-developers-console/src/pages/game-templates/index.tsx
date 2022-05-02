@@ -13,6 +13,7 @@ import { fetchTemplates } from 'api'
 import { TemplateCreate } from 'modules/template/template-create'
 import { TemplateWithMetadata } from 'types'
 
+
 interface IProps {}
 
 function GameTemplatesSkeleton() {

@@ -6,7 +6,7 @@ import { InputLabel } from 'components/input-label'
 import { InputSelect } from 'components/input-select'
 import { JsonRaw } from 'components/json-raw'
 import { FormikProps } from 'formik'
-import { omit } from 'lodash/fp'
+import { map, omit } from 'lodash/fp'
 import { useQuery } from 'react-query'
 import { OptionProps, components } from 'react-select'
 
@@ -24,6 +24,28 @@ export interface InterpretationFormValues {
    src: CID | null
 }
 
+export const validateInterpretation = (values: InterpretationFormValues) => {
+   const errors: any = {}
+
+   if (!values.tags.length) {
+      errors.tags = 'At least one tag is required'
+   }
+
+   if (values.tags.length) {
+      const { conflictedFields, conflictedTags } = generateMetadata(values.tags)
+      if (conflictedFields.length) {
+         errors.tags = `Tags ${JSON.stringify(
+            map('id', conflictedTags)
+         )} have conflicting metadata fields: ${JSON.stringify(conflictedFields)}`
+      }
+   }
+   if (!values.src) {
+      errors.src = 'Interpretation source is required'
+   }
+
+   return errors
+}
+
 const Option = (props: OptionProps<TagMetadata, true>) => {
    return (
       <components.Option {...props}>
@@ -32,7 +54,9 @@ const Option = (props: OptionProps<TagMetadata, true>) => {
    )
 }
 
-export const InterpretationCreate = <T extends InterpretationFormValues>({ formik }: IProps<T>) => {
+export const InterpretationCreateForm = <T extends InterpretationFormValues>({
+   formik,
+}: IProps<T>) => {
    const { data: tags } = useQuery('tags', () => fetchTags())
    const [metadata, setMetadata] = React.useState<any>({})
 

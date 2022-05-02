@@ -28,7 +28,10 @@ export const generateMetadata = (tags: TagMetadata[]) => {
       metadata: tags.slice(0).reduce(
          (result, tag) => {
             const fields = tag.metadataExtensions.fields.reduce((result, field) => {
-               return { ...result, [field.name]: field.defaultValue }
+               return {
+                  ...result,
+                  [field.name]: field.defaultValue,
+               }
             }, {})
 
             const intersections = intersection(keys(fields), keys(result))

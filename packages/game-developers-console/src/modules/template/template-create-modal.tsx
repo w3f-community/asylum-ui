@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import { Button } from 'components/button'
-import { InputField } from 'components/input-field'
 import { Modal } from 'components/modal'
 import { Tag } from 'components/tag'
 import { Paragraph } from 'components/text/paragraph'
@@ -18,18 +17,20 @@ import { SubmittableResult } from '@polkadot/api'
 import { fetchTags } from 'api'
 import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
 import {
-   InterpretationCreate,
+   InterpretationCreateForm,
    InterpretationFormValues,
-} from 'modules/template/interpretation-create'
+   validateInterpretation,
+} from 'modules/template/interpretation-create-form'
+import { TemplateCreateForm, validateTemplate } from 'modules/template/template-create-form'
 import { useStore } from 'store'
-import { formatAddress, generateMetadata } from 'utils'
+import { generateMetadata } from 'utils'
 
 interface IProps {
    open: boolean
    onClose?: () => void
 }
 
-interface TemplateFormValues {
+export interface TemplateFormValues {
    name: string
    issuer: string
    description: string
@@ -69,28 +70,13 @@ export const TemplateCreateModal: React.FC<IProps> = observer(({ open, onClose }
       },
       validate: (values) => {
          const errors: any = {}
-         if (!values.name) {
-            errors.name = 'Name is required'
-         }
-         if (!values.description) {
-            errors.description = 'Description is required'
-         }
+
          if (!find({ id: 'default-view' }, values.tags)) {
             errors.tags =
                'Template should include at least one interpretation with "default-view" tag'
          }
-         if (values.tags.length) {
-            const { conflictedFields, conflictedTags } = generateMetadata(values.tags)
-            if (conflictedFields.length) {
-               errors.tags = `Tags ${JSON.stringify(
-                  map('id', conflictedTags)
-               )} have conflicting metadata fields: ${JSON.stringify(conflictedFields)}`
-            }
-         }
-         if (!values.src) {
-            errors.src = 'Interpretation source is required'
-         }
-         return errors
+
+         return { ...errors, ...validateTemplate(values), ...validateInterpretation(values) }
       },
       onSubmit: async (values, { setSubmitting, resetForm }) => {
          setSubmitting(true)
@@ -149,42 +135,15 @@ export const TemplateCreateModal: React.FC<IProps> = observer(({ open, onClose }
          maxWidth="2xl"
       >
          <div className="p-4 flex flex-col gap-4 pb-8">
-            <div className="flex gap-4">
-               <InputField
-                  className="basis-8/12"
-                  label="Name"
-                  placeholder="Name"
-                  name="name"
-                  value={formik.values.name}
-                  onChange={formik.handleChange}
-                  errorMessage={(formik.touched.name && formik.errors.name) as string}
-               />
-               <InputField
-                  className="basis-4/12"
-                  value={formatAddress(formik.values.issuer || '')}
-                  label="Issuer"
-                  placeholder="Issuer Address"
-                  name="issuer"
-                  disabled
-               />
-            </div>
-            <InputField
-               label="Description"
-               placeholder="Description"
-               name="description"
-               type="textarea"
-               rows={3}
-               value={formik.values.description}
-               onChange={formik.handleChange}
-               errorMessage={(formik.touched.description && formik.errors.description) as string}
-            />
+            <TemplateCreateForm formik={formik} />
+
             <Paragraph className="text-white mt-2 ml-1">
                You have to create at least one interpretation with tag{' '}
                <Tag className=" mx-[1px]">default-view</Tag>, which will be used for marketplace
                representation or inventory.
             </Paragraph>
 
-            <InterpretationCreate formik={formik} />
+            <InterpretationCreateForm formik={formik} />
 
             <Button variant="light" className="mt-7" onClick={formik.submitForm}>
                <PlusIcon className="fill-text-base w-4 h-4 inline-block mr-2" /> create template
