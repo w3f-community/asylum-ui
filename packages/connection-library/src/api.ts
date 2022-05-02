@@ -220,6 +220,10 @@ class AsylumApi {
       return this.signAndSendWrapped(tx)
    }
 
+   async updateTemplate(templateId: number, proposalId: number): Promise<SubmittableResult> {
+      return this.signAndSendWrapped(this.api!.tx.asylumCore.updateTemplate(templateId, proposalId))
+   }
+
    async template(id: string): Promise<Template> {
       const template: any = (await this.api!.query.rmrkCore.collections(id)).toHuman()
       return {
