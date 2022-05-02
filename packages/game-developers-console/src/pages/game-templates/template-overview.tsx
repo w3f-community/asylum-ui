@@ -26,6 +26,7 @@ import { ReactComponent as ArrowLeftIcon } from 'assets/svg/arrow-left.svg'
 import { ReactComponent as EditIcon } from 'assets/svg/pen.svg'
 import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
 import { AddInterpretationModal } from 'pages/game-templates/add-interpretation-modal'
+import { EditInterpretationModal } from 'pages/game-templates/edit-interpretation-modal'
 import { EditTemplateModal } from 'pages/game-templates/edit-template-modal'
 import { InterpretationWithMetadata } from 'types'
 import { formatAddress } from 'utils'
@@ -54,6 +55,7 @@ export const TemplateOverview: React.FC = observer(() => {
 
    const [isAddInterpretationModalOpen, setIsAddInterpretationModalOpen] = React.useState(false)
    const [isEditTemplateModalOpen, setIsEditTemplateModalOpen] = React.useState(false)
+   const [isEditInterpretationModalOpen, setIsEditInterpretationModalOpen] = React.useState(false)
 
    const { data: template } = useQuery(['templates', id], () => fetchTemplate(id || ''))
    const { data: interpretations } = useQuery(
@@ -66,6 +68,9 @@ export const TemplateOverview: React.FC = observer(() => {
       }
    )
 
+   const [interpretationEdited, setInterpretationEdited] =
+      React.useState<InterpretationWithMetadata | null>(null)
+   const [tagsEdited, setTagsEdited] = React.useState<TagMetadata[]>([])
    if (!template) return null
 
    return (
@@ -172,6 +177,16 @@ export const TemplateOverview: React.FC = observer(() => {
                      open={isAddInterpretationModalOpen}
                      onClose={() => setIsAddInterpretationModalOpen(false)}
                   />
+                  <EditInterpretationModal
+                     tags={tagsEdited}
+                     interpretation={interpretationEdited || undefined}
+                     open={isEditInterpretationModalOpen}
+                     onClose={() => {
+                        setIsEditInterpretationModalOpen(false)
+                        setTagsEdited([])
+                        setInterpretationEdited(null)
+                     }}
+                  />
                </div>
 
                <InputSelect
@@ -217,6 +232,19 @@ export const TemplateOverview: React.FC = observer(() => {
                   )}
                   {interpretationsFiltered?.map((interpretation) => (
                      <Card key={interpretation.interpretation.id} className="py-3 px-4 relative">
+                        <div
+                           className="flex gap-3 items-center basis-48 !absolute top-2 right-3 hover:bg-gray-200 cursor-pointer py-2 px-4 rounded-xl transition-all text-base flex items-center gap-2 font-secondary absolute bottom-2 right-3 top-auto"
+                           onClick={() => {
+                              setIsEditInterpretationModalOpen(true)
+                              setTagsEdited(
+                                 filter((tag) => interpretation.tags.includes(tag.id), tags)
+                              )
+                              setInterpretationEdited(interpretation)
+                           }}
+                        >
+                           <EditIcon />
+                           edit
+                        </div>
                         <div className="flex gap-9">
                            <div className="basis-[170px]">
                               <img
@@ -234,7 +262,7 @@ export const TemplateOverview: React.FC = observer(() => {
                               <JsonRaw
                                  metadata={interpretation.metadata}
                                  className="!p-0 !static"
-                                 copyButtonClassName="bottom-2 top-auto right-3"
+                                 copyButtonClassName="bottom-2 top-auto right-20"
                               />
                            </div>
                         </div>
