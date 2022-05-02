@@ -3,9 +3,7 @@ import * as React from 'react'
 import { Modal } from 'components/modal'
 import { useFormik } from 'formik'
 import { find, map } from 'lodash/fp'
-import { useQuery } from 'react-query'
 
-import { fetchTags } from 'api'
 import {
    InterpretationCreate,
    InterpretationFormValues,
@@ -18,14 +16,11 @@ interface IProps {
 }
 
 export const AddInterpretationModal: React.FC<IProps> = ({ open, onClose }) => {
-   const { data: tags } = useQuery('tags', () => fetchTags())
-   const defaultTag = find({ id: 'default-view' }, tags)
-
    const formik = useFormik<InterpretationFormValues>({
       enableReinitialize: true,
       validateOnChange: true,
       initialValues: {
-         tags: defaultTag ? [defaultTag] : [],
+         tags: [],
          src: null,
       },
       validate: (values) => {
