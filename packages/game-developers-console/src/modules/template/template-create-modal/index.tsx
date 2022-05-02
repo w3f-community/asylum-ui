@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Button } from 'components/button'
 import { InputField } from 'components/input-field'
 import { Modal } from 'components/modal'
+import { Tag } from 'components/tag'
 import { Paragraph } from 'components/text/paragraph'
 import { useFormik } from 'formik'
 import 'highlight.js/styles/github.css'
@@ -101,6 +102,22 @@ export const TemplateCreateModal: React.FC<IProps> = observer(({ open, onClose }
                generateMetadata(values.tags).metadata
             )
 
+            console.log({
+               name: values.name,
+               metadata: templateMetadataCID,
+               max: 100,
+               interpretations: [
+                  {
+                     tags: map('id', values.tags),
+                     interpretation: {
+                        id: map('id', values.tags).join('-'),
+                        src: values.src || '',
+                        metadata: interpretationMetadataCID,
+                     },
+                  },
+               ],
+            })
+
             await mutation.mutate(
                {
                   name: values.name,
@@ -179,10 +196,8 @@ export const TemplateCreateModal: React.FC<IProps> = observer(({ open, onClose }
             />
             <Paragraph className="text-white mt-2 ml-1">
                You have to create at least one interpretation with tag{' '}
-               <span className="bg-asylum-blue rounded-lg text-white py-1 px-2 mx-[1px]">
-                  default-view
-               </span>
-               , which will be used for marketplace representation or inventory.
+               <Tag className=" mx-[1px]">default-view</Tag>, which will be used for marketplace
+               representation or inventory.
             </Paragraph>
 
             <InterpretationCreate formik={formik} />

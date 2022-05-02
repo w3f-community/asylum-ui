@@ -9,7 +9,7 @@ import {
 
 import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
 import { GameWithMetadata } from 'store/app-store'
-import { TemplateWithMetadata } from 'types'
+import { InterpretationWithMetadata, TemplateWithMetadata } from 'types'
 import { getAllFiles, getFile } from 'utils'
 
 export const fetchGamesByAccount = async (
@@ -34,7 +34,6 @@ export const fetchPlayersCount = async (): Promise<number> => {
 }
 
 export const fetchTags = async (): Promise<TagMetadata[]> => {
-   console.log('call refetch')
    const tags = await api.tags()
    return (await getAllFiles(map('metadata', tags))) as TagMetadata[]
 }
@@ -58,6 +57,25 @@ export const fetchTemplateMetadata = async (template: Template): Promise<Templat
       description: metadata.description,
       img: imageSource || '',
    }
+}
+
+export const fetchTemplateInterpretationsMetadata = async (
+   id: string
+): Promise<InterpretationWithMetadata[]> => {
+   const interpretations = await api.templateInterpretations(id)
+
+   return Promise.all(
+      map(async (interpretation) => {
+         const metadata = await getFile(interpretation.interpretation.metadata || '')
+         const imageSource = interpretation.interpretation.src
+         if (imageSource && !imageSource.startsWith('http') && !imageSource.startsWith('/')) {
+            metadata.src = interpretation.interpretation.src
+            interpretation.interpretation.src = await getFile(imageSource)
+         }
+
+         return { ...interpretation, metadata } as InterpretationWithMetadata
+      }, interpretations)
+   )
 }
 
 export const fetchTemplate = async (id: string): Promise<TemplateWithMetadata> => {

@@ -5,7 +5,6 @@ import reportWebVitals from './reportWebVitals'
 import { App } from 'App'
 import ReactDOM from 'react-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
 import { BrowserRouter } from 'react-router-dom'
 
 import { AsylumApiProvider } from 'context/api-provider'
@@ -17,7 +16,6 @@ const queryClient = new QueryClient()
 ReactDOM.render(
    <React.StrictMode>
       <QueryClientProvider client={queryClient}>
-         <ReactQueryDevtools initialIsOpen={false} />
          <BrowserRouter>
             <ScrollToTop />
             <StoreProvider>

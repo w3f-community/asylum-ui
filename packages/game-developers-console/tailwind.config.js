@@ -41,6 +41,9 @@ module.exports = {
                800: '#131313',
             },
          },
+         lineClamp: {
+            15: '15',
+         },
       },
    },
    plugins: [
