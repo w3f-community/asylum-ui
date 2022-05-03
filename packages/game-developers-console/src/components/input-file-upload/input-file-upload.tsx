@@ -39,6 +39,7 @@ export const InputFileUpload: React.FC<IProps> = ({
          setFile(null)
          setImage(null)
       } else {
+         console.log('value', value)
          if (!value.startsWith('http') && !value.startsWith('/')) {
             getFile(value).then(setImage)
          } else {

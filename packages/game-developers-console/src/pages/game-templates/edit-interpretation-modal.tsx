@@ -32,7 +32,7 @@ export const EditInterpretationModal: React.FC<IProps> = ({
       validateOnChange: true,
       initialValues: {
          tags,
-         src: interpretation?.interpretation.src || '',
+         src: interpretation?.metadata.src || interpretation?.interpretation.src || '',
       },
       validate: validateInterpretation,
       onSubmit: async (values, { setSubmitting }) => {
