@@ -7,7 +7,6 @@ import { Paragraph } from 'components/text/paragraph'
 
 import { Review } from '@asylum-ui/connection-library'
 
-import { MOCK_ADDRESS } from 'context/mocks'
 import { formatAddress } from 'utils'
 
 interface IReviewProps {
@@ -22,7 +21,7 @@ export const ReviewCard: React.FC<IReviewProps> = ({ review }) => {
                <div className="flex items-center">
                   <Avatar />
                   <div className="pl-4">
-                     <Paragraph>{formatAddress(MOCK_ADDRESS)}</Paragraph>
+                     <Paragraph>{formatAddress(review.address)}</Paragraph>
                   </div>
                </div>
                <div className="flex justify-center items-center">
