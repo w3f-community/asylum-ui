@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Button } from 'components/button'
 import { Modal } from 'components/modal'
 import { useFormik } from 'formik'
-import { find, map } from 'lodash/fp'
+import { map } from 'lodash/fp'
 import { useMutation, useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
 
@@ -52,9 +52,11 @@ export const AddInterpretationModal: React.FC<IProps> = ({ template, open, onClo
       ({ templateId, proposalId }: TemplateUpdateProps): Promise<SubmittableResult> =>
          AsylumApi.updateTemplate(templateId, proposalId),
       {
-         onSuccess: () => {
-            queryClient.invalidateQueries(['interpretations', template.id])
-            queryClient.invalidateQueries(['templates', template.id])
+         onSuccess: async () => {
+            setTimeout(() => {
+               queryClient.invalidateQueries(['interpretations', template.id])
+               queryClient.invalidateQueries(['templates', template.id])
+            }, 400)
          },
       }
    )
@@ -93,8 +95,6 @@ export const AddInterpretationModal: React.FC<IProps> = ({ template, open, onClo
             const proposalId = await AsylumApi.nextProposalId()
 
             const templateId = parseInt(template.id)
-
-            console.log(AsylumApi.address, parseInt(template.id), changeSet, proposalId)
 
             await mutation.mutateAsync(
                {

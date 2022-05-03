@@ -6,7 +6,7 @@ import { useFormik } from 'formik'
 
 import { TagMetadata } from '@asylum-ui/connection-library'
 
-import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
+import { ReactComponent as EditIcon } from 'assets/svg/pen.svg'
 import {
    InterpretationCreateForm,
    InterpretationFormValues,
@@ -59,7 +59,7 @@ export const EditInterpretationModal: React.FC<IProps> = ({
          <div className="p-4 flex flex-col gap-4 pb-8">
             <InterpretationCreateForm formik={formik} />
             <Button variant="light" className="mt-7" onClick={formik.submitForm}>
-               <PlusIcon className="fill-text-base w-4 h-4 inline-block mr-2" /> edit interpretation
+               <EditIcon className="group-hover:fill-white inline-block mr-2" /> edit interpretation
             </Button>
          </div>
       </Modal>

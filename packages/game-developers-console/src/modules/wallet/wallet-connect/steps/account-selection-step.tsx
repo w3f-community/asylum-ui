@@ -49,8 +49,6 @@ export const AccountSelectionStep: React.FC<IWalletStepProps> = observer(
          store.setSelectedGame(null)
          store.setAccount(account)
          const injector = await web3FromAddress(account.address)
-         console.log(account.address)
-         console.log(injector.signer)
          AsylumApi.withInjectedSigner(account.address, injector.signer)
          setTimeout(() => nextStep(WalletConnectStepType.Connected), 150)
          onClose()

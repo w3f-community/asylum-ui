@@ -36,7 +36,7 @@ export const Modal: React.FC<IProps> = ({
          <ModalOverlay
             onClose={onClose}
             className={classNames({
-               'opacity-0 invisible': !open,
+               'opacity-0 invisible pointer-events-none': !open,
                'opacity-100 visible': open,
             })}
          >
