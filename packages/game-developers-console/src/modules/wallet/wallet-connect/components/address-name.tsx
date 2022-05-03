@@ -1,6 +1,7 @@
-import { Button } from 'components/button'
-import { Avatar } from 'components/avatar'
 import * as React from 'react'
+
+import { Avatar } from 'components/avatar'
+import { Button } from 'components/button'
 
 interface IProps {
    name?: string

@@ -1,14 +1,16 @@
 import * as React from 'react'
-import { Modal } from 'components/modal'
-import { Button } from 'components/button'
+
 import classNames from 'classnames'
-import { observer } from 'mobx-react-lite'
-import { useStore } from 'store'
-import { useAsylumApi } from 'context/api-provider'
-import { INetwork } from 'types'
-import { useNavigate } from 'react-router-dom'
-import { AsylumApi } from '@asylum-ui/connection-library'
+import { Button } from 'components/button'
+import { Modal } from 'components/modal'
 import { Paragraph } from 'components/text/paragraph'
+import { observer } from 'mobx-react-lite'
+import { useNavigate } from 'react-router-dom'
+
+import { AsylumApi } from '@asylum-ui/connection-library'
+
+import { useStore } from 'store'
+import { INetwork } from 'types'
 
 interface IProps {
    open: boolean
@@ -22,7 +24,6 @@ const LOCAL_NODE: INetwork = {
 
 export const ServerConnectModal: React.FC<IProps> = observer(({ open, onClose }) => {
    const store = useStore()
-   const api = useAsylumApi()
    const navigate = useNavigate()
 
    const [error, setError] = React.useState<string | null>(null)
@@ -39,7 +40,7 @@ export const ServerConnectModal: React.FC<IProps> = observer(({ open, onClose })
    }
    const handleDisconnect = async () => {
       onClose && onClose()
-      await api.disconnect()
+      await AsylumApi.disconnect()
       onDisconnected()
    }
 

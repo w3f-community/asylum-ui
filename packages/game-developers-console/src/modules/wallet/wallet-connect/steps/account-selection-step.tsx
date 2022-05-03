@@ -1,14 +1,18 @@
 import * as React from 'react'
 import { useEffect } from 'react'
-import { observer } from 'mobx-react-lite'
-import { useStore } from 'store'
-import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
-import { web3Accounts } from '@polkadot/extension-dapp'
-import { Paragraph } from 'components/text/paragraph'
-import { Button } from 'components/button'
-import { Avatar } from 'components/avatar'
-import { formatAddress } from 'utils'
+
 import { IWalletStepProps, WalletConnectStepType } from './index'
+import { web3Accounts, web3FromAddress } from '@polkadot/extension-dapp'
+import { Avatar } from 'components/avatar'
+import { Button } from 'components/button'
+import { Paragraph } from 'components/text/paragraph'
+import { observer } from 'mobx-react-lite'
+
+import { AsylumApi } from '@asylum-ui/connection-library'
+
+import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
+import { useStore } from 'store'
+import { formatAddress } from 'utils'
 
 interface IAccountRowProps {
    account: InjectedAccountWithMeta
@@ -41,9 +45,11 @@ export const AccountSelectionStep: React.FC<IWalletStepProps> = observer(
       const store = useStore()
       const [accounts, setAccounts] = React.useState<InjectedAccountWithMeta[]>([])
 
-      const handleConnect = (account: InjectedAccountWithMeta) => {
+      const handleConnect = async (account: InjectedAccountWithMeta) => {
          store.setSelectedGame(null)
          store.setAccount(account)
+         const injector = await web3FromAddress(account.address)
+         AsylumApi.withInjectedSigner(account.address, injector.signer)
          setTimeout(() => nextStep(WalletConnectStepType.Connected), 150)
          onClose()
       }

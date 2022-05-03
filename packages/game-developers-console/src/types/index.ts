@@ -1,21 +1,16 @@
-export interface ITemplate {
-   title: string
-   img: string
-   id: number
+import { Interpretation, Template } from '@asylum-ui/connection-library'
+
+export interface TemplateWithMetadata extends Template {
    description: string
+   img: string
+}
+
+export interface InterpretationWithMetadata extends Interpretation {
+   metadata: any
 }
 
 export interface IComponentProps {
    className?: string
-}
-
-export interface Review {
-   id: string
-   name?: string
-   text?: string
-   date?: string
-   rating: number
-   address: string
 }
 
 export interface INetwork {

@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { IComponentProps } from 'types'
+
 import classNames from 'classnames'
 
+import { IComponentProps } from 'types'
+
 interface IProps extends IComponentProps {
-   children: React.ReactText
+   children?: React.ReactNode
 }
 
 export const HeadingLg: React.FC<IProps> = ({ className, children }) => {

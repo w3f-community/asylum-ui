@@ -1,6 +1,8 @@
-import { ReactComponent as WalletIcon } from 'assets/svg/wallet.svg'
-import { Paragraph } from 'components/text/paragraph'
 import * as React from 'react'
+
+import { Paragraph } from 'components/text/paragraph'
+
+import { ReactComponent as WalletIcon } from 'assets/svg/wallet.svg'
 
 interface IProps {}
 

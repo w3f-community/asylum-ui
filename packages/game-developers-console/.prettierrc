@@ -3,5 +3,13 @@
   "singleQuote": true,
   "useTabs": false,
   "semi": false,
-  "printWidth": 100
+  "printWidth": 100,
+  "importOrder": [
+    "^react$",
+    "<THIRD_PARTY_MODULES>",
+    "^@asylum-ui/(.*)",
+    "types|store|utils|hooks|layout|pages|modules|context|assets|api"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

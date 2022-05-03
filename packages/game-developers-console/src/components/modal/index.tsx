@@ -1,19 +1,28 @@
 import * as React from 'react'
-import { Heading } from '../text/heading'
-import { IComponentProps } from 'types'
-import { ReactComponent as CloseIcon } from 'assets/svg/close.svg'
-import { Transition } from '@headlessui/react'
 import { forwardRef, useRef } from 'react'
-import { useClickOutsideCallback } from 'hooks'
+
+import { Heading } from '../text/heading'
+import classNames from 'classnames'
+import ReactDOM from 'react-dom'
+
+import { ReactComponent as CloseIcon } from 'assets/svg/close.svg'
+import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {
    open?: boolean
    title?: React.ReactText
    children: React.ReactNode
    onClose?: () => void
+   maxWidth?: 'md' | 'lg' | 'xl' | '2xl' | 'full'
 }
 
-export const Modal: React.FC<IProps> = ({ title, open = false, onClose, children }) => {
+export const Modal: React.FC<IProps> = ({
+   title,
+   open = false,
+   onClose,
+   maxWidth = 'xl',
+   children,
+}) => {
    if (open) {
       document.body.style.overflow = 'hidden'
    } else {
@@ -21,20 +30,17 @@ export const Modal: React.FC<IProps> = ({ title, open = false, onClose, children
    }
 
    const modalRef = useRef<HTMLDivElement>(null)
-   useClickOutsideCallback(modalRef, onClose)
 
-   return (
-      <Transition
-         show={open}
-         enter="transition-opacity duration-150"
-         enterFrom="opacity-0"
-         enterTo="opacity-100"
-         leave="transition-opacity duration-75"
-         leaveFrom="opacity-100"
-         leaveTo="opacity-0"
-      >
-         <ModalOverlay>
-            <ModalContent ref={modalRef}>
+   return ReactDOM.createPortal(
+      <>
+         <ModalOverlay
+            onClose={onClose}
+            className={classNames({
+               'opacity-0 invisible pointer-events-none': !open,
+               'opacity-100 visible': open,
+            })}
+         >
+            <ModalContent ref={modalRef} maxWidth={maxWidth}>
                <div className="flex align-middle justify-center relative py-3">
                   {title && <Heading className="text-white">{title}</Heading>}{' '}
                   <CloseIcon
@@ -45,25 +51,48 @@ export const Modal: React.FC<IProps> = ({ title, open = false, onClose, children
                {children}
             </ModalContent>
          </ModalOverlay>
-      </Transition>
+      </>,
+      // @ts-ignore
+      document.getElementById('modal-root')
    )
 }
 
-const ModalContent = forwardRef<HTMLDivElement, IProps>(({ children }, ref) => (
-   <div
-      ref={ref}
-      className="bg-gray-700 rounded-3xl p-4 text-white w-full max-w-xl cursor-auto md:ml-52 lg:ml-72"
-   >
-      {children}
-   </div>
-))
+const ModalContent = forwardRef<HTMLDivElement, IProps>(({ maxWidth, children }, ref) => {
+   return (
+      <div
+         onClick={(e) => e.stopPropagation()}
+         ref={ref}
+         className={classNames(
+            'bg-gray-700 rounded-3xl p-4 text-white w-full cursor-auto md:ml-52 lg:ml-72 mt-auto mb-auto',
+            {
+               'max-w-md': maxWidth === 'md',
+               'max-w-lg': maxWidth === 'lg',
+               'max-w-xl': maxWidth === 'xl',
+               'max-w-2xl': maxWidth === '2xl',
+               'max-w-full': maxWidth === 'full',
+            }
+         )}
+      >
+         {children}
+      </div>
+   )
+})
+
 ModalContent.displayName = 'ModalContent'
 
-interface IModalOverlayProps extends IComponentProps {}
+interface IModalOverlayProps extends IComponentProps {
+   onClose?: () => void
+}
 
-const ModalOverlay: React.FC<IModalOverlayProps> = ({ children }) => {
+const ModalOverlay: React.FC<IModalOverlayProps> = ({ onClose, className, children }) => {
    return (
-      <div className="fixed inset-0 z-30 flex items-center justify-center bg-gradient-overlay cursor-pointer">
+      <div
+         className={classNames(
+            'fixed inset-0 z-30 flex items-center justify-center bg-gradient-overlay cursor-pointer transition-all overflow-auto py-4',
+            className
+         )}
+         onClick={() => onClose && onClose()}
+      >
          {children}
       </div>
    )

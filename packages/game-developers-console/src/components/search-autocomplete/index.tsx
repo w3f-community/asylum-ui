@@ -1,10 +1,12 @@
-import { Heading } from 'components/text/heading'
 import * as React from 'react'
-import { TextField } from 'components/text-field'
-import { ReactComponent as SearchIcon } from 'assets/svg/search.svg'
-import { ReactComponent as CloseIcon } from 'assets/svg/close-thin.svg'
-import { IComponentProps } from 'types'
+
 import classNames from 'classnames'
+import { InputField } from 'components/input-field'
+import { Heading } from 'components/text/heading'
+
+import { ReactComponent as CloseIcon } from 'assets/svg/close.svg'
+import { ReactComponent as SearchIcon } from 'assets/svg/search.svg'
+import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {
    onSelect: (value: string) => void
@@ -53,7 +55,7 @@ export const SearchAutocomplete: React.FC<IProps> = ({
 
    const filterVariants = (value: string) => {
       const filteredVariants = variants.filter((variant) =>
-         variant.toLowerCase().includes(value.toLowerCase())
+         variant?.toLowerCase().includes(value.toLowerCase())
       )
       setSuggestions(filteredVariants)
    }
@@ -79,12 +81,13 @@ export const SearchAutocomplete: React.FC<IProps> = ({
    return (
       <div
          className={classNames(
-            'bg-black flex flex-col items-start rounded-2xl mt-[-2px] relative',
+            'bg-black flex flex-col items-start rounded-2xl relative z-10',
             className
          )}
       >
-         <TextField
-            className="relative z-20"
+         <InputField
+            className="z-0"
+            name="search"
             value={inputValue}
             onChange={handleChange}
             placeholder="Search by template id, name or owner"
@@ -104,7 +107,7 @@ export const SearchAutocomplete: React.FC<IProps> = ({
             }
             onKeyPress={(e) => e.key === 'Enter' && handleSelect(inputValue)}
          />
-         <div className="w-full rounded-b-2xl overflow-hidden bg-gray-800 absolute top-full z-10 -mt-4">
+         <div className="w-full rounded-b-2xl overflow-hidden bg-gray-800 absolute top-full -mt-4 -z-10">
             {inputValue && isOpen && (
                <>
                   <Variant

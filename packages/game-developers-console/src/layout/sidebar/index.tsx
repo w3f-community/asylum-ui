@@ -1,14 +1,16 @@
 import * as React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { IComponentProps } from 'types'
+
 import { Avatar } from 'components/avatar'
+import { Button } from 'components/button'
 import { HeadingLg } from 'components/text/heading-lg'
 import { Paragraph } from 'components/text/paragraph'
-import { Button } from 'components/button'
-import { ReactComponent as PlayIcon } from 'assets/svg/play.svg'
 import { observer } from 'mobx-react-lite'
-import { useStore } from 'store'
+import { useLocation, useNavigate } from 'react-router-dom'
+
+import { ReactComponent as PlayIcon } from 'assets/svg/play.svg'
 import { ServerConnect } from 'modules/server-connect'
+import { useStore } from 'store'
+import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {}
 

@@ -10,6 +10,7 @@
 .carousel .thumbs {
    @apply text-center;
 }
+
 .carousel .thumbs .thumb img {
    @apply rounded-md;
 }

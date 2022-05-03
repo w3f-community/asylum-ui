@@ -1,27 +1,32 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+
 import './index.css'
 import reportWebVitals from './reportWebVitals'
 import { App } from 'App'
+import ReactDOM from 'react-dom'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter } from 'react-router-dom'
-import { StoreProvider } from 'store'
+
 import { AsylumApiProvider } from 'context/api-provider'
+import { StoreProvider } from 'store'
+import { ScrollToTop } from 'utils/scroll-to-top'
+
+const queryClient = new QueryClient()
 
 ReactDOM.render(
    <React.StrictMode>
-      <BrowserRouter>
-         <StoreProvider>
-            <AsylumApiProvider>
-               <App />
-            </AsylumApiProvider>
-         </StoreProvider>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+         <BrowserRouter>
+            <ScrollToTop />
+            <StoreProvider>
+               <AsylumApiProvider>
+                  <App />
+               </AsylumApiProvider>
+            </StoreProvider>
+         </BrowserRouter>
+      </QueryClientProvider>
    </React.StrictMode>,
    document.getElementById('root')
 )
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals()
-export { ReviewCard } from './components/review-item'

@@ -1,30 +1,43 @@
 import * as React from 'react'
+
 import { Button } from 'components/button'
 import { Card } from 'components/card'
 import { Heading } from 'components/text/heading'
-import { Paragraph } from 'components/text/paragraph'
 import { HeadingLg } from 'components/text/heading-lg'
+import { Paragraph } from 'components/text/paragraph'
+import { useQuery } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 
-interface IProps { }
+import { fetchPlayersCount } from 'api'
+import { GameWithMetadata } from 'store/app-store'
 
-export const Details: React.FC<IProps> = () => {
+interface IProps {
+   game: GameWithMetadata
+}
+
+export const Details: React.FC<IProps> = ({ game }) => {
+   const { data: playersCount } = useQuery('playersCount', () => fetchPlayersCount())
+   const navigate = useNavigate()
+
    return (
       <Card className="mb-16">
          <HeadingLg className="mb-5">Details</HeadingLg>
          <div className="flex flex-row justify-between">
             <div className="grow">
                <Heading>Number of players:</Heading>
-               <Paragraph className="font-secondary">2085</Paragraph>
+               <Paragraph className="font-secondary">{playersCount}</Paragraph>
             </div>
             <div className="grow">
                <Heading>Minted items:</Heading>
-               <Paragraph className="font-secondary">2085</Paragraph>
+               <Paragraph className="font-secondary">0</Paragraph>
             </div>
             <div className="grow">
-               <Heading>Assosiated templates:</Heading>
-               <Paragraph className="font-secondary">2085</Paragraph>
+               <Heading>Associated templates:</Heading>
+               <Paragraph className="font-secondary">{game.templates?.length || 0}</Paragraph>
             </div>
-            <Button variant="dark">show all templates</Button>
+            <Button variant="dark" onClick={() => navigate('/templates')}>
+               show all templates
+            </Button>
          </div>
       </Card>
    )

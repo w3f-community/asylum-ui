@@ -14,9 +14,10 @@
       "seed:local": "yarn build && npx ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" -r dotenv/config  seed/index.ts dotenv_config_path=.env.local"
    },
    "dependencies": {
-      "@polkadot/api": "^8.0.2",
+      "@polkadot/api": "^8.3.1",
       "ipfs-http-client": "^56.0.2",
-      "ipfs-core": "^0.14.2"
+      "ipfs-core": "^0.14.2",
+      "lodash": "^4.17.21"
    },
    "devDependencies": {
       "dotenv": "^16.0.0",

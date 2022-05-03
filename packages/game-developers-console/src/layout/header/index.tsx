@@ -1,9 +1,11 @@
 import * as React from 'react'
+
 import { Hr } from 'components/hr'
-import { IComponentProps } from 'types'
-import { WalletConnect } from 'modules/wallet'
 import { observer } from 'mobx-react-lite'
+
+import { WalletConnect } from 'modules/wallet'
 import { useStore } from 'store'
+import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {}
 

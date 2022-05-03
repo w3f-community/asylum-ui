@@ -1,7 +1,9 @@
-import { Modal } from 'components/modal'
 import * as React from 'react'
+
 import { WALLET_CONNECT_STEPS, WalletConnectStepType } from './steps'
+import { Modal } from 'components/modal'
 import { observer } from 'mobx-react-lite'
+
 import { useStore } from 'store'
 
 interface IProps {
@@ -24,7 +26,12 @@ export const WalletConnectModal: React.FC<IProps> = observer(({ open, onClose })
 
    return (
       <Modal open={open} title="Connect Wallet" onClose={handleClose}>
-         <div className="p-7">{WALLET_CONNECT_STEPS[step]({ nextStep, onClose: handleClose })}</div>
+         <div className="p-7">
+            {WALLET_CONNECT_STEPS[step]({
+               nextStep,
+               onClose: handleClose,
+            })}
+         </div>
       </Modal>
    )
 })

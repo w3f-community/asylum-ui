@@ -3,10 +3,7 @@
       "browser": true,
       "es2021": true
    },
-   "extends": [
-      "plugin:react/recommended",
-      "standard"
-   ],
+   "extends": ["plugin:react/recommended", "standard"],
    "parser": "@typescript-eslint/parser",
    "parserOptions": {
       "ecmaFeatures": {
@@ -15,28 +12,13 @@
       "ecmaVersion": "latest",
       "sourceType": "module"
    },
-   "plugins": [
-      "react",
-      "@typescript-eslint"
-   ],
+   "plugins": ["react", "@typescript-eslint"],
    "rules": {
-      "jsx-quotes": [
-         "error",
-         "prefer-double"
-      ],
-      "quotes": [
-         "warn",
-         "single"
-      ],
-      "semi": [
-         "warn",
-         "never"
-      ],
+      "jsx-quotes": ["error", "prefer-double"],
+      "quotes": ["warn", "single"],
+      "semi": ["warn", "never"],
       "no-use-before-define": "off",
-      "indent": [
-         "error",
-         3
-      ],
+      "indent": ["error", 3],
       "react/jsx-max-props-per-line": [
          1,
          {
@@ -44,16 +26,12 @@
             "when": "always"
          }
       ],
-      "no-trailing-spaces": [
-         "warn"
-      ],
+      "no-trailing-spaces": ["warn"],
       "max-len": "off",
       "no-unused-vars": "warn",
-      "comma-dangle": [
-         "error",
-         "only-multiline"
-      ],
+      "comma-dangle": ["error", "only-multiline"],
       "space-before-function-paren": "off",
-      "multiline-ternary": "off"
+      "multiline-ternary": "off",
+      "generator-star-spacing": "off"
    }
 }
