@@ -85,7 +85,6 @@ export const EditInterpretationModal: React.FC<IProps> = ({
       onSubmit: async (values, { setSubmitting, resetForm }) => {
          setSubmitting(true)
          try {
-            console.log(values)
             if (!values.src) throw new Error("Interpretation's src can not be empty!")
 
             const newMetadata = generateMetadata(values.tags).metadata

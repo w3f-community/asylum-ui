@@ -93,10 +93,10 @@ export const TemplateOverview: React.FC = observer(() => {
                   <div className="flex gap-4 basis-7/12 justify-between">
                      <HeadingLg className="flex gap-3 items-center">
                         {template.name}
-                        <EditIcon
-                           className="hover:fill-asylum-magenta transition-all cursor-pointer mb-1"
-                           onClick={() => setIsEditTemplateModalOpen(true)}
-                        />
+                        {/* <EditIcon */}
+                        {/*    className="hover:fill-asylum-magenta transition-all cursor-pointer mb-1" */}
+                        {/*    onClick={() => setIsEditTemplateModalOpen(true)} */}
+                        {/* /> */}
                         <EditTemplateModal
                            template={template}
                            open={isEditTemplateModalOpen}
