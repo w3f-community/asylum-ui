@@ -119,9 +119,9 @@ export class TemplateChangeModify implements ICodecConvertor {
 
 export class TemplateChangeModifyTags implements ICodecConvertor {
    interpretationId: InterpretationId
-   tags: Tag[]
+   tags: TagName[]
 
-   constructor(interpretationId: InterpretationId, tags: Tag[]) {
+   constructor(interpretationId: InterpretationId, tags: TagName[]) {
       this.interpretationId = interpretationId
       this.tags = tags
    }

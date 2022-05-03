@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { find, intersection, keys, map } from 'lodash/fp'
 
-import { CID, TagMetadata } from '@asylum-ui/connection-library'
+import { CID, TagMetadata, TagName } from '@asylum-ui/connection-library'
 
 export const formatAddress = (address: string) => {
    return `${address.substring(0, 4).toUpperCase()}...${address
@@ -65,4 +65,17 @@ export const generateMetadata = (tags: TagMetadata[]) => {
       conflictedFields: Array.from(conflictedFields.values()),
       conflictedTags: Array.from(conflictedTags.values()),
    }
+}
+
+export const isTagsEquals = (a: TagName[], b: TagName[]) => {
+   const bSorted = b.slice().sort()
+   return (
+      a.length === b.length &&
+      a
+         .slice()
+         .sort()
+         .every(function (value, index) {
+            return value === bSorted[index]
+         })
+   )
 }

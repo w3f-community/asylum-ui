@@ -72,6 +72,15 @@ class AsylumApi {
       return cid.toString()
    }
 
+   async getMetadataCID(metadata: object): Promise<string> {
+      const ipfs = create({
+         url: 'http://127.0.0.1:5001',
+      })
+      const { cid } = await ipfs.add(JSON.stringify(metadata), { onlyHash: true })
+
+      return cid.toString()
+   }
+
    async uploadFile(buffer: ArrayBuffer): Promise<string> {
       const ipfs = create({
          url: 'http://127.0.0.1:5001',

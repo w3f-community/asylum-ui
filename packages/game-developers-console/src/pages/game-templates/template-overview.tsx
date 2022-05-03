@@ -179,6 +179,7 @@ export const TemplateOverview: React.FC = observer(() => {
                      onClose={() => setIsAddInterpretationModalOpen(false)}
                   />
                   <EditInterpretationModal
+                     template={template}
                      tags={tagsEdited}
                      interpretation={interpretationEdited || undefined}
                      open={isEditInterpretationModalOpen}
