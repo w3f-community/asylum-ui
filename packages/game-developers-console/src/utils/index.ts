@@ -10,13 +10,13 @@ export const formatAddress = (address: string) => {
 }
 
 export const getFile = async (cid: CID) => {
-   const { data } = await axios.get(`http://localhost:8080/ipfs/${cid}`)
+   const { data } = await axios.get(`http://127.0.0.1:8080/ipfs/${cid}`)
    return data
 }
 
 export const getAllFiles = async (cidArray: CID[]) => {
    const result = await Promise.all(
-      cidArray.map((cid) => axios.get(`http://localhost:8080/ipfs/${cid}`))
+      cidArray.map((cid) => axios.get(`http://127.0.0.1:8080/ipfs/${cid}`))
    )
    return map('data', result)
 }
