@@ -19,7 +19,7 @@ SEEDER_MNEMONIC = eternal danger cherry radar exit damage slam hip say relief aw
 ENDPOINT_URL = ws://127.0.0.1:9944
 ```
 
-2. Run `seed` script to configure testing data on local node:
+2. Navigate to the root directory and run `seed` script to configure testing data on local node:
 ```
 yarn seed
 ```
