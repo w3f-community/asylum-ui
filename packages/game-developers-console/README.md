@@ -4,6 +4,10 @@ Web app, written in React and designed for game developers to create and manage 
 
 ### Run Game Developers Console (locally)
 
+Tested on:
+node version: **v17.9.0**
+npm version: **v8.5.5**
+
 1. Build and run [asylum-item-nft](https://gitlab.com/asylum-space/asylum-item-nft) substrate node:
 ```
 node-asylum --dev
