@@ -1,5 +1,7 @@
 # Game Developers Console
 
+Web app, written in React and designed for game developers to create and manage Asylum entities: create item templates, manage interpetations, mint NFTs.
+
 ### Run Game Developers Console (localy)
 
 1. Build and run [asylum-item-nft](https://gitlab.com/asylum-space/asylum-item-nft) substrate node:
@@ -40,3 +42,7 @@ yarn
 ```bash 
 yarn start
 ```
+
+### Guides
+
+- [Testing guide](docs/testing-guide.md)
