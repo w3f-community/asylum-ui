@@ -43,7 +43,6 @@ To create new tags, you need to upload tag's metadata to IPFS and call `createIn
 
 ```js
 // 1. Upload to IPFS `default-view` tag metadata and get its CID:
-
 const defaultViewTagMetadata = {
   "id": "default-view",
   "description": "The default visualization for the item. MUST be present in all NFTs.",
@@ -52,11 +51,9 @@ const defaultViewTagMetadata = {
 const defaultViewTagMetadataCID = await api.uploadMetadata(defaultViewTagMetadata)
 
 // 2. Create a `default-view` tag:
-
 await api.createInterpretationTag('default-view', defaultViewTagMetadataCID)
 
 // 3. Upload to IPFS `jpeg` tag metadata and get its CID:
-
 const jpegTagMetadata = {
   "id": "jpeg",
   "description": "in .jpeg format",
@@ -74,11 +71,9 @@ const jpegTagMetadata = {
 const jpegTagMetadataCID = await api.uploadMetadata(jpegTagMetadata)
 
 // 4. Create a `jpeg` tag:
-
 await api.createInterpretationTag('jpeg', jpegTagMetadataCID)
 
 // 5. Verify tags metadata:
-
 console.log(await api.tagMetadataOf("default-view"))
 console.log(await api.tagMetadataOf("jpeg"))
 ```
@@ -87,35 +82,24 @@ console.log(await api.tagMetadataOf("jpeg"))
 
 Now we can create a template with interpretations that support tags created in the previous step. To do this, we need to call `createTemplate`.
 
-1. Upload template metadata to IPFS and get its CID:
-
 ```js
+// 1. Upload template metadata to IPFS and get its CID:
 const templateMetadata = {
   "description": "The best weapon for the Helloween party 2022",
 }
-
 const templateMetadataCID = await api.uploadMetadata(templateMetadata)
-```
 
-2. Upload interpretation metadata to IPFS and get its CID:
-
-```js
+// 2. Upload interpretation metadata to IPFS and get its CID:
 const interpretationMetadata = {
   "description": "Default view interpretation in JPG format",
   "format": ".jpg"
 }
-
 const interpretationMetadataCID = await api.uploadMetadata(interpretationMetadata)
-```
 
-3. Upload interpretation source to IPFS and get its CID.
-```js
+// 3. Upload interpretation source to IPFS and get its CID.
 const srcCID = "{INTERPRETATION_SOURCE_CID}"
-```
 
-4. Call `createTemplate` method:
-
-```js
+// 4. Call `createTemplate` method:
 const interpretations = [
      {
         "tags": ["default-view", "jpeg"],
@@ -126,35 +110,27 @@ const interpretations = [
         },
      },
 ]
-
 const maxItems = 100
-
 await api.createTemplate("Old sword", templateMetadataCID, maxItems, interpretations)
-```
 
-5. Retrieve data about all interpretations of the created template:
-
-```js
+// 5. Retrieve data about all interpretations of the created template:
 const templateId = '0'
-
 console.log(await api.templateInterpretations(templateId))
 ```
 
 
 ### Game
 
-1. Create a game:
+The following listing shows how to create and configure game:
 
 ```js
+// 1. Create a game:
 const gameId = 0,
 const admins = [api.keyringPair!.address],
 const price = 10000
-
 await api.createGame(gameId, admins, price)
-```
 
-2. Set game metadata:
-```js
+// 2. Set game metadata:
 const gameMetadata = {
     title: 'Minecraft',
     img: '{link-to-cover}',
@@ -168,19 +144,14 @@ const gameMetadata = {
       ],
       reviews,
 }
-
 const gameMetadataCID = await api.uploadMetadata(gameMetadata)
-
 await api.setGameMetadata(gameId, gameMetadataCID, gameMetadata.title, gameMetadata.genre)
-```
 
-3. We suppose that our game supports the "Old sword" template. Call `addTemplateSupport` to add association between the game and template:
-```js
+// 3. We suppose that our game supports the "Old sword" template. 
+// Call `addTemplateSupport` to add association between the game and template:
 await api.addTemplateSupport(gameId, templateId)
-```
 
-4. Retrieve game data and metadata:
-```js
+// 4. Retrieve game data and metadata:
 console.log(await api.game(gameId))
 console.log(await api.gameMetadataOf(gameId))
 ```
@@ -189,13 +160,13 @@ console.log(await api.gameMetadataOf(gameId))
 
 When the template already exists and items are minted we still have a possibility to edit it - extend with new interpretations or fix the old ones.
 
-Let's assume that we want to add a 3d model representation for the "Old sword" template to make it supported in 3d games and also fix the link for 2d interpretation.
+Let's assume that we want to add a 3d model representation for the "Old sword" template to make it usable in 3d games and also update the link for 2d interpretation.
 
 > Note: to continue the guide here you need to create all necessary tags for the 3d model (`3d-model`, `obj`) as described in the Tags section **before** moving forward.
 
 1. **Submit proposal**
 
-To do this, anybody could submit a template change proposal. Call `submitTemplateChangeProposal` with two changes - `Add` and `Modify`:
+To do this, anybody is able to submit a template change proposal. Call `submitTemplateChangeProposal` with two changes - `Add` and `Modify`:
 
 ```js
 const templateId = 0,
@@ -220,11 +191,11 @@ const changeSet = [
    ]),
 ],
 
-await api.submitTemplateChangeProposal(entry.author, entry.templateId, entry.changeSet)
+await api.submitTemplateChangeProposal(author, templateId, changeSet)
 ```
 
-- In `Modify` change we're describing the changes of source or metadata of already existing interpretation.
-- With the `Add` change, we're adding a new interpretation to the template. The important thing here is to keep the new interpretation's tags set unique, as the set of tags is the identifier of the interpretation within the template.
+- In `Modify` change action we're describing the changes of source or metadata of already existing interpretation.
+- With the `Add` change, we're adding a new interpretation to the template.
 
 There are also two options for change - `ModifyTags` and `RemoveInterpretation`, that can be used in a similar way.
 
@@ -234,7 +205,7 @@ Let's assume DAO accepted that proposal (currently done automatically after subm
 
 3. **Update template**
 
-Now the template's owner can call `update_template` extrinsic with the id of template and proposal, and all proposed updates will be applied to the template.
+Now the template's owner can call `update_template` extrinsic with the `templateId` and `proposalId`, and all proposed updates will be applied to the template.
 
 ```js
 const proposalId = 0
