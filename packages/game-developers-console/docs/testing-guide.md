@@ -51,7 +51,7 @@ yarn seed
 
 ![](img/screenshot-5.png)
 
-2. Adding Tags affects the metadata of Interpretation. You can check the result in `Raw Metadata` field. Consider tags as a verbal description of Interpretation. Tags can carry metadata fields with predefined or configurable values, or even without any metadata, bringing specific semantics to the Interpretation (like the `pixeled` tag):
+2. Adding Tags affects the metadata of Interpretation. You can check the result in `Raw Metadata` field. **Consider tags as a verbal description of Interpretation**. Tags can carry metadata fields with predefined or configurable values, or even without any metadata, bringing specific semantics to the Interpretation (like the `pixeled` tag):
    ![](img/screenshot-6.png)
 
 3. After submitting Template and signing a transaction, you can find the Template using the search bar:
