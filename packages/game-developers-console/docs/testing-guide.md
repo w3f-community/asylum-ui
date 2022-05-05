@@ -38,7 +38,7 @@ yarn seed
 5. Click `connect wallet` button -> Select `Polkadot{.js} wallet` -> Select seeder account, which you have imported before:
    ![](img/screenshot-2.png)
 
-6. After that, you will see the list of games associated with the seeder account:
+6. After that, you will see the list of games associated with the seeder account. Select the first one, for instance:
    ![](img/screenshot-3.png)
 
 7. You can click `game overview` button and check game metadata, which is configured by the seed script:
