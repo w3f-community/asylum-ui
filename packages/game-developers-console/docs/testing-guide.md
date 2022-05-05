@@ -31,6 +31,7 @@ yarn seed
 3. Navigate to `http://localhost:3000` in browser:
 4. Click `disconnected` button and connect to the local node:
 ![](img/screenshot-1.png)
+![](img/screenshot-2.png)
 
 
 
