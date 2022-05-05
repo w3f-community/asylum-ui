@@ -30,18 +30,18 @@ yarn seed
 
 2. Import seeder account using `SEEDER_MNEMONIC`.
 
-3. Navigate to `http://localhost:3000` in the browser:
+3. Navigate to `http://localhost:3000` in the browser.
 
 4. Click `disconnected` button and connect to the local node:
    ![](img/screenshot-1.png)
 
-5. Click `connect wallet` button -> Select `Polkadot{.js} wallet` -> Select seeder account, which you imported before
+5. Click `connect wallet` button -> Select `Polkadot{.js} wallet` -> Select seeder account, which you have imported before:
    ![](img/screenshot-2.png)
 
-6. After that, you will see the list of games associated with the seeder account.
+6. After that, you will see the list of games associated with the seeder account:
    ![](img/screenshot-3.png)
 
-7. You can click `game overview` button and check game metadata, which is configured by the seed script
+7. You can click `game overview` button and check game metadata, which is configured by the seed script:
    ![](img/screenshot-4.png)
 
 #### Step 3: Configure Template and Interpretations:
@@ -51,13 +51,13 @@ yarn seed
 
 ![](img/screenshot-5.png)
 
-2. Adding Tags affects the metadata of Interpretation. You can check the result in `Raw Metadata` field. Consider tags as a verbal description of Interpretation. Tags can carry metadata fields with predefined or configurable values, or even without any metadata, bringing specific semantics to the Interpretation (like the `pixeled` tag).
+2. Adding Tags affects the metadata of Interpretation. You can check the result in `Raw Metadata` field. Consider tags as a verbal description of Interpretation. Tags can carry metadata fields with predefined or configurable values, or even without any metadata, bringing specific semantics to the Interpretation (like the `pixeled` tag):
    ![](img/screenshot-6.png)
 
-3. After submitting Template and signing a transaction, you can find the Template using the search bar
+3. After submitting Template and signing a transaction, you can find the Template using the search bar:
    ![](img/screenshot-7.png)
 
-4. Click on the Template and check its metadata and Interpretations. You can add new Interpretation to the Template or edit the existing one.
+4. Click on the Template and check its metadata and Interpretations. You can add new Interpretation to the Template or edit the existing one:
    ![](img/screenshot-8.png)
 
 5. Let's add a new Interpretation with `pixeled tag`.
