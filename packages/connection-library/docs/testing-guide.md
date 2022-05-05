@@ -1,19 +1,19 @@
 # Connection Library Testing Guide
 
-This testing guide will go throw the similar flow as the [Node Testing Guide](https://gitlab.com/asylum-space/asylum-item-nft/-/blob/main/docs/testing-guide.md) but using the Connection Library.
+This testing guide will go throw the similar flow as the [Asylum node Testing Guide](https://gitlab.com/asylum-space/asylum-item-nft/-/blob/main/docs/testing-guide.md) but using the Connection Library.
 
-Also, almost all functionality of Connection Library are covered into the [seed script](https://gitlab.com/asylum-space/asylum-ui/-/blob/main/packages/connection-library/seed/index.ts), that can be used as a reference.
+Also, almost all functionality of Connection Library is covered in the [seed script](https://gitlab.com/asylum-space/asylum-ui/-/blob/main/packages/connection-library/seed/index.ts), that can be used as a reference.
 
-> Note: interactions with NFT items is not supported in current version of the Connection Library 
+> Note: interactions with NFT items are not supported in current version of the Connection Library 
 
 ### Installation
 
 - Install and run [Asylum node](https://gitlab.com/asylum-space/asylum-item-nft/-/blob/main/README.md)
-- Create new empty node.js project and install [Connection Library](https://gitlab.com/asylum-space/asylum-ui/-/tree/main/packages/connection-library) package locally.
+- Add [Connection Library](https://gitlab.com/asylum-space/asylum-ui/-/tree/main/packages/connection-library) as a local dependency package in your npm project.
 
 ### Prepare account
 
-To start working with connection library we need to prepare account:
+To start working with connection library we need to prepare an account:
 
 ```js
 import { AsylumApi } from '@asylum-ui/connection-library'
