@@ -1,10 +1,10 @@
 # Connection Library Testing Guide
 
-This testing guide will go throw the similar flow as the [Asylum node Testing Guide](https://gitlab.com/asylum-space/asylum-item-nft/-/blob/main/docs/testing-guide.md) but using the Connection Library.
+This testing guide will go through the same flow as the [Asylum node Testing Guide](https://gitlab.com/asylum-space/asylum-item-nft/-/blob/main/docs/testing-guide.md) but using the Connection Library.
 
-Also, almost all functionality of Connection Library is covered in the [seed script](https://gitlab.com/asylum-space/asylum-ui/-/blob/main/packages/connection-library/seed/index.ts), that can be used as a reference.
+Almost all functionality of the Connection Library is covered in the [seed script](https://gitlab.com/asylum-space/asylum-ui/-/blob/main/packages/connection-library/seed/index.ts) and can be used as a reference.
 
-> Note: interactions with NFT items are not supported in current version of the Connection Library 
+> Note: interactions with NFT items are not supported in the current version of the Connection Library 
 
 ### Installation
 
@@ -13,7 +13,7 @@ Also, almost all functionality of Connection Library is covered in the [seed scr
 
 ### Prepare account
 
-To start working with connection library we need to prepare an account:
+To start working with the Connection Library we need to prepare an account:
 
 ```js
 import { AsylumApi } from '@asylum-ui/connection-library'
@@ -39,7 +39,7 @@ All subsequent steps will be performed with the current preset.
 
 ### Tags
 
-To create new tags, you need to upload tag's metadata to IPFS and call `createInterpretationTag`. In the example, we're creating a couple tags `default-view`,`jpeg`:
+To create new tags, you need to upload tag's metadata to IPFS and call `createInterpretationTag`. In the example, we're creating a couple of tags `default-view`,`jpeg`:
 
 ```js
 // 1. Upload to IPFS `default-view` tag metadata and get its CID:
@@ -121,7 +121,7 @@ console.log(await api.templateInterpretations(templateId))
 
 ### Game
 
-The following listing shows how to create and configure game:
+The following listing shows how to create and configure a game:
 
 ```js
 // 1. Create a game:
@@ -158,15 +158,15 @@ console.log(await api.gameMetadataOf(gameId))
 
 ### Update template
 
-When the template already exists and items are minted we still have a possibility to edit it - extend with new interpretations or fix the old ones.
+When the template already exists and items are minted, we still have a possibility to edit it - extend with new interpretations or fix the old ones.
 
 Let's assume that we want to add a 3d model representation for the "Old sword" template to make it usable in 3d games and also update the link for 2d interpretation.
 
-> Note: to continue the guide here you need to create all necessary tags for the 3d model (`3d-model`, `obj`) as described in the Tags section **before** moving forward.
+> Note: to continue the guide, you need to create all necessary tags for the 3d model (`3d-model`, `obj`) as described in the Tags section **before** moving forward.
 
 1. **Submit proposal**
 
-To do this, anybody is able to submit a template change proposal. Call `submitTemplateChangeProposal` with two changes - `Add` and `Modify`:
+To do this, anybody can submit a template change proposal. Call `submitTemplateChangeProposal` with two changes - `Add` and `Modify`:
 
 ```js
 const templateId = 0,
@@ -194,7 +194,7 @@ const changeSet = [
 await api.submitTemplateChangeProposal(author, templateId, changeSet)
 ```
 
-- In `Modify` change action we're describing the changes of source or metadata of already existing interpretation.
+- In the `Modify` change action we're describing the changes of source or metadata of already existing interpretation.
 - With the `Add` change, we're adding a new interpretation to the template.
 
 There are also two options for change - `ModifyTags` and `RemoveInterpretation`, that can be used in a similar way.
