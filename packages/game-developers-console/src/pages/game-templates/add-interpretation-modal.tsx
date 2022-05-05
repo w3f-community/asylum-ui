@@ -56,7 +56,7 @@ export const AddInterpretationModal: React.FC<IProps> = ({ template, open, onClo
             setTimeout(() => {
                queryClient.invalidateQueries(['interpretations', template.id])
                queryClient.invalidateQueries(['templates', template.id])
-            }, 400)
+            }, 1000)
          },
       }
    )

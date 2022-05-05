@@ -113,6 +113,16 @@ export const tags = [
          },
       },
    },
+   {
+      tag: 'pixeled',
+      metadata: {
+         id: 'pixeled',
+         description: 'pixeled style view',
+         metadataExtensions: {
+            fields: [],
+         },
+      },
+   },
 ]
 
 export const templates: ITemplateMockData[] = [
@@ -128,8 +138,8 @@ export const templates: ITemplateMockData[] = [
             interpretation: {
                src: '/img/sword.png',
                metadata: {
-                  fieldName: 'fieldValue',
-                  fileFormat: '.png',
+                  description: 'The default representation of item | in PNG format',
+                  format: '.png',
                },
             },
          },
@@ -147,7 +157,7 @@ export const templates: ITemplateMockData[] = [
             interpretation: {
                src: 'https://i.pinimg.com/originals/3a/83/bf/3a83bf5f768ef01338ba534ae4a1447b.png',
                metadata: {
-                  fieldName: 'fieldValue',
+                  description: 'The default representation of item | in PNG format',
                   format: '.png',
                },
             },
@@ -166,7 +176,7 @@ export const templates: ITemplateMockData[] = [
             interpretation: {
                src: '/img/lamp.png',
                metadata: {
-                  fieldName: 'fieldValue',
+                  description: 'The default representation of item | in PNG format',
                   format: '.png',
                },
             },
@@ -185,7 +195,7 @@ export const templates: ITemplateMockData[] = [
             interpretation: {
                src: '/img/clover_leaf.png',
                metadata: {
-                  fieldName: 'fieldValue',
+                  description: 'The default representation of item | in PNG format',
                   format: '.png',
                },
             },
@@ -204,7 +214,7 @@ export const templates: ITemplateMockData[] = [
             interpretation: {
                src: 'https://zilliongamer.com/uploads/codm/skins/assault/m16/m16-pumpkin-repeater-cod-mobile.jpg',
                metadata: {
-                  fieldName: 'fieldValue',
+                  description: 'The default representation of item | in JPG format',
                   format: '.jpg',
                },
             },
@@ -223,7 +233,7 @@ export const templates: ITemplateMockData[] = [
             interpretation: {
                src: 'https://zilliongamer.com/uploads/codm/skins/assault/m16/m16-gold-glitter-cod-mobile.jpg',
                metadata: {
-                  fieldName: 'fieldValue',
+                  description: 'The default representation of item | in JPG format',
                   format: '.jpg',
                },
             },
@@ -242,7 +252,7 @@ export const templates: ITemplateMockData[] = [
             interpretation: {
                src: 'https://zilliongamer.com/uploads/pubg-mobile/weapon/type/ar/aug/skin/white-rabbit-aug-big.jpg',
                metadata: {
-                  fieldName: 'fieldValue',
+                  description: 'The default representation of item | in JPG format',
                   format: '.jpg',
                },
             },
