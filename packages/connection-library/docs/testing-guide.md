@@ -41,28 +41,21 @@ All subsequent steps will be performed with the current preset.
 
 To create new tags, you need to upload tag's metadata to IPFS and call `createInterpretationTag`. In the example, we're creating a couple tags `default-view`,`jpeg`:
 
-
-1. Upload to IPFS `default-view` tag metadata and get its CID:
-
 ```js
+// 1. Upload to IPFS `default-view` tag metadata and get its CID:
+
 const defaultViewTagMetadata = {
   "id": "default-view",
   "description": "The default visualization for the item. MUST be present in all NFTs.",
   "metadataExtensions": {}
 }
-
 const defaultViewTagMetadataCID = await api.uploadMetadata(defaultViewTagMetadata)
-```
 
-2. Create a `default-view` tag:
+// 2. Create a `default-view` tag:
 
-```js
 await api.createInterpretationTag('default-view', defaultViewTagMetadataCID)
-```
 
-3. Upload to IPFS `jpeg` tag metadata and get its CID:
-
-```js
+// 3. Upload to IPFS `jpeg` tag metadata and get its CID:
 
 const jpegTagMetadata = {
   "id": "jpeg",
@@ -78,19 +71,14 @@ const jpegTagMetadata = {
       ]
   }
 }
-
 const jpegTagMetadataCID = await api.uploadMetadata(jpegTagMetadata)
-```
 
-4. Create a `jpeg` tag:
+// 4. Create a `jpeg` tag:
 
-```js
 await api.createInterpretationTag('jpeg', jpegTagMetadataCID)
-```
 
-5. Verify tags metadata:
+// 5. Verify tags metadata:
 
-```js
 console.log(await api.tagMetadataOf("default-view"))
 console.log(await api.tagMetadataOf("jpeg"))
 ```
