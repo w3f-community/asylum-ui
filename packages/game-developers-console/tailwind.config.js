@@ -18,7 +18,7 @@ module.exports = {
             'gradient-overlay':
                'linear-gradient(211.48deg, rgba(80, 191, 255, 0.25) 8.26%, rgba(204, 0, 255, 0.25) 96.1%)',
             'gradient-hr':
-               'linear-gradient(90deg, rgba(48, 48, 48, 1) 0%, rgba(255, 255, 255, 1) 20%, rgba(250, 250, 250, 1) 80%, rgba(48, 48, 48, 1) 100%)',
+               'linear-gradient(90deg, rgba(48, 48, 48, 0) 0%, rgba(255, 255, 255, 1) 20%, rgba(250, 250, 250, 1) 80%, rgba(48, 48, 48, 0) 100%)',
             'gradient-active': 'linear-gradient(79.63deg, #b62bd9 -21.85%, #50bfff 122.14%)',
             'gradient-hr-active':
                'linear-gradient(270.01deg, rgba(80, 191, 255, 0) 0.01%, #50BFFF 33.19%, #B62BD9 71.18%, rgba(182, 43, 217, 0) 102.75%)',
@@ -43,6 +43,40 @@ module.exports = {
          },
          lineClamp: {
             15: '15',
+         },
+         keyframes: {
+            'slide-out': {
+               '0%': {
+                  transform: 'translateY(0)',
+                  background: 'rgba(48, 48, 48, 0.7)',
+               },
+               '30%': {
+                  transform: 'translateY(0)',
+                  background: 'transparent',
+               },
+               '100%': {
+                  transform: 'translateY(100%)',
+                  background: 'transparent',
+               },
+            },
+            'slide-in': {
+               '0%': {
+                  transform: 'translateY(100%)',
+                  background: 'transparent',
+               },
+               '70%': {
+                  transform: 'translateY(0)',
+                  background: 'transparent',
+               },
+               '100%': {
+                  transform: 'translateY(0)',
+                  background: 'rgba(48, 48, 48, 0.7)',
+               },
+            },
+         },
+         animation: {
+            'slide-out': 'slide-out 0.7s ease-in forwards',
+            'slide-in': 'slide-in 0.7s ease-in forwards',
          },
       },
    },

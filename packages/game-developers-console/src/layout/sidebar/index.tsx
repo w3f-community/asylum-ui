@@ -8,6 +8,7 @@ import { observer } from 'mobx-react-lite'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { ReactComponent as PlayIcon } from 'assets/svg/play.svg'
+import { ReactComponent as RefreshIcon } from 'assets/svg/refresh.svg'
 import { ServerConnect } from 'modules/server-connect'
 import { useStore } from 'store'
 import { IComponentProps } from 'types'
@@ -36,9 +37,27 @@ export const Sidebar: React.FC<IProps> = observer(() => {
                   variant="dark"
                   className="flex gap-2 items-center px-4 mt-4"
                   disabled={!store.selectedGame || !store.account}
+                  onClick={() => {
+                     store.setIsInterfaceOpen(false)
+                     store.setIsGameRunning(true)
+                  }}
                >
-                  <PlayIcon className="fill-white" /> RUN
+                  <PlayIcon className="fill-white" /> {!store.isGameRunning ? 'RUN' : 'To game'}
                </Button>
+
+               {store.isGameRunning && (
+                  <Button
+                     size="sm"
+                     variant="dark"
+                     className="flex gap-2 items-center px-4 mt-4"
+                     disabled={!store.selectedGame || !store.account}
+                     onClick={() => {
+                        store.setIsGameRunning(false)
+                     }}
+                  >
+                     <RefreshIcon className="fill-white" /> close
+                  </Button>
+               )}
             </div>
 
             <nav className="flex flex-col w-full gap-4 grow max-w-3xl px-9">

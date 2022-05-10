@@ -11,7 +11,8 @@ interface IProps extends IComponentProps {
    type?: 'text' | 'textarea'
    name: string
    label?: string
-   value: string | undefined
+   value?: string
+   defaultValue?: string
    onChange?: ChangeEventHandler<any>
    onKeyPress?: React.KeyboardEventHandler<any>
    placeholder?: string
@@ -27,6 +28,7 @@ export const InputField: React.FC<IProps> = ({
    name,
    label,
    value,
+   defaultValue,
    placeholder,
    endAdornment,
    onChange,
@@ -57,6 +59,7 @@ export const InputField: React.FC<IProps> = ({
                name={name}
                placeholder={placeholder}
                value={value}
+               defaultValue={defaultValue}
                onChange={onChange}
                onKeyPress={onKeyPress}
                {...(disabled && { tabIndex: -1 })}

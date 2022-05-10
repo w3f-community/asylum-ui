@@ -39,7 +39,7 @@ export const TemplateCreateForm = <T extends TemplateFormValues>({ formik }: IPr
             />
             <InputField
                className="basis-4/12"
-               value={formatAddress(formik.values.issuer || '')}
+               defaultValue={formatAddress(formik.values.issuer || '')}
                label="Issuer"
                placeholder="Issuer Address"
                name="issuer"

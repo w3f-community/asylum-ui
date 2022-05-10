@@ -7,14 +7,12 @@ import { INetwork } from 'types'
 
 export type GameWithMetadata = Game & GameMetadata
 
-export interface RefetchOptions {
-   refetch?: () => Promise<any>
-}
-
 class AppStore {
    account: InjectedAccountWithMeta | null = null
    selectedGame: GameWithMetadata | null = null
    network: INetwork | null = null
+   isInterfaceOpen: boolean = true
+   isGameRunning: boolean = false
    isConnected: boolean = false
 
    constructor() {
@@ -41,6 +39,14 @@ class AppStore {
 
    setIsConnected(isConnected: boolean) {
       this.isConnected = isConnected
+   }
+
+   setIsInterfaceOpen(isInterfaceOpen: boolean) {
+      this.isInterfaceOpen = isInterfaceOpen
+   }
+
+   setIsGameRunning(isGameRunning: boolean) {
+      this.isGameRunning = isGameRunning
    }
 }
 
