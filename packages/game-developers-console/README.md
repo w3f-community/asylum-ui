@@ -55,9 +55,9 @@ yarn start
 
 ### For Asylum Developers
 
-Project utilises Prettier code formatting (check rules in `.prettierrc`).
+The project utilizes Prettier code formatting tools (check rules in `.prettierrc`).
 
-Before staring develpment, please make sure you're falliar with following tools, which are used in the project:
+Before starting development, please make sure you're familiar with the tools used across the project:
 - [Tailwind](https://tailwindcss.com/docs/installation)
 - [React Query](https://react-query.tanstack.com/overview)
 - [MobX](https://mobx.js.org/README.html)
