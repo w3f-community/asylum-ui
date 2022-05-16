@@ -52,3 +52,13 @@ yarn start
 ### Guides
 
 - [Testing guide](docs/testing-guide.md)
+
+### For Asylum Developers
+
+Project utilises Prettier code formatting (check rules in `.prettierrc`).
+
+Before staring develpment, please make sure you're falliar with following tools, which are used in the project:
+- [Tailwind](https://tailwindcss.com/docs/installation)
+- [React Query](https://react-query.tanstack.com/overview)
+- [MobX](https://mobx.js.org/README.html)
+- [Polkadot JS](https://polkadot.js.org/docs/api/)
