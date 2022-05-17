@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 
 import { Hr } from 'components/hr'
 import { ListCardItem } from 'components/list-card-item'
@@ -13,7 +13,7 @@ import { fetchTemplates } from 'api'
 import { TemplateCreate } from 'modules/template/template-create'
 import { TemplateWithMetadata } from 'types'
 
-interface IProps {}
+interface IProps { }
 
 function GameTemplatesSkeleton() {
    return (
@@ -32,7 +32,7 @@ function GameTemplatesSkeleton() {
 
 export const GameTemplates: React.FC<IProps> = () => {
    const navigate = useNavigate()
-   const [query, setQuery] = React.useState('')
+   const [query, setQuery] = useState('')
    const { data: templates, isLoading } = useQuery('templates', () => fetchTemplates())
 
    const filterTemplates = (

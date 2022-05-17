@@ -30,7 +30,7 @@ export const ExtensionSelectionStep: React.FC<IWalletStepProps> = ({ nextStep })
             onClick={handleConnect}
             error={error}
          >
-            <span className="flex text-left flex items-center gap-4">
+            <span className="flex text-left items-center gap-4">
                <PolkadotIcon /> {'Polkadot{.js}'}
             </span>
             <ArrowRightIcon className="justify-self-end group-hover:fill-white" />

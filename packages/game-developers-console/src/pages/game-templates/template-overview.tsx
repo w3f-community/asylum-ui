@@ -224,18 +224,18 @@ export const TemplateOverview: React.FC = observer(() => {
                      <div className="text-white">
                         <Paragraph className="flex gap-3 items-center">
                            No interpretations found with set of tags:{' '}
-                           <div className="flex gap-1">
+                           <span className="flex gap-1">
                               {filterTags.map((tag) => (
                                  <Tag key={tag.id}>{tag.id}</Tag>
                               ))}
-                           </div>
+                           </span>
                         </Paragraph>
                      </div>
                   )}
                   {interpretationsFiltered?.map((interpretation) => (
                      <Card key={interpretation.interpretation.id} className="py-3 px-4 relative">
                         <div
-                           className="flex gap-3 items-center basis-48 !absolute top-2 right-3 hover:bg-gray-200 cursor-pointer py-2 px-4 rounded-xl transition-all text-base flex items-center gap-2 font-secondary absolute bottom-2 right-3 top-auto"
+                           className="gap-3 items-center basis-48 !absolute top-2 right-3 hover:bg-gray-200 cursor-pointer py-2 px-4 rounded-xl transition-all text-base flex items-center gap-2 font-secondary absolute bottom-2 right-3 top-auto"
                            onClick={() => {
                               setIsEditInterpretationModalOpen(true)
                               setTagsEdited(
