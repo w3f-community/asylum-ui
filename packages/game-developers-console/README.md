@@ -26,7 +26,8 @@ yarn
 ```
 
 4. [Optional] Seed data:
-    1. Create `.env.local` file in root directory of `connection-libary` with the following content:
+    
+    1. Navigate `./packages/connection-libary` and create `.env.local` file with the following content:
     ```
     SEEDER_MNEMONIC = eternal danger cherry radar exit damage slam hip say relief awesome middle
     ENDPOINT_URL = ws://127.0.0.1:9944
