@@ -8,18 +8,27 @@ Firstly, you have to configure the local env and run three processes:
 Follow instructions to run [Game Developers Console (locally)](/packages/game-developers-console/README.md).
 Make sure you're using the node version: **v17.9.0**.
 
+As another option - you can run all three processes in the **Docker**. To do this you need to do Step 0 below (setup `.env.local` file) and then run the following command: 
+
+```
+docker-compose up
+``` 
+
+It will run three containers and *automatically seed the mock data*, so you can skip the Step 1 in the guide below. 
+
 ### Steps
 
-#### Step 1: Seed mock data for your local node
+#### Step 0: Setup local variables
 
-
-1. Create `.env.local` file in `packages/connection-library` with the following content (you can specify any `SEEDER_MNEMONIC`):
+Create `.env.local` file in `packages/connection-library` with the following content (you can specify any `SEEDER_MNEMONIC`):
 ```
 SEEDER_MNEMONIC = eternal danger cherry radar exit damage slam hip say relief awesome middle
 ENDPOINT_URL = ws://127.0.0.1:9944
 ```
 
-2. Navigate to the root directory and run `seed` script to configure testing data on local node:
+#### Step 1: Seed mock data for your local node
+
+Navigate to the root directory and run the `seed` script to configure testing data on the local node:
 ```
 yarn seed
 ```
