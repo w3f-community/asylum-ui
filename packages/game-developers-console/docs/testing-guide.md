@@ -68,6 +68,7 @@ yarn seed
 ![](img/screenshot-9.png)
 
 6. Adding Interpretations allows NFT items to have different visual representations within one and multiple games. Suppose we have two visually different games (2D and 3D) which want to share one NFT item. To make it possible, we have to add two more Interpretations: the first one is a 2d sprite atlas, and the second one is a 3d Blender model.
-7. Finally, we have set up our Template with multiple visual Interpretations!
    ![](img/screenshot-10.png)
+7. Finally, we have set up our Template with multiple visual Interpretations!
+   ![](img/screenshot-11.png)
 
