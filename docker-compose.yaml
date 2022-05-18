@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  ipfs:
+    image: ipfs/go-ipfs:master-latest
+    command: daemon
+    network_mode: host
+  node-asylum:
+    image: registry.gitlab.com/asylum-space/asylum-item-nft:latest
+    command: node-asylum --dev --tmp
+    network_mode: host
+  asylum-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c "yarn seed &&
+                    yarn start"
+    network_mode: host
+    depends_on:
+      - ipfs
+      - node-asylum
