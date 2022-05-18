@@ -90,7 +90,7 @@ export const InterpretationCreateForm = <T extends InterpretationFormValues>({
             Option={Option}
          />
          <InputFileUpload
-            accept="image/*"
+            accept="*"
             name="source"
             label="Source"
             value={formik.values.src || undefined}
