@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { forwardRef, useRef } from 'react'
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
 
 import { Heading } from '../text/heading'
 import classNames from 'classnames'
@@ -9,42 +8,37 @@ import { ReactComponent as CloseIcon } from 'assets/svg/close.svg'
 import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {
-   open?: boolean
    title?: React.ReactText
-   children: React.ReactNode
+   open?: boolean
    onClose?: () => void
    maxWidth?: 'md' | 'lg' | 'xl' | '2xl' | 'full'
+   children: React.ReactNode
 }
 
 export const Modal: React.FC<IProps> = ({
    title,
-   open = false,
+   open: isOpen = false,
    onClose,
    maxWidth = 'xl',
    children,
 }) => {
-   if (open) {
-      document.body.style.overflow = 'hidden'
-   } else {
-      document.body.style.overflow = 'auto'
-   }
-
    const modalRef = useRef<HTMLDivElement>(null)
 
    return ReactDOM.createPortal(
       <>
          <ModalOverlay
+            isOpen={isOpen}
             onClose={onClose}
-            className={classNames({
-               'opacity-0 invisible pointer-events-none': !open,
-               'opacity-100 visible': open,
-            })}
+         // className={classNames({
+         //    'opacity-0 invisible pointer-events-none': !isOpen,
+         //    'opacity-100 visible': isOpen,
+         // })}
          >
             <ModalContent ref={modalRef} maxWidth={maxWidth}>
                <div className="flex align-middle justify-center relative py-3">
                   {title && <Heading className="text-white">{title}</Heading>}{' '}
                   <CloseIcon
-                     className="cursor-pointer absolute right-1 top-1 fill-white hover:fill-asylum-magenta transition-all"
+                     className="cursor-pointer absolute right-1 top-1 fill-white hover:fill-asylum-magenta transition"
                      onClick={() => onClose && onClose()}
                   />
                </div>
@@ -54,6 +48,42 @@ export const Modal: React.FC<IProps> = ({
       </>,
       // @ts-ignore
       document.getElementById('modal-root')
+   )
+}
+
+interface IModalOverlayProps extends IComponentProps {
+   isOpen: boolean
+   onClose?: () => void
+}
+
+const ModalOverlay: React.FC<IModalOverlayProps> = ({ isOpen, onClose, className, children }) => {
+   const [shouldRender, setShouldRender] = useState(isOpen)
+
+   useEffect(() => {
+      if (isOpen) setShouldRender(true)
+   })
+
+   const handleTransitionEnd = () => {
+      console.log('transition Ended')
+
+      if (!isOpen) setShouldRender(false)
+   }
+
+   document.body.style.overflow = (!isOpen ? 'hidden' : '')
+
+   return (
+      shouldRender
+         ? <div
+            className={classNames(
+               `fixed inset-0 z-30 flex items-center justify-center bg-gradient-overlay ${isOpen ? 'opacity-100' : 'opacity-0'} cursor-pointer transition overflow-auto py-4`,
+               className
+            )}
+            onClick={() => onClose && onClose()}
+            onTransitionEnd={handleTransitionEnd}
+         >
+            {children}
+         </div>
+         : null
    )
 }
 
@@ -79,21 +109,3 @@ const ModalContent = forwardRef<HTMLDivElement, IProps>(({ maxWidth, children },
 })
 
 ModalContent.displayName = 'ModalContent'
-
-interface IModalOverlayProps extends IComponentProps {
-   onClose?: () => void
-}
-
-const ModalOverlay: React.FC<IModalOverlayProps> = ({ onClose, className, children }) => {
-   return (
-      <div
-         className={classNames(
-            'fixed inset-0 z-30 flex items-center justify-center bg-gradient-overlay cursor-pointer transition-all overflow-auto py-4',
-            className
-         )}
-         onClick={() => onClose && onClose()}
-      >
-         {children}
-      </div>
-   )
-}

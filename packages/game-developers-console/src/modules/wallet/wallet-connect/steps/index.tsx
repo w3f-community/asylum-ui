@@ -24,5 +24,7 @@ export const WALLET_CONNECT_STEPS: WalletConnectStep = {
    [WalletConnectStepType.AccountSelection]: (props: IWalletStepProps) => (
       <AccountSelectionStep {...props} />
    ),
-   [WalletConnectStepType.Connected]: (props: IWalletStepProps) => <ConnectedStep {...props} />,
+   [WalletConnectStepType.Connected]: (props: IWalletStepProps) => (
+      <ConnectedStep {...props} />
+   ),
 }

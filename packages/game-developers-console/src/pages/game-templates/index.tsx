@@ -33,7 +33,9 @@ function GameTemplatesSkeleton() {
 export const GameTemplates: React.FC<IProps> = () => {
    const navigate = useNavigate()
    const [query, setQuery] = useState('')
+   const [mintModalIsOpen, setMintModalIsOpen] = useState(false)
    const { data: templates, isLoading } = useQuery('templates', () => fetchTemplates())
+   // console.log(templates)
 
    const filterTemplates = (
       inputValue: string,
