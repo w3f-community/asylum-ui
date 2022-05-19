@@ -291,13 +291,8 @@ class AsylumApi {
    }
 
    async items(): Promise<Item[]> {
-      const templates = await this.templates()
-      const items = await Promise.all(
-         templates.map((template) => {
-            return this.itemsByTemplate(template.id)
-         })
-      )
-      return items.flat()
+      const entries = await this.api!.query.rmrkCore.nfts.entries()
+      return mapEntries(entries)
    }
 
    async itemsByOwner(ownerAccountId: string): Promise<Item[]> {
