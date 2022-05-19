@@ -64,8 +64,6 @@ const ModalOverlay: React.FC<IModalOverlayProps> = ({ isOpen, onClose, className
    })
 
    const handleTransitionEnd = () => {
-      console.log('transition Ended')
-
       if (!isOpen) setShouldRender(false)
    }
 
