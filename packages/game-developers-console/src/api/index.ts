@@ -38,6 +38,23 @@ export const fetchTags = async (): Promise<TagMetadata[]> => {
    return (await getAllFiles(map('metadata', tags))) as TagMetadata[]
 }
 
+export const fetchTemplate = async (id: string): Promise<TemplateWithMetadata> => {
+   const template = await api.template(id)
+   return await fetchTemplateMetadata(template)
+}
+
+export const fetchTemplates = async (): Promise<TemplateWithMetadata[]> => {
+   const templates = await api.templates()
+   const templatesWithMetadata = []
+
+   for (const template of templates) {
+      const templateWithMetadata = await fetchTemplateMetadata(template)
+      templatesWithMetadata.push(templateWithMetadata)
+   }
+   console.log(templatesWithMetadata)
+   return templatesWithMetadata
+}
+
 export const fetchTemplateMetadata = async (template: Template): Promise<TemplateWithMetadata> => {
    const metadata: any = await getFile(template.metadata)
    const interpretations = await api.templateInterpretations(template.id)
@@ -79,21 +96,4 @@ export const fetchTemplateInterpretationsMetadata = async (
          } as InterpretationWithMetadata
       }, interpretations)
    )
-}
-
-export const fetchTemplate = async (id: string): Promise<TemplateWithMetadata> => {
-   const template = await api.template(id)
-   return await fetchTemplateMetadata(template)
-}
-
-export const fetchTemplates = async (): Promise<TemplateWithMetadata[]> => {
-   const templates = await api.templates()
-   const templatesWithMetadata = []
-
-   for (const template of templates) {
-      const templateWithMetadata = await fetchTemplateMetadata(template)
-      templatesWithMetadata.push(templateWithMetadata)
-   }
-
-   return templatesWithMetadata
 }

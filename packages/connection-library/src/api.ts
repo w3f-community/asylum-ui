@@ -277,26 +277,34 @@ class AsylumApi {
    }
 
    async item(templateId: string, id: string): Promise<Item> {
-      const template: any = (await this.api!.query.rmrkCore.nfts(templateId, id)).toHuman()
+      const item: any = (await this.api!.query.rmrkCore.nfts(templateId, id)).toHuman()
       return {
-         ...template,
+         ...item,
          id,
          templateId,
       } as Item
    }
 
    // TODO implement item getters
-   // async itemsByTemplate(templateId: string): Promise<Item[]> {
-   //
-   // }
-   //
-   // async items(): Promise<Item[]> {
-   //
-   // }
-   //
-   // async itemsByOwner(ownerAccountId: string) Promise<Item[]> {
-   //
-   // }
+   async itemsByTemplate(templateId: string): Promise<Item[]> {
+      const entries = await this.api!.query.rmrkCore.nfts.entries(templateId)
+      return mapEntries(entries)
+   }
+
+   async items(): Promise<Item[]> {
+      const templates = await this.templates()
+      const items = await Promise.all(
+         templates.map((template) => {
+            return this.itemsByTemplate(template.id)
+         })
+      )
+      return items.flat()
+   }
+
+   async itemsByOwner(ownerAccountId: string): Promise<Item[]> {
+      const allItems = await this.items()
+      return allItems.filter((item) => item.owner.AccountId === ownerAccountId)
+   }
 }
 
 export default new AsylumApi()
