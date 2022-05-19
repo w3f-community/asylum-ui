@@ -57,6 +57,21 @@ export const mapEntries = (
    })
 }
 
+export const mapItemsWithJoinedIds = (
+   entries: [StorageKey<AnyTuple>, Codec][],
+   codecConverter?: ((codec: Codec) => any) | undefined
+) => {
+   return mapEntries(entries, codecConverter).map(({ id, ...restEntry }) => {
+      const [templateId, itemId] = id.split(':')
+
+      return {
+         templateId,
+         id: itemId,
+         ...restEntry,
+      }
+   })
+}
+
 export const getFile = async (cid: CID) => {
    const { data } = await axios.get(`http://127.0.0.1:8080/ipfs/${cid}`)
    return data

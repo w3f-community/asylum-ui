@@ -9,7 +9,7 @@ import {
    TagName,
    Template,
 } from './types'
-import { handleTxCallback, mapEntries } from './utils'
+import { handleTxCallback, mapEntries, mapItemsWithJoinedIds } from './utils'
 import { ApiPromise, SubmittableResult, WsProvider } from '@polkadot/api'
 import { ApiTypes } from '@polkadot/api-base/types/base'
 import { SubmittableExtrinsic } from '@polkadot/api-base/types/submittable'
@@ -287,12 +287,12 @@ class AsylumApi {
 
    async itemsByTemplate(templateId: string): Promise<Item[]> {
       const entries = await this.api!.query.rmrkCore.nfts.entries(templateId)
-      return mapEntries(entries)
+      return mapItemsWithJoinedIds(entries)
    }
 
    async items(): Promise<Item[]> {
       const entries = await this.api!.query.rmrkCore.nfts.entries()
-      return mapEntries(entries)
+      return mapItemsWithJoinedIds(entries)
    }
 
    async itemsByOwner(ownerAccountId: string): Promise<Item[]> {
