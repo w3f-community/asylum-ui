@@ -18,6 +18,8 @@ import { NotConnectedNetwork } from 'pages/not-connected-network'
 import { NotConnectedWallet } from 'pages/not-connected-wallet'
 import { useStore } from 'store'
 
+import { AsylumApi } from '@asylum-ui/connection-library'
+
 const AppRoutes = () => (
    <Routes>
       <Route path="/" element={<GameSelection />} />
@@ -62,6 +64,21 @@ export const App = observer(() => {
          setLoaded(false)
       }
    }, [store.isGameRunning])
+
+   async function sendTemplates() {
+      const templatesJson = await AsylumApi.templates()
+      // hack to parse array of objects in Unity
+      const unityMessage = '{ "Items" :' + JSON.stringify(templatesJson) + '}'
+      unityContext.send('ReactController', 'ParseItems', unityMessage)
+   }
+
+   useEffect(() => {
+      if (loaded) {
+         unityContext.on('GetAllUserItems', async () => {
+            sendTemplates()
+         })
+      }
+   }, [loaded])
 
    return (
       <>
