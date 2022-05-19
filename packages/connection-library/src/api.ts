@@ -65,7 +65,7 @@ class AsylumApi {
 
    async uploadMetadata(metadata: object): Promise<string> {
       const ipfs = create({
-         url: 'http://127.0.0.1:5001',
+         url: process.env.IPFS_ENDPOINT_URL ?? 'http://127.0.0.1:5001',
       })
       const { cid } = await ipfs.add(JSON.stringify(metadata))
 
@@ -74,7 +74,7 @@ class AsylumApi {
 
    async getMetadataCID(metadata: object): Promise<string> {
       const ipfs = create({
-         url: 'http://127.0.0.1:5001',
+         url: process.env.IPFS_ENDPOINT_URL ?? 'http://127.0.0.1:5001',
       })
       const { cid } = await ipfs.add(JSON.stringify(metadata), { onlyHash: true })
 
@@ -83,7 +83,7 @@ class AsylumApi {
 
    async uploadFile(buffer: ArrayBuffer): Promise<string> {
       const ipfs = create({
-         url: 'http://127.0.0.1:5001',
+         url: process.env.IPFS_ENDPOINT_URL ?? 'http://127.0.0.1:5001',
       })
       const { cid } = await ipfs.add(buffer)
 

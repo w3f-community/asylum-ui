@@ -8,18 +8,27 @@ Firstly, you have to configure the local env and run three processes:
 Follow instructions to run [Game Developers Console (locally)](/packages/game-developers-console/README.md).
 Make sure you're using the node version: **v17.9.0**.
 
+As another option - you can run all three processes in the **Docker**. To do this you need to do Step 0 below (setup `.env.local` file) and then run the following command: 
+
+```
+docker-compose up
+``` 
+
+It will run three containers and *automatically seed the mock data*, so you can skip the Step 1 in the guide below. 
+
 ### Steps
 
-#### Step 1: Seed mock data for your local node
+#### Step 0: Setup local variables
 
-
-1. Create `.env.local` file in `packages/connection-library` with the following content (you can specify any `SEEDER_MNEMONIC`):
+Create `.env.local` file in `packages/connection-library` with the following content (you can specify any `SEEDER_MNEMONIC`):
 ```
 SEEDER_MNEMONIC = eternal danger cherry radar exit damage slam hip say relief awesome middle
 ENDPOINT_URL = ws://127.0.0.1:9944
 ```
 
-2. Navigate to the root directory and run `seed` script to configure testing data on local node:
+#### Step 1: Seed mock data for your local node
+
+Navigate to the root directory and run the `seed` script to configure testing data on the local node:
 ```
 yarn seed
 ```
@@ -47,9 +56,9 @@ yarn seed
 #### Step 3: Configure Template and Interpretations:
 
 1. Navigate to the `templates` page and click `+ create template` button. Here you have to fill in metadata related to the Template (`Name`, `Description`). All Templates should have at least one visual Interpretation with `default-view` tag. This Interpretation can be used in the marketplace or inventory and represents the general visual features of Template.
-> Note: at the moment, the form works only with `image/*` sources, but in fact, Interpretation can have any source type, even not visual, but text
+> Note: at the moment, the form works good only with `image/*` sources, but in fact, Interpretation can have any source type, even not visual, but text
 
-![](img/screenshot-5.png)
+   ![](img/screenshot-5.png)
 
 2. Adding Tags affects the metadata of Interpretation. You can check the result in `Raw Metadata` field. **Consider tags as a verbal description of Interpretation**. Tags can carry metadata fields with predefined or configurable values, or even without any metadata, bringing specific semantics to the Interpretation (like the `pixeled` tag):
    ![](img/screenshot-6.png)
@@ -67,8 +76,8 @@ yarn seed
 
 ![](img/screenshot-9.png)
 
-6. Finally, the new Interpretation was added!
+6. Adding Interpretations allows NFT items to have different visual representations within one and multiple games. Suppose we have two visually different games (2D and 3D) which want to share one NFT item. To make it possible, we have to add two more Interpretations: the first one is a 2d sprite atlas, and the second one is a 3d Blender model.
    ![](img/screenshot-10.png)
-
-
+7. Finally, we have set up our Template with multiple visual Interpretations!
+   ![](img/screenshot-11.png)
 
