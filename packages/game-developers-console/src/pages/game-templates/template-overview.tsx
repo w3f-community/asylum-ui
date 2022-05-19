@@ -67,6 +67,7 @@ export const TemplateOverview: React.FC = observer(() => {
          },
       }
    )
+   interpretations?.sort((a) => (a.tags.includes('default-view') ? -1 : 1))
 
    const [interpretationEdited, setInterpretationEdited] =
       React.useState<InterpretationWithMetadata | null>(null)
@@ -127,7 +128,11 @@ export const TemplateOverview: React.FC = observer(() => {
                         {interpretations?.map((interpretation) => (
                            <img
                               key={interpretation.interpretation.id}
-                              src={interpretation.interpretation.src}
+                              src={
+                                 interpretation.tags.includes('blend')
+                                    ? '/img/blender.png'
+                                    : interpretation.interpretation.src
+                              }
                               alt={interpretation.interpretation.id}
                               className="aspect-video object-cover object-center"
                            />
@@ -251,7 +256,11 @@ export const TemplateOverview: React.FC = observer(() => {
                            <div className="basis-[170px]">
                               <img
                                  className="aspect-square object-cover object-center rounded-xl"
-                                 src={interpretation.interpretation.src}
+                                 src={
+                                    interpretation.tags.includes('blend')
+                                       ? '/img/blender.png'
+                                       : interpretation.interpretation.src
+                                 }
                                  alt={interpretation.interpretation.id}
                               />
                            </div>

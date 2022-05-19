@@ -19,7 +19,7 @@ interface IProps {
 
 const LOCAL_NODE: INetwork = {
    name: 'local node',
-   endpoint: 'ws://127.0.0.1:9944',
+   endpoint: process.env.ENDPOINT_URL ?? 'ws://127.0.0.1:9944',
 }
 
 export const ServerConnectModal: React.FC<IProps> = observer(({ open, onClose }) => {

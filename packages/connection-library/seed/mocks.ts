@@ -43,9 +43,29 @@ export const tags = [
       },
    },
    {
-      tag: '2d-sprite',
+      tag: 'inventory-view',
       metadata: {
-         id: '2d-sprite',
+         id: 'inventory-view',
+         description: 'The representation of item in inventory',
+         metadataExtensions: {
+            fields: [],
+         },
+      },
+   },
+   {
+      tag: 'animation',
+      metadata: {
+         id: 'animation',
+         description: 'Representation of item with animation',
+         metadataExtensions: {
+            fields: [],
+         },
+      },
+   },
+   {
+      tag: '2d-sprite-atlas',
+      metadata: {
+         id: '2d-sprite-atlas',
          description: '2d picture representation',
          metadataExtensions: {
             fields: [],
@@ -59,6 +79,23 @@ export const tags = [
          description: '3d model representation',
          metadataExtensions: {
             fields: [],
+         },
+      },
+   },
+   {
+      tag: 'blend',
+      metadata: {
+         id: 'blend',
+         description: 'created by Blender 3D',
+         metadataExtensions: {
+            fields: [
+               {
+                  name: 'format',
+                  type: 'string',
+                  defaultValue: '.blend',
+                  description: 'The format of source is .blend',
+               },
+            ],
          },
       },
    },
@@ -127,7 +164,7 @@ export const tags = [
 
 export const templates: ITemplateMockData[] = [
    {
-      name: 'Old sword',
+      name: 'Sword',
       metadata: {
          description: 'Lorem ipsum dolor sit amet, consect adipiscing elit.',
       },
@@ -136,7 +173,7 @@ export const templates: ITemplateMockData[] = [
          {
             tags: ['default-view', 'png'],
             interpretation: {
-               src: '/img/sword.png',
+               src: 'https://preview.free3d.com/img/2017/03/1763957643723933051/x7saci6d-900.jpg',
                metadata: {
                   description: 'The default representation of item | in PNG format',
                   format: '.png',
