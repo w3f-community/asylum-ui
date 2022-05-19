@@ -1,10 +1,11 @@
-import { IAsylumApi } from '../dist'
 import { AsylumApi, Interpretation } from '../src'
+import { IAsylumApi } from '../src/index'
+import { getFile } from '../src/utils'
 import {
    games as gamesMockData,
+   proposals as proposalsMockData,
    tags as tagsMockData,
    templates as templatesMockData,
-   proposals as proposalsMockData,
 } from './mocks'
 import { Keyring } from '@polkadot/api'
 import { KeyringPair } from '@polkadot/keyring/types'
@@ -27,18 +28,19 @@ const prepareSeeder = async (api: IAsylumApi): Promise<KeyringPair> => {
    return seeder
 }
 
-const seed = async (api: IAsylumApi): Promise<void> => {
+const seed = async (api: IAsylumApi, seeder: KeyringPair): Promise<void> => {
    console.log('Starting seed...')
 
-   await seedTags(api)
-   await seedTemplates(api)
-   await seedProposals(api)
-   await seedGames(api)
+   await seedTags(api, seeder)
+   await seedTemplates(api, seeder)
+   await seedProposals(api, seeder)
+   await seedItems(api, seeder)
+   await seedGames(api, seeder)
 
    console.log('Seed finished')
 }
 
-const seedProposals = async (api: IAsylumApi): Promise<void> => {
+const seedProposals = async (api: IAsylumApi, seeder?: KeyringPair): Promise<void> => {
    try {
       console.log('Initializing proposals...')
 
@@ -61,7 +63,7 @@ const seedProposals = async (api: IAsylumApi): Promise<void> => {
    }
 }
 
-const seedTags = async (api: IAsylumApi): Promise<void> => {
+const seedTags = async (api: IAsylumApi, seeder?: KeyringPair): Promise<void> => {
    try {
       console.log('Initializing tags...')
 
@@ -82,7 +84,7 @@ const seedTags = async (api: IAsylumApi): Promise<void> => {
    }
 }
 
-const seedTemplates = async (api: IAsylumApi): Promise<void> => {
+const seedTemplates = async (api: IAsylumApi, seeder?: KeyringPair): Promise<void> => {
    try {
       console.log('Initializing templates...')
 
@@ -127,7 +129,34 @@ const seedTemplates = async (api: IAsylumApi): Promise<void> => {
    }
 }
 
-const seedGames = async (api: IAsylumApi): Promise<void> => {
+const seedItems = async (api: IAsylumApi, seeder: KeyringPair): Promise<void> => {
+   try {
+      console.log('Initializing items...')
+
+      const templates = await api.templates()
+
+      for (const template of templates) {
+         const metadata = await getFile(template.metadata)
+         const metadataCID = await api.uploadMetadata({
+            ...metadata,
+            name: `${template.name}: NFT Item`,
+         })
+
+         await api.mintItemFromTemplate(seeder.address, template.id, metadataCID)
+         console.log(
+            `Minted item from template: ${template.name}`,
+            await api.item(template.id, '0')
+         )
+      }
+
+      console.log('[Initializing items] SUCCEED')
+   } catch (error) {
+      console.error('[Initializing items] FAILED')
+      console.error('[Initializing items] Error: ' + error)
+   }
+}
+
+const seedGames = async (api: IAsylumApi, seeder?: KeyringPair): Promise<void> => {
    try {
       console.log('Initializing games...')
 
@@ -162,7 +191,8 @@ const seedGames = async (api: IAsylumApi): Promise<void> => {
 
 AsylumApi.connect(process.env.ENDPOINT_URL || '')
    .then(async (api) => {
-      await seed(api.withKeyringPair(await prepareSeeder(api)))
+      const seeder = await prepareSeeder(api)
+      await seed(api.withKeyringPair(seeder), seeder)
       terminate(0)
    })
    .catch((err) => {

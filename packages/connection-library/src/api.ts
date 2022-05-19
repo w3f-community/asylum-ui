@@ -1,5 +1,14 @@
 import { apiTypes } from './api-types'
-import { ChangeSet, Game, GameMetadata, Interpretation, Tag, TagName, Template } from './types'
+import {
+   ChangeSet,
+   Game,
+   GameMetadata,
+   Interpretation,
+   Item,
+   Tag,
+   TagName,
+   Template,
+} from './types'
 import { handleTxCallback, mapEntries } from './utils'
 import { ApiPromise, SubmittableResult, WsProvider } from '@polkadot/api'
 import { ApiTypes } from '@polkadot/api-base/types/base'
@@ -258,16 +267,36 @@ class AsylumApi {
       })
    }
 
-   async mintItem(
+   async mintItemFromTemplate(
       owner: string,
       templateId: string,
       metadata: string
    ): Promise<SubmittableResult> {
-      const tx = this.api!.tx.asylumCore.mintItemFromTemplate(
-         owner, templateId, metadata,
-      )
+      const tx = this.api!.tx.asylumCore.mintItemFromTemplate(owner, templateId, metadata)
       return this.signAndSendWrapped(tx)
    }
+
+   async item(templateId: string, id: string): Promise<Item> {
+      const template: any = (await this.api!.query.rmrkCore.nfts(templateId, id)).toHuman()
+      return {
+         ...template,
+         id,
+         templateId,
+      } as Item
+   }
+
+   // TODO implement item getters
+   // async itemsByTemplate(templateId: string): Promise<Item[]> {
+   //
+   // }
+   //
+   // async items(): Promise<Item[]> {
+   //
+   // }
+   //
+   // async itemsByOwner(ownerAccountId: string) Promise<Item[]> {
+   //
+   // }
 }
 
 export default new AsylumApi()

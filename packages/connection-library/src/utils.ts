@@ -1,7 +1,9 @@
 import { SubmittableResult } from '@polkadot/api'
-import { Registry } from '@polkadot/types/types'
 import { StorageKey } from '@polkadot/types'
 import { AnyTuple, Codec } from '@polkadot/types-codec/types'
+import { Registry } from '@polkadot/types/types'
+import axios from 'axios'
+import { CID } from 'types'
 
 export const handleTxCallback =
    (
@@ -53,4 +55,9 @@ export const mapEntries = (
          id,
       }
    })
+}
+
+export const getFile = async (cid: CID) => {
+   const { data } = await axios.get(`http://127.0.0.1:8080/ipfs/${cid}`)
+   return data
 }

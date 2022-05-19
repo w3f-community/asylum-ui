@@ -171,12 +171,12 @@ export const templates: ITemplateMockData[] = [
       max: 100,
       interpretations: [
          {
-            tags: ['default-view', 'png'],
+            tags: ['default-view', 'jpg'],
             interpretation: {
                src: 'https://preview.free3d.com/img/2017/03/1763957643723933051/x7saci6d-900.jpg',
                metadata: {
                   description: 'The default representation of item | in PNG format',
-                  format: '.png',
+                  format: '.jpg',
                },
             },
          },
