@@ -13,7 +13,7 @@ import { fetchTemplates } from 'api'
 import { TemplateCreate } from 'modules/template/template-create'
 import { TemplateWithMetadata } from 'types'
 
-interface IProps { }
+interface IProps {}
 
 function GameTemplatesSkeleton() {
    return (
@@ -33,9 +33,7 @@ function GameTemplatesSkeleton() {
 export const GameTemplates: React.FC<IProps> = () => {
    const navigate = useNavigate()
    const [query, setQuery] = useState('')
-   const [mintModalIsOpen, setMintModalIsOpen] = useState(false)
    const { data: templates, isLoading } = useQuery('templates', () => fetchTemplates())
-   // console.log(templates)
 
    const filterTemplates = (
       inputValue: string,

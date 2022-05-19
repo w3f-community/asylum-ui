@@ -17,7 +17,7 @@ interface IProps extends IComponentProps {
 
 export const Modal: React.FC<IProps> = ({
    title,
-   open: isOpen = false,
+   open = false,
    onClose,
    maxWidth = 'xl',
    children,
@@ -26,19 +26,12 @@ export const Modal: React.FC<IProps> = ({
 
    return ReactDOM.createPortal(
       <>
-         <ModalOverlay
-            isOpen={isOpen}
-            onClose={onClose}
-         // className={classNames({
-         //    'opacity-0 invisible pointer-events-none': !isOpen,
-         //    'opacity-100 visible': isOpen,
-         // })}
-         >
+         <ModalOverlay open={open} onClose={onClose}>
             <ModalContent ref={modalRef} maxWidth={maxWidth}>
                <div className="flex align-middle justify-center relative py-3">
                   {title && <Heading className="text-white">{title}</Heading>}{' '}
                   <CloseIcon
-                     className="cursor-pointer absolute right-1 top-1 fill-white hover:fill-asylum-magenta transition"
+                     className="cursor-pointer absolute right-1 top-1 fill-white hover:fill-asylum-magenta transition-colors"
                      onClick={() => onClose && onClose()}
                   />
                </div>
@@ -52,37 +45,37 @@ export const Modal: React.FC<IProps> = ({
 }
 
 interface IModalOverlayProps extends IComponentProps {
-   isOpen: boolean
+   open: boolean
    onClose?: () => void
 }
 
-const ModalOverlay: React.FC<IModalOverlayProps> = ({ isOpen, onClose, className, children }) => {
-   const [shouldRender, setShouldRender] = useState(isOpen)
+const ModalOverlay: React.FC<IModalOverlayProps> = ({ open, onClose, className, children }) => {
+   const [shouldRender, setShouldRender] = useState(open)
 
    useEffect(() => {
-      if (isOpen) setShouldRender(true)
-   })
+      if (open) setShouldRender(true)
+   }, [open])
 
-   const handleTransitionEnd = () => {
-      if (!isOpen) setShouldRender(false)
+   const handleAnimationEnd = () => {
+      if (!open) setShouldRender(false)
    }
 
-   document.body.style.overflow = (!isOpen ? 'hidden' : '')
+   document.body.style.overflow = !open ? 'hidden' : ''
 
-   return (
-      shouldRender
-         ? <div
-            className={classNames(
-               `fixed inset-0 z-30 flex items-center justify-center bg-gradient-overlay ${isOpen ? 'opacity-100' : 'opacity-0'} cursor-pointer transition overflow-auto py-4`,
-               className
-            )}
-            onClick={() => onClose && onClose()}
-            onTransitionEnd={handleTransitionEnd}
-         >
-            {children}
-         </div>
-         : null
-   )
+   return shouldRender ? (
+      <div
+         className={classNames(
+            `fixed inset-0 z-30 flex items-center justify-center bg-gradient-overlay ${
+               open ? 'animate-appear' : 'animate-fade'
+            } cursor-pointer transition-opacity duration-500 overflow-auto py-4`,
+            className
+         )}
+         onClick={() => onClose && onClose()}
+         onAnimationEnd={handleAnimationEnd}
+      >
+         {children}
+      </div>
+   ) : null
 }
 
 const ModalContent = forwardRef<HTMLDivElement, IProps>(({ maxWidth, children }, ref) => {

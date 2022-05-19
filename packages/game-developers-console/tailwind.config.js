@@ -73,10 +73,28 @@ module.exports = {
                   background: 'rgba(48, 48, 48, 0.7)',
                },
             },
+            appear: {
+               '0%': {
+                  opacity: '0',
+               },
+               '100%': {
+                  opacity: '1',
+               },
+            },
+            fade: {
+               '0%': {
+                  opacity: '1',
+               },
+               '100%': {
+                  opacity: '0',
+               },
+            },
          },
          animation: {
             'slide-out': 'slide-out 0.7s ease-in forwards',
             'slide-in': 'slide-in 0.7s ease-in forwards',
+            appear: 'appear 0.15s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+            fade: 'fade 0.15s cubic-bezier(0.4, 0, 0.2, 1) forwards',
          },
       },
    },
