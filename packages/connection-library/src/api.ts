@@ -257,6 +257,17 @@ class AsylumApi {
          }
       })
    }
+
+   async mintItem(
+      owner: string,
+      templateId: string,
+      metadata: string
+   ): Promise<SubmittableResult> {
+      const tx = this.api!.tx.asylumCore.mintItemFromTemplate(
+         owner, templateId, metadata,
+      )
+      return this.signAndSendWrapped(tx)
+   }
 }
 
 export default new AsylumApi()
