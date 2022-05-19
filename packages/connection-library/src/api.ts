@@ -285,7 +285,6 @@ class AsylumApi {
       } as Item
    }
 
-   // TODO implement item getters
    async itemsByTemplate(templateId: string): Promise<Item[]> {
       const entries = await this.api!.query.rmrkCore.nfts.entries(templateId)
       return mapEntries(entries)

@@ -149,15 +149,11 @@ const seedItems = async (api: IAsylumApi, seeder: KeyringPair): Promise<void> =>
             await api.mintItemFromTemplate(seeder.address, template.id, metadataCID)
          }
          console.log(
-            `Minted item from template with index 1: ${template.name}`,
-            await api.item(template.id, '1')
-         )
-         console.log(
             `All items from template ${template.name}: `,
             await api.itemsByTemplate(template.id)
          )
       }
-      console.log('All items by owner: ', await api.itemsByOwner(seeder.address))
+
       console.log('[Initializing items] SUCCEED')
    } catch (error) {
       console.error('[Initializing items] FAILED')
