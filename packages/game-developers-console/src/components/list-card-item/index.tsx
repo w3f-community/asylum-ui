@@ -1,11 +1,11 @@
-import * as React from 'react'
+import React from 'react'
 
 import { Button } from 'components/button'
 import { HeadingLg } from 'components/text/heading-lg'
 import { Paragraph } from 'components/text/paragraph'
 import { formatAddress } from 'utils'
 
-interface IProps {
+interface IListCardItem {
    title: string
    img: string
    id: string
@@ -16,7 +16,7 @@ interface IProps {
    actionText?: string
 }
 
-export const ListCardItem: React.FC<IProps> = ({
+export const ListCardItem = ({
    title,
    img,
    id,
@@ -25,7 +25,7 @@ export const ListCardItem: React.FC<IProps> = ({
    onClick,
    onActionClick,
    actionText,
-}) => {
+}: IListCardItem) => {
    return (
       <div
          className="bg-white p-5 rounded-2xl gradient-hover-effect cursor-pointer group flex flex-col"

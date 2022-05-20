@@ -6,18 +6,17 @@ import { every, filter, includes, map } from 'lodash/fp'
 import { observer } from 'mobx-react-lite'
 import { useQuery } from 'react-query'
 import { Carousel } from 'react-responsive-carousel'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { OptionProps, components } from 'react-select'
 
 import { TagMetadata } from '@asylum-ui/connection-library'
 
+import { Page } from '../../layout/page'
 import { fetchTags, fetchTemplate, fetchTemplateInterpretationsMetadata } from 'api'
-import { ReactComponent as ArrowLeftIcon } from 'assets/svg/arrow-left.svg'
 import { ReactComponent as EditIcon } from 'assets/svg/pen.svg'
 import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
 import { Button } from 'components/button'
 import { Card } from 'components/card'
-import { Hr } from 'components/hr'
 import { InputSelect } from 'components/input-select'
 import { JsonRaw } from 'components/json-raw'
 import { Tag } from 'components/tag'
@@ -41,7 +40,6 @@ const Option = (props: OptionProps<TagMetadata, true>) => {
 
 export const TemplateOverview: React.FC = observer(() => {
    const { id } = useParams()
-   const navigate = useNavigate()
    const { data: tags } = useQuery('tags', () => fetchTags())
    const [seeMore, setSeeMore] = React.useState(false)
    const descriptionRef: Ref<HTMLDivElement> = useRef(null)
@@ -75,19 +73,7 @@ export const TemplateOverview: React.FC = observer(() => {
    if (!template) return null
 
    return (
-      <div className="container mx-auto">
-         <div className="flex justify-between items-center">
-            <HeadingXl className="text-white">
-               <div
-                  onClick={() => navigate('/templates')}
-                  className="flex gap-4 items-center cursor-pointer"
-               >
-                  <ArrowLeftIcon className="fill-white" />
-                  Templates
-               </div>
-            </HeadingXl>
-         </div>
-         <Hr />
+      <Page title="Template" returnButton={true}>
          <div className="py-6 flex flex-col gap-8">
             <Card className="relative">
                <div className="flex gap-9 mb-5">
@@ -282,6 +268,6 @@ export const TemplateOverview: React.FC = observer(() => {
                </div>
             </div>
          </div>
-      </div>
+      </Page>
    )
 })

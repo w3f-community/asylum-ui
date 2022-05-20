@@ -1,9 +1,8 @@
-import * as React from 'react'
+import React from 'react'
 
 import { observer } from 'mobx-react-lite'
 
-import { Hr } from 'components/hr'
-import { HeadingXl } from 'components/text/heading-xl'
+import { Page } from '../../layout/page'
 import { Paragraph } from 'components/text/paragraph'
 import { Reviews } from 'pages/game-overview/reviews'
 import { useStore } from 'store'
@@ -22,16 +21,12 @@ export const GameOverview: React.FC<IProps> = observer(() => {
    }
 
    return (
-      <div className="container mx-auto">
-         <HeadingXl className="text-white self-start">Game overview</HeadingXl>
-         <Hr />
-         <div className="py-6">
-            <GameDescription game={store.selectedGame} />
-            <Details game={store.selectedGame} />
-            <div className="flex flex-col">
-               <Reviews reviews={store.selectedGame.reviews} />
-            </div>
+      <Page title="Game overview">
+         <GameDescription game={store.selectedGame} />
+         <Details game={store.selectedGame} />
+         <div className="flex flex-col">
+            <Reviews reviews={store.selectedGame.reviews} />
          </div>
-      </div>
+      </Page>
    )
 })

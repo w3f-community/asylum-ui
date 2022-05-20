@@ -1,31 +1,26 @@
-import * as React from 'react'
+import React from 'react'
 
 import classNames from 'classnames'
 import { observer } from 'mobx-react-lite'
 
+import { GridItems } from '../../layout/page/grid-items'
 import { useStore } from 'store'
 import { GameWithMetadata } from 'store/app-store'
-import { IComponentProps } from 'types'
 
 import { GameCard } from './game-card'
 
-interface IProps extends IComponentProps {
+interface IGameTable {
    games: GameWithMetadata[]
 }
 
-export const GameTable: React.FC<IProps> = observer(({ games, className }) => {
+export const GameTable = observer(({ games }: IGameTable) => {
    const store = useStore()
    const handleSelectGame = (game: GameWithMetadata) => {
       store.setSelectedGame(game)
    }
 
    return (
-      <div
-         className={classNames([
-            'no-scrollbar overflow-auto grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-9',
-            className,
-         ])}
-      >
+      <GridItems>
          {games &&
             games.map((item: GameWithMetadata) => {
                return (
@@ -42,6 +37,6 @@ export const GameTable: React.FC<IProps> = observer(({ games, className }) => {
                   />
                )
             })}
-      </div>
+      </GridItems>
    )
 })
