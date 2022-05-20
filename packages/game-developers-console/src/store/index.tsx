@@ -2,9 +2,13 @@ import React from 'react'
 
 import AppStore, { IAppStore } from './app-store'
 
+interface IStoreProviderProps {
+   children: React.ReactNode
+}
+
 const storeContext = React.createContext<IAppStore | null>(null)
 
-export const StoreProvider: React.FC = ({ children }) => {
+export const StoreProvider: React.FC<IStoreProviderProps> = ({ children }) => {
    return <storeContext.Provider value={AppStore}>{children}</storeContext.Provider>
 }
 

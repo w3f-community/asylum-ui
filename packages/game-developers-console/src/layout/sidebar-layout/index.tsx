@@ -8,7 +8,9 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import { IComponentProps } from 'types'
 
-interface IProps extends IComponentProps {}
+interface IProps extends IComponentProps {
+   children: React.ReactNode
+}
 
 export const SidebarLayout: React.FC<IProps> = ({ className, children }) => {
    return (

@@ -1,0 +1,8 @@
+{
+  "short_name": "Game Console",
+  "name": "Game Developers Console",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

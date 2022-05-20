@@ -3,7 +3,7 @@ import React from 'react'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
 import { App } from 'App'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -13,7 +13,9 @@ import { ScrollToTop } from 'utils/scroll-to-top'
 
 const queryClient = new QueryClient()
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root') as HTMLDivElement)
+
+root.render(
    <React.StrictMode>
       <QueryClientProvider client={queryClient}>
          <BrowserRouter>
@@ -25,8 +27,7 @@ ReactDOM.render(
             </StoreProvider>
          </BrowserRouter>
       </QueryClientProvider>
-   </React.StrictMode>,
-   document.getElementById('root')
+   </React.StrictMode>
 )
 
 reportWebVitals()

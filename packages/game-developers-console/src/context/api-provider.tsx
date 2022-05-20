@@ -6,6 +6,10 @@ import { AsylumApi, IAsylumApi } from '@asylum-ui/connection-library'
 
 const apiProvider = React.createContext<IAsylumApi | null>(null)
 
-export const AsylumApiProvider: React.FC = observer(({ children }) => {
+interface IAsylumApiProvider {
+   children: React.ReactNode
+}
+
+export const AsylumApiProvider: React.FC<IAsylumApiProvider> = observer(({ children }) => {
    return <apiProvider.Provider value={AsylumApi}>{children}</apiProvider.Provider>
 })

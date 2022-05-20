@@ -7,15 +7,15 @@ import ReactDOM from 'react-dom'
 import { ReactComponent as CloseIcon } from 'assets/svg/close.svg'
 import { IComponentProps } from 'types'
 
-interface IProps extends IComponentProps {
-   title?: React.ReactText
+interface IModalProps extends IComponentProps {
+   title?: string
    open?: boolean
    onClose?: () => void
    maxWidth?: 'md' | 'lg' | 'xl' | '2xl' | 'full'
    children: React.ReactNode
 }
 
-export const Modal: React.FC<IProps> = ({
+export const Modal: React.FC<IModalProps> = ({
    title,
    open = false,
    onClose,
@@ -47,6 +47,7 @@ export const Modal: React.FC<IProps> = ({
 interface IModalOverlayProps extends IComponentProps {
    open: boolean
    onClose?: () => void
+   children: React.ReactNode
 }
 
 const ModalOverlay: React.FC<IModalOverlayProps> = ({ open, onClose, className, children }) => {
@@ -78,7 +79,7 @@ const ModalOverlay: React.FC<IModalOverlayProps> = ({ open, onClose, className, 
    ) : null
 }
 
-const ModalContent = forwardRef<HTMLDivElement, IProps>(({ maxWidth, children }, ref) => {
+const ModalContent = forwardRef<HTMLDivElement, IModalProps>(({ maxWidth, children }, ref) => {
    return (
       <div
          onClick={(e) => e.stopPropagation()}

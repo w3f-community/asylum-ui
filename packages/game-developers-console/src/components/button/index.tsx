@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import classNames from 'classnames'
 
@@ -11,6 +11,7 @@ interface IProps extends IComponentProps {
    size?: 'sm' | 'md' | 'lg'
    active?: boolean
    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
+   children: React.ReactNode
 }
 
 export const Button: React.FC<IProps> = ({

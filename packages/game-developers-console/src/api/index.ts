@@ -51,7 +51,6 @@ export const fetchTemplates = async (): Promise<TemplateWithMetadata[]> => {
       const templateWithMetadata = await fetchTemplateMetadata(template)
       templatesWithMetadata.push(templateWithMetadata)
    }
-   console.log(templatesWithMetadata)
    return templatesWithMetadata
 }
 
