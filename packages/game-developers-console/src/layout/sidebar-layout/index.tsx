@@ -4,10 +4,9 @@ import classNames from 'classnames'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { Toast } from 'components/toast'
+import { Header } from 'layout/header'
+import { Sidebar } from 'layout/sidebar'
 import { IComponentProps } from 'types'
-
-import { Header } from '../header'
-import { Sidebar } from '../sidebar'
 
 interface IProps extends IComponentProps {}
 
