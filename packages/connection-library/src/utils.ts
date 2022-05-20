@@ -44,33 +44,24 @@ export const handleTxCallback =
 
 export const mapEntries = (
    entries: [StorageKey<AnyTuple>, Codec][],
-   codecConverter?: ((codec: Codec) => any) | undefined
+   codecConverter?: ((codec: Codec, key?: StorageKey<AnyTuple>) => any) | undefined
 ) => {
    return entries.map(([key, exposure]) => {
       // using join here 'cause key may be composite
       const id = key.args.map((k) => k.toHuman()).join(':')
-      const content = codecConverter ? codecConverter(exposure) : exposure.toHuman()
       return {
-         ...content,
+         ...(!codecConverter && (exposure.toHuman() as {})),
          id,
+         ...(codecConverter && codecConverter(exposure, key)),
       }
    })
 }
 
-export const mapItemsWithJoinedIds = (
-   entries: [StorageKey<AnyTuple>, Codec][],
-   codecConverter?: ((codec: Codec) => any) | undefined
-) => {
-   return mapEntries(entries, codecConverter).map(({ id, ...restEntry }) => {
-      const [templateId, itemId] = id.split(':')
-
-      return {
-         templateId,
-         id: itemId,
-         ...restEntry,
-      }
-   })
-}
+export const itemConverter: any = (codec: Codec, key: StorageKey<AnyTuple>) => ({
+   ...(codec.toHuman() as {}),
+   templateId: key.args[0].toHuman(),
+   id: key.args[1].toHuman(),
+})
 
 export const getFile = async (cid: CID) => {
    const { data } = await axios.get(`http://127.0.0.1:8080/ipfs/${cid}`)

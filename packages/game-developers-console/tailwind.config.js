@@ -73,7 +73,7 @@ module.exports = {
                   background: 'rgba(48, 48, 48, 0.7)',
                },
             },
-            appear: {
+            'fade-in': {
                '0%': {
                   opacity: '0',
                },
@@ -81,7 +81,7 @@ module.exports = {
                   opacity: '1',
                },
             },
-            fade: {
+            'fade-out': {
                '0%': {
                   opacity: '1',
                },
@@ -93,8 +93,8 @@ module.exports = {
          animation: {
             'slide-out': 'slide-out 0.7s ease-in forwards',
             'slide-in': 'slide-in 0.7s ease-in forwards',
-            appear: 'appear 0.15s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-            fade: 'fade 0.15s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+            'fade-in': 'fade-in 0.15s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+            'fade-out': 'fade-out 0.15s cubic-bezier(0.4, 0, 0.2, 1) forwards',
          },
       },
    },

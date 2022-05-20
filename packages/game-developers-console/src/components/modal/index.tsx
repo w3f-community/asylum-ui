@@ -66,8 +66,8 @@ const ModalOverlay: React.FC<IModalOverlayProps> = ({ open, onClose, className, 
       <div
          className={classNames(
             `fixed inset-0 z-30 flex items-center justify-center bg-gradient-overlay ${
-               open ? 'animate-appear' : 'animate-fade'
-            } cursor-pointer transition-opacity duration-500 overflow-auto py-4`,
+               open ? 'animate-fade-in' : 'animate-fade-out'
+            } cursor-pointer overflow-auto py-4`,
             className
          )}
          onClick={() => onClose && onClose()}
