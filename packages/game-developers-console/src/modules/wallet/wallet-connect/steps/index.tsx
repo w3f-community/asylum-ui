@@ -1,8 +1,8 @@
 import * as React from 'react'
 
+import { ExtensionSelectionStep } from './extension-selection-step'
 import { AccountSelectionStep } from './account-selection-step'
 import { ConnectedStep } from './connected-step'
-import { ExtensionSelectionStep } from './extension-selection-step'
 
 export enum WalletConnectStepType {
    ExtensionSelection,
@@ -24,5 +24,7 @@ export const WALLET_CONNECT_STEPS: WalletConnectStep = {
    [WalletConnectStepType.AccountSelection]: (props: IWalletStepProps) => (
       <AccountSelectionStep {...props} />
    ),
-   [WalletConnectStepType.Connected]: (props: IWalletStepProps) => <ConnectedStep {...props} />,
+   [WalletConnectStepType.Connected]: (props: IWalletStepProps) => (
+      <ConnectedStep {...props} />
+   ),
 }

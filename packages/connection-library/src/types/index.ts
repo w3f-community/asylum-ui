@@ -45,6 +45,18 @@ export interface Template {
    nftCount: number
 }
 
+export interface Item {
+   id: string
+   templateId: string
+   owner: {
+      AccountId: string
+   }
+   recipient: string
+   royalty: string
+   metadata: CID
+   equipped: boolean
+}
+
 export interface InterpretationInfo {
    id: InterpretationId
    src: string | undefined

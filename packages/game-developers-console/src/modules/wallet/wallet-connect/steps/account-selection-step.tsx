@@ -27,7 +27,7 @@ const AccountRow: React.FC<IAccountRowProps> = ({ account, onSelect }) => (
       className="w-full text-left flex items-center justify-between"
       onClick={() => onSelect(account)}
    >
-      <span className="flex text-left flex items-center gap-4">
+      <span className="flex text-left items-center gap-4">
          <Avatar /> {account.meta.name}
       </span>
       {formatAddress(account.address)}

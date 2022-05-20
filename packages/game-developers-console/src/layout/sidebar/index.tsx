@@ -13,7 +13,7 @@ import { ServerConnect } from 'modules/server-connect'
 import { useStore } from 'store'
 import { IComponentProps } from 'types'
 
-interface IProps extends IComponentProps {}
+interface IProps extends IComponentProps { }
 
 export const Sidebar: React.FC<IProps> = observer(() => {
    const store = useStore()
@@ -21,7 +21,7 @@ export const Sidebar: React.FC<IProps> = observer(() => {
    const location = useLocation()
 
    return (
-      <aside className="hidden basis-52 md:block lg:basis-72 shrink-0 h-screen sticky z-30 top-0 z-40">
+      <aside className="hidden basis-52 md:block lg:basis-72 shrink-0 h-screen sticky z-40 top-0">
          <div className="flex flex-col items-center py-8 px-2 text-center gap-7 h-full before:bg-white before:rounded-t-3xl before:absolute before:inset-0 before:top-24 before:-z-10">
             <Avatar
                className="min-h-[176px]"

@@ -1,6 +1,15 @@
 import { apiTypes } from './api-types'
-import { ChangeSet, Game, GameMetadata, Interpretation, Tag, TagName, Template } from './types'
-import { handleTxCallback, mapEntries } from './utils'
+import {
+   ChangeSet,
+   Game,
+   GameMetadata,
+   Interpretation,
+   Item,
+   Tag,
+   TagName,
+   Template,
+} from './types'
+import { handleTxCallback, itemConverter, mapEntries } from './utils'
 import { ApiPromise, SubmittableResult, WsProvider } from '@polkadot/api'
 import { ApiTypes } from '@polkadot/api-base/types/base'
 import { SubmittableExtrinsic } from '@polkadot/api-base/types/submittable'
@@ -256,6 +265,39 @@ class AsylumApi {
             name: json.symbol,
          }
       })
+   }
+
+   async mintItemFromTemplate(
+      owner: string,
+      templateId: string,
+      metadata: string
+   ): Promise<SubmittableResult> {
+      const tx = this.api!.tx.asylumCore.mintItemFromTemplate(owner, templateId, metadata)
+      return this.signAndSendWrapped(tx)
+   }
+
+   async item(templateId: string, id: string): Promise<Item> {
+      const item: any = (await this.api!.query.rmrkCore.nfts(templateId, id)).toHuman()
+      return {
+         ...item,
+         id,
+         templateId,
+      } as Item
+   }
+
+   async itemsByTemplate(templateId: string): Promise<Item[]> {
+      const entries = await this.api!.query.rmrkCore.nfts.entries(templateId)
+      return mapEntries(entries, itemConverter)
+   }
+
+   async items(): Promise<Item[]> {
+      const entries = await this.api!.query.rmrkCore.nfts.entries()
+      return mapEntries(entries, itemConverter)
+   }
+
+   async itemsByOwner(ownerAccountId: string): Promise<Item[]> {
+      const allItems = await this.items()
+      return allItems.filter((item) => item.owner.AccountId === ownerAccountId)
    }
 }
 
