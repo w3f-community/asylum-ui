@@ -16,7 +16,7 @@ import { SubmittableExtrinsic } from '@polkadot/api-base/types/submittable'
 import { Signer } from '@polkadot/api/types'
 import { KeyringPair } from '@polkadot/keyring/types'
 import { create } from 'ipfs-http-client'
-import { omit } from 'lodash/fp'
+import { find, flow, omit, pick } from 'lodash/fp'
 
 class AsylumApi {
    api: ApiPromise | undefined
@@ -210,19 +210,6 @@ class AsylumApi {
       })
    }
 
-   async itemInterpretations(id: number): Promise<Interpretation[]> {
-      const result = await this.api!.query.asylumCore.itemIntepretations.entries(id)
-      return mapEntries(result, (i) => {
-         const json = i.toHuman()
-         return {
-            // @ts-ignore
-            interpretation: json['0'],
-            // @ts-ignore
-            tags: json['1'],
-         }
-      })
-   }
-
    async createInterpretationTag(tag: TagName, metadata: string): Promise<SubmittableResult> {
       const tx = this.api!.tx.asylumCore.createInterpretationTag(tag, metadata)
       return this.signAndSendWrapped(tx)
@@ -298,6 +285,28 @@ class AsylumApi {
    async itemsByOwner(ownerAccountId: string): Promise<Item[]> {
       const allItems = await this.items()
       return allItems.filter((item) => item.owner.AccountId === ownerAccountId)
+   }
+
+   async itemInterpretations(templateId: string, nftId: string): Promise<Interpretation[]> {
+      const interpretationTags = await this.api!.query.asylumCore.itemInterpretationTags.entries(
+         templateId,
+         nftId
+      )
+      const interpretations = await this.api!.query.rmrkCore.resources.entries(templateId, nftId)
+
+      return interpretationTags.map(
+         ([key, exposure]) =>
+            ({
+               tags: exposure.toHuman(),
+               interpretation: {
+                  id: key.args[2].toHuman(),
+                  ...flow(
+                     find(({ id }: any) => id.split(':')[2] === key.args[2].toHuman()),
+                     pick(['src', 'metadata'])
+                  )(mapEntries(interpretations)),
+               },
+            } as Interpretation)
+      )
    }
 }
 
