@@ -1,14 +1,14 @@
 import * as React from 'react'
 
+import { useQuery } from 'react-query'
+import { useNavigate } from 'react-router-dom'
+
+import { fetchPlayersCount } from 'api'
 import { Button } from 'components/button'
 import { Card } from 'components/card'
 import { Heading } from 'components/text/heading'
 import { HeadingLg } from 'components/text/heading-lg'
 import { Paragraph } from 'components/text/paragraph'
-import { useQuery } from 'react-query'
-import { useNavigate } from 'react-router-dom'
-
-import { fetchPlayersCount } from 'api'
 import { GameWithMetadata } from 'store/app-store'
 
 interface IProps {

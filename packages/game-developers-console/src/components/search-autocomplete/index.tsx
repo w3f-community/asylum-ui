@@ -1,11 +1,11 @@
 import * as React from 'react'
 
 import classNames from 'classnames'
-import { InputField } from 'components/input-field'
-import { Heading } from 'components/text/heading'
 
 import { ReactComponent as CloseIcon } from 'assets/svg/close.svg'
 import { ReactComponent as SearchIcon } from 'assets/svg/search.svg'
+import { InputField } from 'components/input-field'
+import { Heading } from 'components/text/heading'
 import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {

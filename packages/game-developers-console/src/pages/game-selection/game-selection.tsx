@@ -1,17 +1,18 @@
 import * as React from 'react'
 import { useEffect } from 'react'
 
-import { GameTable } from './game-table'
+import { observer } from 'mobx-react-lite'
+import { useQuery, useQueryClient } from 'react-query'
+
+import { fetchGamesByAccount } from 'api'
+import { ReactComponent as RefreshIcon } from 'assets/svg/refresh.svg'
 import { Button } from 'components/button'
 import { Hr } from 'components/hr'
 import { HeadingXl } from 'components/text/heading-xl'
 import { Paragraph } from 'components/text/paragraph'
-import { observer } from 'mobx-react-lite'
-import { useQuery, useQueryClient } from 'react-query'
-
-import { ReactComponent as RefreshIcon } from '../../assets/svg/refresh.svg'
-import { fetchGamesByAccount } from 'api'
 import { useStore } from 'store'
+
+import { GameTable } from './game-table'
 
 const RefreshButton: React.FC<{
    onClick: () => void

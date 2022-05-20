@@ -1,7 +1,5 @@
 import React from 'react'
 
-import './index.css'
-import reportWebVitals from './reportWebVitals'
 import { App } from 'App'
 import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -10,6 +8,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { AsylumApiProvider } from 'context/api-provider'
 import { StoreProvider } from 'store'
 import { ScrollToTop } from 'utils/scroll-to-top'
+
+import './index.css'
+import reportWebVitals from './reportWebVitals'
 
 const queryClient = new QueryClient()
 

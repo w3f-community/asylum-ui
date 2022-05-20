@@ -1,7 +1,5 @@
 import * as React from 'react'
 
-import { Button } from 'components/button'
-import { Modal } from 'components/modal'
 import { useFormik } from 'formik'
 import { useMutation, useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
@@ -16,6 +14,8 @@ import {
 
 import { SubmittableResult } from '@polkadot/api'
 import { ReactComponent as EditIcon } from 'assets/svg/pen.svg'
+import { Button } from 'components/button'
+import { Modal } from 'components/modal'
 import {
    InterpretationCreateForm,
    InterpretationFormValues,

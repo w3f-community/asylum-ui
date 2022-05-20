@@ -1,9 +1,5 @@
 import * as React from 'react'
 
-import { Button } from 'components/button'
-import { Modal } from 'components/modal'
-import { Tag } from 'components/tag'
-import { Paragraph } from 'components/text/paragraph'
 import { useFormik } from 'formik'
 import 'highlight.js/styles/github.css'
 import { find, map } from 'lodash/fp'
@@ -16,6 +12,10 @@ import { AsylumApi, CID, Interpretation } from '@asylum-ui/connection-library'
 import { SubmittableResult } from '@polkadot/api'
 import { fetchTags } from 'api'
 import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
+import { Button } from 'components/button'
+import { Modal } from 'components/modal'
+import { Tag } from 'components/tag'
+import { Paragraph } from 'components/text/paragraph'
 import {
    InterpretationCreateForm,
    InterpretationFormValues,

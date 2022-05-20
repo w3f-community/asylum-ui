@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { useState } from 'react'
 
-import { WalletConnectModal } from './wallet-connect-modal'
-import { Avatar } from 'components/avatar'
-import { Button } from 'components/button'
 import { observer } from 'mobx-react-lite'
 
+import { Avatar } from 'components/avatar'
+import { Button } from 'components/button'
 import { useStore } from 'store'
 import { formatAddress } from 'utils'
+
+import { WalletConnectModal } from './wallet-connect-modal'
 
 interface IProps {}
 

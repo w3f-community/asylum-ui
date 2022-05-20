@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import { Button } from 'components/button'
-import { Modal } from 'components/modal'
 import { useFormik } from 'formik'
 
 import { ReactComponent as EditIcon } from 'assets/svg/pen.svg'
+import { Button } from 'components/button'
+import { Modal } from 'components/modal'
 import { TemplateCreateForm, validateTemplate } from 'modules/template/template-create-form'
 import { TemplateFormValues } from 'modules/template/template-create-modal'
 import { TemplateWithMetadata } from 'types'

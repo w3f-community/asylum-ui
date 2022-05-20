@@ -1,10 +1,6 @@
 import * as React from 'react'
 import { useEffect } from 'react'
 
-import { InputFileUpload } from 'components/input-file-upload'
-import { InputLabel } from 'components/input-label'
-import { InputSelect } from 'components/input-select'
-import { JsonRaw } from 'components/json-raw'
 import { FormikProps } from 'formik'
 import { map, omit } from 'lodash/fp'
 import { useQuery } from 'react-query'
@@ -13,6 +9,10 @@ import { OptionProps, components } from 'react-select'
 import { AsylumApi, CID, TagMetadata } from '@asylum-ui/connection-library'
 
 import { fetchTags } from 'api'
+import { InputFileUpload } from 'components/input-file-upload'
+import { InputLabel } from 'components/input-label'
+import { InputSelect } from 'components/input-select'
+import { JsonRaw } from 'components/json-raw'
 import { generateMetadata } from 'utils'
 
 interface IProps<T extends InterpretationFormValues> {

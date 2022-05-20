@@ -1,9 +1,9 @@
 import * as React from 'react'
 
 import classNames from 'classnames'
-import { Button } from 'components/button'
 import { observer } from 'mobx-react-lite'
 
+import { Button } from 'components/button'
 import { ServerConnectModal } from 'modules/server-connect/server-connect-modal'
 import { useStore } from 'store'
 import { IComponentProps } from 'types'
