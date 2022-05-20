@@ -55,6 +55,7 @@ export interface Item {
    royalty: string
    metadata: CID
    equipped: boolean
+   interpretations: Interpretation[]
 }
 
 export interface InterpretationInfo {

@@ -65,17 +65,20 @@ export const App = observer(() => {
       }
    }, [store.isGameRunning])
 
-   async function sendTemplates() {
-      const templatesJson = await AsylumApi.templates()
+   async function sendUserItems() {
+      const items = await AsylumApi.itemsByOwner(store.account?.address || "")
+      for (let i = 0; i < items.length; i++) {
+         items[i].interpretations = await AsylumApi.itemInterpretations(items[i].templateId, items[i].id)
+      }
       // hack to parse array of objects in Unity
-      const unityMessage = '{ "Items" :' + JSON.stringify(templatesJson) + '}'
+      const unityMessage = '{ "Items" :' + JSON.stringify(items) + '}'
       unityContext.send('ReactController', 'ParseItems', unityMessage)
    }
 
    useEffect(() => {
       if (loaded) {
          unityContext.on('GetAllUserItems', async () => {
-            sendTemplates()
+            sendUserItems()
          })
       }
    }, [loaded])
