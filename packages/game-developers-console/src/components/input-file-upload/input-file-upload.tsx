@@ -2,11 +2,11 @@ import * as React from 'react'
 import { useEffect, useState } from 'react'
 
 import classNames from 'classnames'
-import { InputLabel } from 'components/input-label'
-import { Paragraph } from 'components/text/paragraph'
 import { uniqueId } from 'lodash/fp'
 
 import { ReactComponent as IpfsIcon } from 'assets/svg/ipfs.svg'
+import { InputLabel } from 'components/input-label'
+import { Paragraph } from 'components/text/paragraph'
 import { IComponentProps } from 'types'
 import { getFile } from 'utils'
 

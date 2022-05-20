@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { CSSProperties } from 'react'
 
-import { Paragraph } from 'components/text/paragraph'
 import Select, {
    ActionMeta,
    ClearIndicatorProps,
@@ -13,6 +12,7 @@ import Select, {
 
 import { ReactComponent as ArrowDownIcon } from 'assets/svg/arrow-down.svg'
 import { ReactComponent as CloseIcon } from 'assets/svg/close.svg'
+import { Paragraph } from 'components/text/paragraph'
 import { IComponentProps } from 'types'
 
 const ClearIndicator = <OptionType extends any>(props: ClearIndicatorProps<OptionType, true>) => {

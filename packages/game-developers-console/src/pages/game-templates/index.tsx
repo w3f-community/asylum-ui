@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 
-import { Hr } from 'components/hr'
-import { ListCardItem } from 'components/list-card-item'
-import { SearchAutocomplete } from 'components/search-autocomplete'
-import { HeadingXl } from 'components/text/heading-xl'
-import { Paragraph } from 'components/text/paragraph'
 import { flow, map, uniq } from 'lodash/fp'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 
 import { fetchTemplates } from 'api'
+import { Hr } from 'components/hr'
+import { ListCardItem } from 'components/list-card-item'
+import { SearchAutocomplete } from 'components/search-autocomplete'
+import { HeadingXl } from 'components/text/heading-xl'
+import { Paragraph } from 'components/text/paragraph'
 import { TemplateCreate } from 'modules/template/template-create'
 import { TemplateWithMetadata } from 'types'
 

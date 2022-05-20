@@ -1,18 +1,19 @@
 import * as React from 'react'
 import { useEffect } from 'react'
 
-import { IWalletStepProps, WalletConnectStepType } from './index'
 import { web3Accounts, web3FromAddress } from '@polkadot/extension-dapp'
-import { Avatar } from 'components/avatar'
-import { Button } from 'components/button'
-import { Paragraph } from 'components/text/paragraph'
 import { observer } from 'mobx-react-lite'
 
 import { AsylumApi } from '@asylum-ui/connection-library'
 
 import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
+import { Avatar } from 'components/avatar'
+import { Button } from 'components/button'
+import { Paragraph } from 'components/text/paragraph'
 import { useStore } from 'store'
 import { formatAddress } from 'utils'
+
+import { IWalletStepProps, WalletConnectStepType } from './index'
 
 interface IAccountRowProps {
    account: InjectedAccountWithMeta

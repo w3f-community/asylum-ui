@@ -1,12 +1,11 @@
 import * as React from 'react'
 
+import { Review } from '@asylum-ui/connection-library'
+
 import { Card } from 'components/card'
 import { ReviewCard } from 'components/review-item'
 import { HeadingXl } from 'components/text/heading-xl'
 import { Paragraph } from 'components/text/paragraph'
-
-import { Review } from '@asylum-ui/connection-library'
-
 import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {

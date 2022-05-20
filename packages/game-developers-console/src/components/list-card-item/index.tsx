@@ -3,7 +3,6 @@ import * as React from 'react'
 import { Button } from 'components/button'
 import { HeadingLg } from 'components/text/heading-lg'
 import { Paragraph } from 'components/text/paragraph'
-
 import { formatAddress } from 'utils'
 
 interface IProps {

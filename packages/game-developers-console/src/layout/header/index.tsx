@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import { Hr } from 'components/hr'
 import { observer } from 'mobx-react-lite'
 
+import { Hr } from 'components/hr'
 import { WalletConnect } from 'modules/wallet'
 import { useStore } from 'store'
 import { IComponentProps } from 'types'

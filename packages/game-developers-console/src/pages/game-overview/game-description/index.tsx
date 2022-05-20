@@ -1,13 +1,14 @@
 import * as React from 'react'
 
-import { Card } from 'components/card'
-import { Heading } from 'components/text/heading'
-import { HeadingLg } from 'components/text/heading-lg'
-import { Paragraph } from 'components/text/paragraph'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
 import { GameMetadata } from '@asylum-ui/connection-library'
+
+import { Card } from 'components/card'
+import { Heading } from 'components/text/heading'
+import { HeadingLg } from 'components/text/heading-lg'
+import { Paragraph } from 'components/text/paragraph'
 
 interface IProps {
    game: GameMetadata

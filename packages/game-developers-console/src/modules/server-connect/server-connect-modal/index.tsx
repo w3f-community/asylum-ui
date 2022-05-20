@@ -1,14 +1,14 @@
 import * as React from 'react'
 
 import classNames from 'classnames'
-import { Button } from 'components/button'
-import { Modal } from 'components/modal'
-import { Paragraph } from 'components/text/paragraph'
 import { observer } from 'mobx-react-lite'
 import { useNavigate } from 'react-router-dom'
 
 import { AsylumApi } from '@asylum-ui/connection-library'
 
+import { Button } from 'components/button'
+import { Modal } from 'components/modal'
+import { Paragraph } from 'components/text/paragraph'
 import { useStore } from 'store'
 import { INetwork } from 'types'
 

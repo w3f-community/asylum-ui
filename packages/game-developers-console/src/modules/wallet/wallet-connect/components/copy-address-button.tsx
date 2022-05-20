@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 import classNames from 'classnames'
-import { Button } from 'components/button'
 
 import { ReactComponent as CheckmarkIcon } from 'assets/svg/checkmark.svg'
 import { ReactComponent as CopyIcon } from 'assets/svg/copy.svg'
+import { Button } from 'components/button'
 import { formatAddress } from 'utils'
 
 interface IProps {

@@ -1,11 +1,12 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
 
-import { Heading } from '../text/heading'
 import classNames from 'classnames'
 import ReactDOM from 'react-dom'
 
 import { ReactComponent as CloseIcon } from 'assets/svg/close.svg'
 import { IComponentProps } from 'types'
+
+import { Heading } from '../text/heading'
 
 interface IProps extends IComponentProps {
    title?: React.ReactText

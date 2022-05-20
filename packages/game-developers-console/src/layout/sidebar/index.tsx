@@ -1,19 +1,19 @@
 import * as React from 'react'
 
-import { Avatar } from 'components/avatar'
-import { Button } from 'components/button'
-import { HeadingLg } from 'components/text/heading-lg'
-import { Paragraph } from 'components/text/paragraph'
 import { observer } from 'mobx-react-lite'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { ReactComponent as PlayIcon } from 'assets/svg/play.svg'
 import { ReactComponent as RefreshIcon } from 'assets/svg/refresh.svg'
+import { Avatar } from 'components/avatar'
+import { Button } from 'components/button'
+import { HeadingLg } from 'components/text/heading-lg'
+import { Paragraph } from 'components/text/paragraph'
 import { ServerConnect } from 'modules/server-connect'
 import { useStore } from 'store'
 import { IComponentProps } from 'types'
 
-interface IProps extends IComponentProps { }
+interface IProps extends IComponentProps {}
 
 export const Sidebar: React.FC<IProps> = observer(() => {
    const store = useStore()

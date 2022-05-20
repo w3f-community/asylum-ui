@@ -1,12 +1,13 @@
 import * as React from 'react'
 
-import { Header } from '../header'
-import { Sidebar } from '../sidebar'
 import classNames from 'classnames'
-import { Toast } from 'components/toast'
 import 'react-toastify/dist/ReactToastify.css'
 
+import { Toast } from 'components/toast'
 import { IComponentProps } from 'types'
+
+import { Header } from '../header'
+import { Sidebar } from '../sidebar'
 
 interface IProps extends IComponentProps {}
 

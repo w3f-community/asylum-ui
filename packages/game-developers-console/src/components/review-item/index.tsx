@@ -1,12 +1,11 @@
 import * as React from 'react'
 
+import { Review } from '@asylum-ui/connection-library'
+
 import { Avatar } from 'components/avatar'
 import { Card } from 'components/card'
 import { RatingStarsComponent } from 'components/rating-star'
 import { Paragraph } from 'components/text/paragraph'
-
-import { Review } from '@asylum-ui/connection-library'
-
 import { formatAddress } from 'utils'
 
 interface IReviewProps {

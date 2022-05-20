@@ -1,10 +1,11 @@
 import * as React from 'react'
 
-import { WALLET_CONNECT_STEPS, WalletConnectStepType } from './steps'
-import { Modal } from 'components/modal'
 import { observer } from 'mobx-react-lite'
 
+import { Modal } from 'components/modal'
 import { useStore } from 'store'
+
+import { WALLET_CONNECT_STEPS, WalletConnectStepType } from './steps'
 
 interface IProps {
    open?: boolean

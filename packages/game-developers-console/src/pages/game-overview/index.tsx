@@ -1,15 +1,16 @@
 import * as React from 'react'
 
-import { Details } from './details'
-import { GameDescription } from './game-description'
+import { observer } from 'mobx-react-lite'
+
 import { Hr } from 'components/hr'
 import { HeadingXl } from 'components/text/heading-xl'
 import { Paragraph } from 'components/text/paragraph'
-import { observer } from 'mobx-react-lite'
-
 import { Reviews } from 'pages/game-overview/reviews'
 import { useStore } from 'store'
 import { IComponentProps } from 'types'
+
+import { Details } from './details'
+import { GameDescription } from './game-description'
 
 interface IProps extends IComponentProps {}
 

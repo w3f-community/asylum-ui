@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import { InputField } from 'components/input-field'
 import { FormikProps } from 'formik'
 
+import { InputField } from 'components/input-field'
 import { TemplateFormValues } from 'modules/template/template-create-modal'
 import { formatAddress } from 'utils'
 

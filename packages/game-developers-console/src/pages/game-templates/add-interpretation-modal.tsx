@@ -1,7 +1,5 @@
 import * as React from 'react'
 
-import { Button } from 'components/button'
-import { Modal } from 'components/modal'
 import { useFormik } from 'formik'
 import { map } from 'lodash/fp'
 import { useMutation, useQueryClient } from 'react-query'
@@ -11,6 +9,8 @@ import { AsylumApi, ChangeSet, TemplateChangeAdd } from '@asylum-ui/connection-l
 
 import { SubmittableResult } from '@polkadot/api'
 import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
+import { Button } from 'components/button'
+import { Modal } from 'components/modal'
 import {
    InterpretationCreateForm,
    InterpretationFormValues,

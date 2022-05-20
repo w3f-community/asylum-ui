@@ -2,12 +2,14 @@ import * as React from 'react'
 import { useEffect } from 'react'
 
 import classNames from 'classnames'
-import { Button } from 'components/button'
 import { observer } from 'mobx-react-lite'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import Unity, { UnityContext } from 'react-unity-webgl'
 
+import { AsylumApi } from '@asylum-ui/connection-library'
+
 import { ReactComponent as ArrowUpIcon } from 'assets/svg/arrow-up.svg'
+import { Button } from 'components/button'
 import { SidebarLayout } from 'layout/sidebar-layout'
 import { GameItems } from 'pages/game-items'
 import { GameOverview } from 'pages/game-overview'
@@ -17,8 +19,6 @@ import { TemplateOverview } from 'pages/game-templates/template-overview'
 import { NotConnectedNetwork } from 'pages/not-connected-network'
 import { NotConnectedWallet } from 'pages/not-connected-wallet'
 import { useStore } from 'store'
-
-import { AsylumApi } from '@asylum-ui/connection-library'
 
 const AppRoutes = () => (
    <Routes>

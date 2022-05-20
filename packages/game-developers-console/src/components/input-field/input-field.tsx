@@ -2,9 +2,9 @@ import * as React from 'react'
 import { ChangeEventHandler } from 'react'
 
 import classNames from 'classnames'
+
 import { InputLabel } from 'components/input-label'
 import { Paragraph } from 'components/text/paragraph'
-
 import { IComponentProps } from 'types'
 
 interface IProps extends IComponentProps {
