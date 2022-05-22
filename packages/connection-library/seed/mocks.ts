@@ -313,8 +313,8 @@ export const proposals: {
                tags: ['2d-sprite', 'jpg'],
                interpretation: {
                   id: '355',
-                  src: 'https://zilliongamer.com/uploads/pubg-mobile/weapon/type/ar/aug/skin/white-rabbit-aug-big.jpg',
-                  metadata: 'QmQkvrZ15r4inndd3mpbtHSuxzWbL6Z4ehywVFReANRzoM',
+                  src: 'https://i.pinimg.com/originals/3a/83/bf/3a83bf5f768ef01338ba534ae4a1447b.png',
+                  metadata: 'QmVeVRWBzg1ybhJfbUc7dxvCf544BKcTtA8vSoCP8Xdw98',
                },
             },
          ]),
