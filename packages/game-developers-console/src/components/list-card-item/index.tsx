@@ -46,16 +46,18 @@ export const ListCardItem: React.FC<IProps> = ({
             </Paragraph>
             <div className="flex flex-row justify-between items-center">
                <Paragraph className="group-hover:text-white">{formatAddress(address)}</Paragraph>
-               <Button
-                  variant="dark"
-                  className="before:hidden hover:bg-white hover:text-gray-700"
-                  onClick={(e) => {
-                     e.stopPropagation()
-                     onActionClick && onActionClick(id)
-                  }}
-               >
-                  {actionText}
-               </Button>
+               {onActionClick && actionText && (
+                  <Button
+                     variant="dark"
+                     className="before:hidden hover:bg-white hover:text-gray-700"
+                     onClick={(e) => {
+                        e.stopPropagation()
+                        onActionClick && onActionClick(id)
+                     }}
+                  >
+                     {actionText}
+                  </Button>
+               )}
             </div>
          </div>
       </div>

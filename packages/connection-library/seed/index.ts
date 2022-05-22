@@ -160,8 +160,17 @@ const seedGames = async (api: IAsylumApi): Promise<void> => {
    }
 }
 
-AsylumApi.connect(process.env.ENDPOINT_URL || '')
+AsylumApi.connect(
+   { nodeUrl: process.env.ASYLUM_NODE_URL || '', ipfsUrl: process.env.IPFS_NODE_URL || '' },
+   () => {},
+   () => {},
+   {
+      throwOnConnect: false,
+      throwOnUnknown: false,
+   }
+)
    .then(async (api) => {
+      await api.api?.isReady
       await seed(api.withKeyringPair(await prepareSeeder(api)))
       terminate(0)
    })

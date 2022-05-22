@@ -19,7 +19,8 @@ interface IProps {
 
 const LOCAL_NODE: INetwork = {
    name: 'local node',
-   endpoint: process.env.ENDPOINT_URL ?? 'ws://127.0.0.1:9944',
+   nodeUrl: 'ws://127.0.0.1:9944',
+   ipfsUrl: 'http://127.0.0.1:5001',
 }
 
 export const ServerConnectModal: React.FC<IProps> = observer(({ open, onClose }) => {
@@ -47,10 +48,10 @@ export const ServerConnectModal: React.FC<IProps> = observer(({ open, onClose })
    const handleSelectNode = async (network: INetwork) => {
       setError(null)
       try {
-         await AsylumApi.connect(network.endpoint, () => onConnected(network), onDisconnected)
+         await AsylumApi.connect(network, () => onConnected(network), onDisconnected)
       } catch (e) {
          setTimeout(
-            () => setError('Cannot connect to the endpoint: ' + network.endpoint + '. Try again.'),
+            () => setError('Cannot connect to the endpoint: ' + network.nodeUrl + '. Try again.'),
             200
          )
       }
@@ -70,16 +71,14 @@ export const ServerConnectModal: React.FC<IProps> = observer(({ open, onClose })
                      <span
                         className={classNames('h-2 w-2 rounded-full', {
                            'bg-green-500':
-                              store.network?.endpoint === LOCAL_NODE.endpoint && store.isConnected,
+                              store.network?.nodeUrl === LOCAL_NODE.nodeUrl && store.isConnected,
                            'bg-red-500':
-                              store.network?.endpoint !== LOCAL_NODE.endpoint || !store.isConnected,
+                              store.network?.nodeUrl !== LOCAL_NODE.nodeUrl || !store.isConnected,
                         })}
                      />
                      {LOCAL_NODE.name}
                   </div>
-                  <span className="text-gray-400 group-hover:text-white">
-                     {LOCAL_NODE.endpoint}
-                  </span>
+                  <span className="text-gray-400 group-hover:text-white">{LOCAL_NODE.nodeUrl}</span>
                </Button>
                {error && <Paragraph className="text-center text-red-400">{error}</Paragraph>}
 

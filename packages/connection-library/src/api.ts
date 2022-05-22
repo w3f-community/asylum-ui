@@ -4,7 +4,7 @@ import { handleTxCallback, mapEntries } from './utils'
 import { ApiPromise, SubmittableResult, WsProvider } from '@polkadot/api'
 import { ApiTypes } from '@polkadot/api-base/types/base'
 import { SubmittableExtrinsic } from '@polkadot/api-base/types/submittable'
-import { Signer } from '@polkadot/api/types'
+import { ApiOptions, Signer } from '@polkadot/api/types'
 import { KeyringPair } from '@polkadot/keyring/types'
 import { create } from 'ipfs-http-client'
 import { omit } from 'lodash/fp'
@@ -14,13 +14,15 @@ class AsylumApi {
    keyringPair: KeyringPair | undefined
    address: string | undefined
    injectedSigner: Signer | undefined
+   ipfsUrl: string | undefined
 
    async connect(
-      endpoint: string,
+      { nodeUrl, ipfsUrl }: { nodeUrl: string; ipfsUrl: string },
       onConnected?: () => void,
-      onDisconnected?: () => void
+      onDisconnected?: () => void,
+      options?: ApiOptions
    ): Promise<AsylumApi> {
-      const provider = new WsProvider(endpoint)
+      const provider = new WsProvider(nodeUrl)
       onConnected && provider.on('connected', onConnected)
       onDisconnected && provider.on('disconnected', onDisconnected)
 
@@ -30,7 +32,9 @@ class AsylumApi {
             throwOnConnect: true,
             throwOnUnknown: true,
             types: apiTypes,
+            ...options,
          })
+         this.ipfsUrl = ipfsUrl
       } catch (e) {
          await provider.disconnect()
          throw e
@@ -65,7 +69,7 @@ class AsylumApi {
 
    async uploadMetadata(metadata: object): Promise<string> {
       const ipfs = create({
-         url: process.env.IPFS_ENDPOINT_URL ?? 'http://127.0.0.1:5001',
+         url: this.ipfsUrl,
       })
       const { cid } = await ipfs.add(JSON.stringify(metadata))
 
@@ -74,7 +78,7 @@ class AsylumApi {
 
    async getMetadataCID(metadata: object): Promise<string> {
       const ipfs = create({
-         url: process.env.IPFS_ENDPOINT_URL ?? 'http://127.0.0.1:5001',
+         url: this.ipfsUrl,
       })
       const { cid } = await ipfs.add(JSON.stringify(metadata), { onlyHash: true })
 
@@ -83,7 +87,7 @@ class AsylumApi {
 
    async uploadFile(buffer: ArrayBuffer): Promise<string> {
       const ipfs = create({
-         url: process.env.IPFS_ENDPOINT_URL ?? 'http://127.0.0.1:5001',
+         url: this.ipfsUrl,
       })
       const { cid } = await ipfs.add(buffer)
 

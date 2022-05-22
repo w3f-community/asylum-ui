@@ -1,37 +1,12 @@
 # Game Developers Console Testing Guide
 
-Firstly, you have to configure the local env and run three processes:
-1. Asylum node
-2. Local IPFS daemon
-3. Game Developers Console web app
+This guide follows you through the process of configuring Templates and Interpretations for your NFTs via the web interface of Game Developers Console.
 
-Follow instructions to run [Game Developers Console (locally)](/packages/game-developers-console/README.md).
-Make sure you're using the node version: **v17.9.0**.
+#### Step 1: Setup and run Game Developers Console web app
 
-As another option - you can run all three processes in the **Docker**. To do this you need to do Step 0 below (setup `.env.local` file) and then run the following command: 
-
-```
-docker-compose up
-``` 
-
-It will run three containers and *automatically seed the mock data*, so you can skip the Step 1 in the guide below. 
-
-### Steps
-
-#### Step 0: Setup local variables
-
-Create `.env.local` file in `packages/connection-library` with the following content (you can specify any `SEEDER_MNEMONIC`):
-```
-SEEDER_MNEMONIC = eternal danger cherry radar exit damage slam hip say relief awesome middle
-ENDPOINT_URL = ws://127.0.0.1:9944
-```
-
-#### Step 1: Seed mock data for your local node
-
-Navigate to the root directory and run the `seed` script to configure testing data on the local node:
-```
-yarn seed
-```
+Choose one of two options to run Game Developers Console locally:
+- [Manual setup](/packages/game-developers-console/README.md#run-game-developers-console-manual-setup)
+- [Docker setup](/packages/game-developers-console/README.md#run-game-developers-console-docker-setup)
 
 #### Step 2: Configure PolkadotJS and connect to the local node:
 

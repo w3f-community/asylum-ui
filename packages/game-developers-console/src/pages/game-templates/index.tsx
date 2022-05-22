@@ -8,6 +8,7 @@ import { Paragraph } from 'components/text/paragraph'
 import { flow, map, uniq } from 'lodash/fp'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import { fetchTemplates } from 'api'
 import { TemplateCreate } from 'modules/template/template-create'
@@ -71,6 +72,7 @@ export const GameTemplates: React.FC<IProps> = () => {
                            description={item.description}
                            address={item.issuer}
                            actionText="mint item"
+                           onActionClick={() => toast.success('Coming soon..')}
                            onClick={() => navigate(`/templates/${item.id}`)}
                         />
                      ))}
