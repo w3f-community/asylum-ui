@@ -1,13 +1,17 @@
-FROM node:17.9.0 as build
+FROM node:17.9.0-alpine as builder
 
 WORKDIR /asylum-ui
 COPY ./ ./
 
-ENV ENDPOINT_URL=ws://host.docker.internal:9944
-ENV IPFS_ENDPOINT_URL=http://host.docker.internal:5001
+ENV ASYLUM_NODE_URL=ws://node-asylum:9944
+ENV IPFS_NODE_URL=http://ipfs:5001
 
-RUN yarn install
+RUN apk add --no-cache --virtual .gyp python2 make g++
+
+RUN yarn
 RUN yarn build
+
+RUN apk del .gyp
 
 EXPOSE 3000
 

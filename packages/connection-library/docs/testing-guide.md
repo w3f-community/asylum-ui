@@ -18,9 +18,10 @@ To start working with the Connection Library we need to prepare an account:
 ```js
 import { AsylumApi } from '@asylum-ui/connection-library'
 
-const endpoint = "ws://127.0.0.1:9944"
+const nodeUrl = "ws://127.0.0.1:9944"
+const ipfsUrl = "http://127.0.0.1:5001"
 
-const api = AsylumApi.connect(endpoint)
+const api = AsylumApi.connect({ nodeUrl, ipfsUrl })
    .then(async (api) => {
         const mnemonic = "eternal danger cherry radar exit damage slam hip say relief awesome middle"   
 

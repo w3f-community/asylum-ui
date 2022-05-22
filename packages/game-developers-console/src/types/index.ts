@@ -15,5 +15,6 @@ export interface IComponentProps {
 
 export interface INetwork {
    name: string
-   endpoint: string
+   nodeUrl: string
+   ipfsUrl: string
 }
