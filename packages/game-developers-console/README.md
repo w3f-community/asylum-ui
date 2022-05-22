@@ -71,6 +71,10 @@ docker-compose up
 
 It will set up and run three containers and **automatically seed the mock data**.
 
+> Note: execute the following command inside `asylum-ui-ipfs` container to avoid CORS issues:
+> ```
+> ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]'
+> ```
 
 ### Guides
 
