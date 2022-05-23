@@ -4,7 +4,7 @@ import classNames from 'classnames'
 
 import { IComponentProps } from 'types'
 
-interface IProps extends IComponentProps {
+interface IButton extends IComponentProps {
    error?: boolean
    disabled?: boolean
    variant?: 'dark' | 'light' | 'success'
@@ -14,7 +14,7 @@ interface IProps extends IComponentProps {
    children: React.ReactNode
 }
 
-export const Button: React.FC<IProps> = ({
+export const Button = ({
    variant = 'light',
    size = 'md',
    className,
@@ -23,7 +23,7 @@ export const Button: React.FC<IProps> = ({
    active,
    onClick,
    children,
-}) => (
+}: IButton) => (
    <button
       onClick={onClick}
       className={classNames(

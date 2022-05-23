@@ -1,4 +1,4 @@
-import { Interpretation, Template } from '@asylum-ui/connection-library'
+import { Interpretation, Item, Template } from '@asylum-ui/connection-library'
 
 export interface TemplateWithMetadata extends Template {
    description: string
@@ -7,6 +7,12 @@ export interface TemplateWithMetadata extends Template {
 
 export interface InterpretationWithMetadata extends Interpretation {
    metadata: any
+}
+
+export interface ItemWithMetadata extends Item {
+   description: string
+   img: string
+   name: string
 }
 
 export interface IComponentProps {

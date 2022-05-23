@@ -12,8 +12,10 @@ interface IListCardItem {
    description: string
    address: string
    onClick?: (id: string) => void
-   onActionClick?: (id: string) => void
-   actionText?: string
+   actionButton?: {
+      onClick: (id: string) => void
+      text: string
+   }
 }
 
 export const ListCardItem = ({
@@ -23,8 +25,7 @@ export const ListCardItem = ({
    address,
    description,
    onClick,
-   onActionClick,
-   actionText,
+   actionButton,
 }: IListCardItem) => {
    return (
       <div
@@ -36,7 +37,7 @@ export const ListCardItem = ({
             <img
                className="h-full w-full rounded-2xl aspect-square object-cover"
                src={img || '/img/empty-img.jpg'}
-               alt="Your games"
+               alt={title}
             />
          </div>
          <div className="flex flex-col justify-between grow">
@@ -45,16 +46,18 @@ export const ListCardItem = ({
             </Paragraph>
             <div className="flex flex-row justify-between items-center">
                <Paragraph className="group-hover:text-white">{formatAddress(address)}</Paragraph>
-               <Button
-                  variant="dark"
-                  className="before:hidden hover:bg-white hover:text-gray-700"
-                  onClick={(e) => {
-                     e.stopPropagation()
-                     onActionClick && onActionClick(id)
-                  }}
-               >
-                  {actionText}
-               </Button>
+               {actionButton && (
+                  <Button
+                     variant="dark"
+                     className="before:hidden hover:bg-white hover:text-gray-700"
+                     onClick={(e) => {
+                        e.stopPropagation()
+                        actionButton.onClick(id)
+                     }}
+                  >
+                     {actionButton.text}
+                  </Button>
+               )}
             </div>
          </div>
       </div>

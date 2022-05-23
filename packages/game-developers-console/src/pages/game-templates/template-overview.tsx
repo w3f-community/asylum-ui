@@ -12,7 +12,7 @@ import { OptionProps, components } from 'react-select'
 import { TagMetadata } from '@asylum-ui/connection-library'
 
 import { Page } from '../../layout/page'
-import { fetchTags, fetchTemplate, fetchTemplateInterpretationsMetadata } from 'api'
+import { fetchTags, fetchTemplateInterpretationsMetadata, fetchTemplateWithMetadata } from 'api'
 import { ReactComponent as EditIcon } from 'assets/svg/pen.svg'
 import { ReactComponent as PlusIcon } from 'assets/svg/plus.svg'
 import { Button } from 'components/button'
@@ -55,7 +55,7 @@ export const TemplateOverview: React.FC = observer(() => {
    const [isEditTemplateModalOpen, setIsEditTemplateModalOpen] = React.useState(false)
    const [isEditInterpretationModalOpen, setIsEditInterpretationModalOpen] = React.useState(false)
 
-   const { data: template } = useQuery(['templates', id], () => fetchTemplate(id || ''))
+   const { data: template } = useQuery(['templates', id], () => fetchTemplateWithMetadata(id || ''))
    const { data: interpretations } = useQuery(
       ['interpretations', id],
       () => fetchTemplateInterpretationsMetadata(id || ''),
